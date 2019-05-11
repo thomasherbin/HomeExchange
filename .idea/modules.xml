@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HomeExchange.iml" filepath="$PROJECT_DIR$/HomeExchange.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvclab.iml" filepath="$PROJECT_DIR$/mvclab.iml" />
     </modules>
   </component>
 </project>
