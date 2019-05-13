@@ -18,6 +18,7 @@ public class User {
     @NotNull @Min(18) @Max(100) private Integer age;
     @NotNull private Gender gender;
     @DateTimeFormat(pattern="MM/dd/yyyy") @NotNull @Past private Date birthday;
+    private int status;
 
     public User() {
 
