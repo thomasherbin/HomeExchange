@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -11,11 +12,11 @@ public class House {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)private int id;
     private int owner;
-    @Size(min=2, max=30)  private String address;
+    @NotEmpty private String address;
 
     private int status;
-    @Size(min=2, max=30)  private String description;
-    @Size(min=2, max=30)  private String service;
+    @NotEmpty private String description;
+    @NotEmpty  private String service;
     private String constraintRule;
 
     public House() {
