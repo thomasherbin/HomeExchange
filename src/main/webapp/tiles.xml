@@ -17,5 +17,15 @@
         <put-attribute name="body" value="/view/pages/frontoffice/common/home.jsp" />
     </definition>
 
+    <definition name="login" extends="mainLayout">
+        <put-attribute name="title" value="login" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/login.jsp" />
+    </definition>
+
+    <definition name="Logout" extends="mainLayout">
+        <put-attribute name="title" value="Logout" />
+        <put-attribute name="body" value="view/pages/frontoffice/user/Logout.jsp" />
+    </definition>
+
 
 </tiles-definitions>

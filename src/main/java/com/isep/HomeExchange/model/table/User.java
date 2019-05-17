@@ -1,89 +1,64 @@
 package com.isep.HomeExchange.model.table;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.*;
-import java.util.Date;
 
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "user")
 public class User {
-    @Id @GeneratedValue private int id;
-    @Size(min=2, max=30) private String firstName;
-    @Size(min=2, max=30) private String lastName;
-    @NotEmpty @Email private String email;
-    @NotNull @Min(18) @Max(100) private Integer age;
-    @NotNull private Gender gender;
-    @DateTimeFormat(pattern="MM/dd/yyyy") @NotNull @Past private Date birthday;
-    private int status;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public User() {
+    private String username;
 
+    private String password;
+
+    @Transient
+    private String passwordConfirm;
+
+    @ManyToMany
+    private Set<Role> roles;
+
+    public Long getId() {
+        return id;
     }
 
-    public User(@Size(min = 2, max = 30) String firstName, @Size(min = 2, max = 30) String lastName, @NotEmpty @Email String email, @NotNull @Min(18) @Max(100) Integer age, @NotNull Gender gender, @NotNull @Past Date birthday) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.age = age;
-        this.gender = gender;
-        this.birthday = birthday;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public enum Gender {
-        MALE, FEMALE
+    public String getUsername() {
+        return username;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getPassword() {
+        return password;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getPasswordConfirm() {
+        return passwordConfirm;
     }
 
-    public String getEmail() {
-        return email;
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public Integer getAge() {
-        return age;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-
 }
