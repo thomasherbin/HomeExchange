@@ -2,39 +2,52 @@ package com.isep.HomeExchange.model.table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 
 
 @Entity
 public class User {
-    @Id @GeneratedValue private int id;
-    @Size(min=2, max=30) private String firstName;
-    @Size(min=2, max=30) private String lastName;
-    @NotEmpty @Email private String email;
-    @NotNull @Min(18) @Max(100) private Integer age;
-    @NotNull private Gender gender;
-    @DateTimeFormat(pattern="MM/dd/yyyy") @NotNull @Past private Date birthday;
-    private int status;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
+    private Integer id;
+
+    @Size(min=2, max=30)
+    @Column(name = "First_Name")
+    private String firstName;
+
+    @Size(min=2, max=30)
+    @Column(name = "Last_Name")
+    private String lastName;
+
+    @NotEmpty @Email
+    @Column(name = "Email")
+    private String email;
+
+    @NotNull @Min(18) @Max(100)
+    @Column(name = "Age")
+    private Integer age;
+
+
+    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @Temporal(TemporalType.DATE)
+    @NotNull @Past
+    @Column(name = "Date_Of_Birth")
+    private Date birthday;
+
 
     public User() {
 
     }
 
-    public User(@Size(min = 2, max = 30) String firstName, @Size(min = 2, max = 30) String lastName, @NotEmpty @Email String email, @NotNull @Min(18) @Max(100) Integer age, @NotNull Gender gender, @NotNull @Past Date birthday) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.age = age;
-        this.gender = gender;
-        this.birthday = birthday;
+    public Integer getId() {
+        return id;
     }
 
-    public enum Gender {
-        MALE, FEMALE
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -69,14 +82,6 @@ public class User {
         this.age = age;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
     public Date getBirthday() {
         return birthday;
     }
@@ -85,5 +90,15 @@ public class User {
         this.birthday = birthday;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", birthday=" + birthday +
+                '}';
+    }
 }

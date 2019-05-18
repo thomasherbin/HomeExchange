@@ -12,6 +12,5 @@
     else
     {
         System.out.print("Sorry, email or password error");
-
     }
 %>
