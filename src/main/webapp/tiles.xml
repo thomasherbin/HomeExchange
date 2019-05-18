@@ -22,9 +22,9 @@
         <put-attribute name="body" value="/view/pages/frontoffice/user/login.jsp" />
     </definition>
 
-    <definition name="Logout" extends="mainLayout">
-        <put-attribute name="title" value="Logout" />
-        <put-attribute name="body" value="view/pages/frontoffice/user/Logout.jsp" />
+    <definition name="registration" extends="mainLayout">
+        <put-attribute name="title" value="registration" />
+        <put-attribute name="body" value="view/pages/frontoffice/user/registration.jsp" />
     </definition>
 
 
