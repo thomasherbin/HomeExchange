@@ -17,5 +17,31 @@
         <put-attribute name="body" value="/view/pages/frontoffice/common/home.jsp" />
     </definition>
 
+    <definition name="HomeAdd" extends="mainLayout">
+        <put-attribute name="title" value="HomeAdd" />
+        <put-attribute name="body" value="/view/pages/frontoffice/home/add.jsp" />
+    </definition>
+
+    <definition name="HomeEdit" extends="mainLayout">
+        <put-attribute name="title" value="HomeEdit" />
+        <put-attribute name="body" value="/view/pages/frontoffice/home/edit.jsp" />
+    </definition>
+
+    <definition name="HomeRemove" extends="mainLayout">
+        <put-attribute name="title" value="HomeRemove" />
+        <put-attribute name="body" value="/view/pages/frontoffice/home/remove.jsp" />
+    </definition>
+
+    <definition name="HousesView" extends="mainLayout">
+        <put-attribute name="title" value="HousesView" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/housesView.jsp" />
+    </definition>
+
+    <definition name="error404" extends="mainLayout">
+        <put-attribute name="title" value="error404" />
+        <put-attribute name="body" value="/view/pages/frontoffice/common/error404.jsp" />
+    </definition>
+
+
 
 </tiles-definitions>

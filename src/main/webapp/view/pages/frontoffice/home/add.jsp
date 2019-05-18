@@ -7,8 +7,18 @@
 </head>
 <body>
 <h1>Add a house to book</h1>
-<springForm:form method="post" modelAttribute="house" action="/addHouse">
+<springForm:form method="post" modelAttribute="house" action="/view/pages/frontoffice/home/add">
     <table>
+        <tr>
+            <td>Name:</td>
+            <td><springForm:input path="name" /></td>
+            <td><springForm:errors path="name"  /></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td><springForm:input path="city" /></td>
+            <td><springForm:errors path="city"  /></td>
+        </tr>
         <tr>
             <td>Address:</td>
             <td><springForm:input path="address" /></td>
@@ -29,6 +39,11 @@
             <td><springForm:input path="constraintRule" /></td>
             <td><springForm:errors path="constraintRule"  /></td>
         </tr>
+        <td>Status:</td>
+        <td><springForm:select path="status">
+            <springForm:option value="Booked" label="Booked" />
+            <springForm:option value="Non Booked" selected="true" label="Non booked" />
+        </springForm:select></td>
         <tr>
             <td colspan="3"><input type="submit" value="Save House"></td>
         </tr>

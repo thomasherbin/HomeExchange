@@ -1,47 +1,53 @@
 package com.isep.HomeExchange.model.table;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 @Entity
 public class House {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)private int id;
-    private int owner;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)private Integer id;
+    private Integer owner;
     @NotEmpty private String address;
-
-    private int status;
+    @NotNull private String status;
     @NotEmpty private String description;
     @NotEmpty  private String service;
     private String constraintRule;
+    @NotEmpty private String name ;
+    @NotEmpty private String city ;
 
     public House() {
     }
 
-    public House(String address, String description, String service, String constraintRule) {
+
+    public House(String address, String description, String service, String constraintRule, String name, String city) {
         this.address = address;
         this.description = description;
         this.service = service;
         this.constraintRule = constraintRule;
+        this.name = name;
+        this.city = city;
+
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    /*
-    public int getOwner() {
+    public void setId(Integer id){
+        this.id = id ;
+    }
+
+
+    public Integer getOwner() {
         return owner;
     }
 
-    public void setOwner(int owner) {
+    public void setOwner(Integer owner) {
         this.owner = owner;
     }
-    */
 
     public String getAddress() {
         return address;
@@ -51,17 +57,17 @@ public class House {
         this.address = address;
     }
 
-    /*
 
-    public int getStatus() {
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    */
+
     public String getDescription() {
         return description;
     }
@@ -84,6 +90,37 @@ public class House {
 
     public void setConstraintRule(String constraintRule) {
         this.constraintRule = constraintRule;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "id=" + id +
+                ", owner=" + owner +
+                ", address='" + address + '\'' +
+                ", status='" + status + '\'' +
+                ", description='" + description + '\'' +
+                ", service='" + service + '\'' +
+                ", constraintRule='" + constraintRule + '\'' +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                '}';
     }
 }
 
