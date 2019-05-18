@@ -68,6 +68,14 @@
             <td><springForm:errors path="status"  /></td>
         </tr>
         <tr>
+            <td>Availability:</td>
+            <td> Start : <springForm:input path="dateStart" type="date" value="${house.dateStart}"/>
+            <td><springForm:errors path="dateStart"  /></td>
+            <td> End : <springForm:input path="dateEnd" type="date" value="${house.dateEnd}" />
+            <td><springForm:errors path="dateEnd"  /></td>
+            </td>
+        </tr>
+        <tr>
             <td colspan="3"><input type="submit" value="Save"></td>
         </tr>
     </table>

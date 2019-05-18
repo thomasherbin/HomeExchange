@@ -39,11 +39,25 @@
             <td><springForm:input path="constraintRule" /></td>
             <td><springForm:errors path="constraintRule"  /></td>
         </tr>
-        <td>Status:</td>
-        <td><springForm:select path="status">
-            <springForm:option value="Booked" label="Booked" />
-            <springForm:option value="Non Booked" selected="true" label="Non booked" />
-        </springForm:select></td>
+        <tr>
+            <td>Status:</td>
+            <td><springForm:select path="status">
+                <springForm:option value="Booked" label="Booked" />
+                <springForm:option value="Non Booked" selected="true" label="Non booked" />
+            </springForm:select></td>
+            <td><springForm:errors path="status"  /></td>
+        </tr>
+        <tr>
+            <td>Availability:</td>
+            <td> Start : <springForm:input path="dateStart" type="date" />
+            <td><springForm:errors path="dateStart"  /></td>
+            <td> End : <springForm:input path="dateEnd" type="date" />
+            <td><springForm:errors path="dateEnd"  /></td>
+            </td>
+        </tr>
+
+
+
         <tr>
             <td colspan="3"><input type="submit" value="Save House"></td>
         </tr>

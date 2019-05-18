@@ -14,6 +14,7 @@
         <th>Description</th>
         <th>Service</th>
         <th>Constraint Rules</th>
+        <th>Availability</th>
     </tr>
 <c:forEach items="${houses}" var="home">
     <c:url var="EditHouse" value="/view/pages/frontoffice/home/edit">
@@ -31,6 +32,7 @@
         <td>${home.description}</td>
         <td>${home.service}</td>
         <td>${home.constraintRule}</td>
+        <td>Available from ${home.dateStart} to ${home.dateEnd} </td>
         <td><a href="${EditHouse}">Edit</a></td>
         <td><a href="${DeleteHouse}">Remove</a></td>
     </tr>
