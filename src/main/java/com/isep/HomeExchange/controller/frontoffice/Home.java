@@ -104,7 +104,6 @@ public class Home {
         Optional<House> optionalHouse =  houseRepository.findById(id);
         if (optionalHouse.isPresent()) {
             House house = optionalHouse.get();
-            System.out.println("remove this house " + house.toString());
             model.addAttribute("house", house);
             return "HomeRemove";
         } else {
@@ -114,7 +113,6 @@ public class Home {
 
     @GetMapping(value = "/RemoveHouseConfirmed")
     public String removeHouseConfirmed(Model model,@RequestParam("id") int id) {
-        System.out.println("here shit");
         houseRepository.deleteById(id);
         return "Home";
     }
