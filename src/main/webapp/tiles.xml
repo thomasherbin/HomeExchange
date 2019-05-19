@@ -8,6 +8,7 @@
     <definition name="mainLayout" template="/index.jsp">
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="/view/modules/generic/header.jsp" />
+        <put-attribute name="pannel" value="" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/view/modules/generic/footer.jsp" />
     </definition>
@@ -15,6 +16,31 @@
     <definition name="Home" extends="mainLayout">
         <put-attribute name="title" value="Home" />
         <put-attribute name="body" value="/view/pages/frontoffice/common/home.jsp" />
+    </definition>
+
+    <definition name="login" extends="mainLayout">
+        <put-attribute name="title" value="login" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/login.jsp" />
+    </definition>
+
+    <definition name="addUser" extends="mainLayout">
+        <put-attribute name="title" value="addUser" />
+        <put-attribute name="body" value="/view/pages/backoffice//user/add.jsp" />
+    </definition>
+
+    <definition name="userView" extends="mainLayout">
+        <put-attribute name="title" value="View" />
+        <put-attribute name="body" value="/view/pages/backoffice//user/list.jsp" />
+    </definition>
+
+    <definition name="removeUser" extends="mainLayout">
+        <put-attribute name="title" value="View" />
+        <put-attribute name="body" value="/view/pages/backoffice//user/remove.jsp" />
+    </definition>
+
+    <definition name="editUser" extends="mainLayout">
+        <put-attribute name="title" value="View" />
+        <put-attribute name="body" value="/view/pages/backoffice//user/edit.jsp" />
     </definition>
 
 
