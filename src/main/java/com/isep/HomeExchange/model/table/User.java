@@ -5,14 +5,13 @@ import javax.validation.constraints.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -21,7 +20,6 @@ public class User {
 
    
     @NotEmpty @Email
-    @Column(name = "Email")
     private String email;
 
     @Transient
@@ -45,11 +43,11 @@ public class User {
 
 
     public String getUserName() {
-        return username;
+        return userName;
     }
 
     public void setUserName(String userName) {
-        this.username = userName;
+        this.userName = userName;
     }
 
     public String getPassword() {
