@@ -8,6 +8,7 @@
     <definition name="mainLayout" template="/index.jsp">
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="/view/modules/generic/header.jsp" />
+        <put-attribute name="pannel" value="" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/view/modules/generic/footer.jsp" />
     </definition>
@@ -26,6 +27,60 @@
         <put-attribute name="title" value="registration" />
         <put-attribute name="body" value="/view/pages/frontoffice/user/registration.jsp" />
     </definition>
+
+
+    <definition name="HomeAdd" extends="mainLayout">
+        <put-attribute name="title" value="HomeAdd" />
+        <put-attribute name="body" value="/view/pages/frontoffice/home/add.jsp" />
+    </definition>
+
+    <definition name="HomeEdit" extends="mainLayout">
+        <put-attribute name="title" value="HomeEdit" />
+        <put-attribute name="body" value="/view/pages/frontoffice/home/edit.jsp" />
+    </definition>
+
+    <definition name="HomeRemove" extends="mainLayout">
+        <put-attribute name="title" value="HomeRemove" />
+        <put-attribute name="body" value="/view/pages/frontoffice/home/remove.jsp" />
+    </definition>
+
+    <definition name="HousesView" extends="mainLayout">
+        <put-attribute name="title" value="HousesView" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/housesView.jsp" />
+    </definition>
+
+    <definition name="error404" extends="mainLayout">
+        <put-attribute name="title" value="error404" />
+        <put-attribute name="body" value="/view/pages/frontoffice/common/error404.jsp" />
+    </definition>
+
+
+
+    <definition name="login" extends="mainLayout">
+        <put-attribute name="title" value="login" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/login.jsp" />
+    </definition>
+
+    <definition name="addUser" extends="mainLayout">
+        <put-attribute name="title" value="addUser" />
+        <put-attribute name="body" value="/view/pages/backoffice//user/add.jsp" />
+    </definition>
+
+    <definition name="userView" extends="mainLayout">
+        <put-attribute name="title" value="View" />
+        <put-attribute name="body" value="/view/pages/backoffice//user/list.jsp" />
+    </definition>
+
+    <definition name="removeUser" extends="mainLayout">
+        <put-attribute name="title" value="View" />
+        <put-attribute name="body" value="/view/pages/backoffice//user/remove.jsp" />
+    </definition>
+
+    <definition name="editUser" extends="mainLayout">
+        <put-attribute name="title" value="View" />
+        <put-attribute name="body" value="/view/pages/backoffice//user/edit.jsp" />
+    </definition>
+
 
 
 </tiles-definitions>

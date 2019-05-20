@@ -3,6 +3,9 @@ package com.isep.HomeExchange.model.table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+
+
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -15,7 +18,8 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    private Integer id;
 
     private String username;
 
@@ -24,20 +28,27 @@ public class User {
     @Size(min=2, max=30) private String firstName;
     @Size(min=2, max=30) private String lastName;
 
+   
+    @NotEmpty @Email
+    @Column(name = "Email")
+    private String email;
 
     @Transient
     private String passwordConfirm;
 
+
     @ManyToMany
     private Set<Role> roles;
 
-    public Long getId() {
+    
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
 
     public String getUsername() {
         return username;
@@ -74,7 +85,7 @@ public class User {
 
     public String getLastName() {
         return lastName;
-    }
+
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -86,5 +97,18 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+}
+  
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", birthday=" + birthday +
+                '}';
     }
 }
