@@ -38,7 +38,7 @@ public class UserBackOffice {
             return "addUser";
         }
         this.userRepository.save(user);
-        return "redirect:/index";
+        return "redirect:/userList";
     }
 
 
