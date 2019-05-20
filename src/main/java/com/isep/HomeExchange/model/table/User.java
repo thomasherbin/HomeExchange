@@ -1,47 +1,46 @@
 package com.isep.HomeExchange.model.table;
 
+
 import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 
 
+import javax.persistence.*;
+import java.util.Set;
+
 @Entity
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+
     private Integer id;
 
-    @Size(min=2, max=30)
-    @Column(name = "First_Name")
-    private String firstName;
+    private String username;
 
-    @Size(min=2, max=30)
-    @Column(name = "Last_Name")
-    private String lastName;
+    private String password;
 
+    @Size(min=2, max=30) private String firstName;
+    @Size(min=2, max=30) private String lastName;
+
+   
     @NotEmpty @Email
     @Column(name = "Email")
     private String email;
 
-    @NotNull @Min(18) @Max(100)
-    @Column(name = "Age")
-    private Integer age;
+    @Transient
+    private String passwordConfirm;
 
 
-    @DateTimeFormat(pattern="MM/dd/yyyy")
-    @Temporal(TemporalType.DATE)
-    @NotNull @Past
-    @Column(name = "Date_Of_Birth")
-    private Date birthday;
+    @ManyToMany
+    private Set<Role> roles;
 
-
-    public User() {
-
-    }
-
+    
     public Integer getId() {
         return id;
     }
@@ -49,6 +48,32 @@ public class User {
     public void setId(Integer id) {
         this.id = id;
     }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
 
     public String getFirstName() {
         return firstName;
@@ -60,36 +85,21 @@ public class User {
 
     public String getLastName() {
         return lastName;
-    }
+
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
+}
+  
     @Override
     public String toString() {
         return "User{" +

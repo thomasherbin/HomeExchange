@@ -1,3 +1,4 @@
+
 package com.isep.HomeExchange.controller.frontoffice;
 
 import org.springframework.stereotype.Controller;
@@ -17,3 +18,4 @@ public class UserFrontOffice {
         return "login";
     }
 }
+

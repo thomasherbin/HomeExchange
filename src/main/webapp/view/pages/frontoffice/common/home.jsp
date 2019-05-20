@@ -15,6 +15,15 @@
                     <li><p class="list_text">Check bla bla</p></li>
                 </ul>
             </div>
+            <div class="container">
+                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                    <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+
+                    <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+                </c:if>
+            </div>
             <div class="common_item">
                 <a class="button" href="/user/signup">Get Started</a>
                 <p>If you are new, please create an account to benefit from our services</p><br>
