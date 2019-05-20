@@ -10,7 +10,8 @@ import java.util.Date;
 @Entity
 public class House {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)private Integer id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Integer owner;
     @NotEmpty private String address;
     @NotEmpty private String status;
