@@ -55,8 +55,8 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping({"/", "/welcome"})
+    @GetMapping({"/", "/home"})
     public String welcome(Model model) {
-        return "welcome";
+        return "welcom";
     }
 }
