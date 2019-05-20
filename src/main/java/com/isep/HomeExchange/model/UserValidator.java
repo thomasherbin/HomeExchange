@@ -1,4 +1,4 @@
-package com.isep.HomeExchange.controller.backoffice;
+package com.isep.HomeExchange.model;
 import com.isep.HomeExchange.model.table.User;
 import com.isep.HomeExchange.controller.service.UserService;
 
@@ -24,10 +24,10 @@ public class UserValidator implements Validator {
         User user = (User) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
+        if (user.getUserName().length() < 6 || user.getUserName().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
         }
-        if (userService.findByUsername(user.getUsername()) != null) {
+        if (userService.findByUsername(user.getUserName()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
 

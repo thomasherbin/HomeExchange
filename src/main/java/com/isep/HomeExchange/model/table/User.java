@@ -1,16 +1,7 @@
 package com.isep.HomeExchange.model.table;
 
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.Date;
-
-
-import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -40,6 +31,9 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 
+    public User() {
+
+    }
     
     public Integer getId() {
         return id;
@@ -50,12 +44,12 @@ public class User {
     }
 
 
-    public String getUsername() {
+    public String getUserName() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {
@@ -83,12 +77,16 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Set<Role> getRoles() {
@@ -98,17 +96,11 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public String getLastName() {
+        return lastName;
+
+
+
 }
-  
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                ", birthday=" + birthday +
-                '}';
-    }
 }

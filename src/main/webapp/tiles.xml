@@ -13,15 +13,14 @@
         <put-attribute name="footer" value="/view/modules/generic/footer.jsp" />
     </definition>
 
+
+
+
     <definition name="home" extends="mainLayout">
         <put-attribute name="title" value="Home" />
         <put-attribute name="body" value="/view/pages/frontoffice/common/home.jsp" />
     </definition>
 
-    <definition name="login" extends="mainLayout">
-        <put-attribute name="title" value="login" />
-        <put-attribute name="body" value="/view/pages/frontoffice/user/login.jsp" />
-    </definition>
 
     <definition name="registration" extends="mainLayout">
         <put-attribute name="title" value="registration" />
