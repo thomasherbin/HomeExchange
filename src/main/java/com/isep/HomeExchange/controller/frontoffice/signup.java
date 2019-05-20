@@ -14,7 +14,7 @@ public class signup {
     UserRepository userRepository;
 
     //User List
-    @GetMapping(value = {"/", "/index"})
+    @GetMapping(value = {"/index"})
     public String home(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "userView";
