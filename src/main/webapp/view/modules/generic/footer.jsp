@@ -1,1 +1,1 @@
-<h2>This is header</h2>
+<h2>This is footer</h2>
