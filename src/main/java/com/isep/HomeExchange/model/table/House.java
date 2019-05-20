@@ -20,6 +20,7 @@ public class House {
     @NotEmpty private String name ;
     @NotEmpty private String city ;
 
+
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     @NotNull

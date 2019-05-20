@@ -27,7 +27,7 @@ public class Home {
 
     /*-------------------------------------------- Add a house ------------------------------------------- */
 
-    @GetMapping(value = pathHome +  "add")
+    @GetMapping(value = "/addHouse")
     public String ShowFormAddHouse(Model model){
         model.addAttribute("house", new House());
         return "HomeAdd" ;
@@ -35,7 +35,7 @@ public class Home {
     }
 
 
-    @PostMapping(value = pathHome + "add")
+    @PostMapping(value = "/addHouse")
     public String addHouse(@Valid @ModelAttribute("house") House house, BindingResult bindingResult, Model model) {
         house.setOwner(0);
 
@@ -50,7 +50,7 @@ public class Home {
 
     /*-------------------------------------------- Edit a house ------------------------------------------- */
 
-    @GetMapping(value = pathHome +  "edit")
+    @GetMapping(value = "/editHouse")
     public String ShowFormEditHouse(Model model, @RequestParam("id") int id){
         Optional<House> optionalHouse = houseRepository.findById(id);
         if(optionalHouse.isPresent()){
@@ -62,13 +62,12 @@ public class Home {
         }
     }
 
-    @PostMapping(value = pathHome + "edit")
+    @PostMapping(value = "/editHouse")
     public String editHouse(@Valid House house, BindingResult bindingResult, Model model, @RequestParam("id") int id, @RequestParam("owner") int owner) {
         if (bindingResult.hasErrors()) {
             return "error404";
         }
         Optional<House> optionalHouse = houseRepository.findById(id);
-        System.out.println("shit");
         if(optionalHouse.isPresent()){
             System.out.println("house : " + house.toString());
             House houseFromDB = optionalHouse.get();
@@ -87,7 +86,7 @@ public class Home {
 
 
 
-    @GetMapping(value = pathUser + "housesView")
+    @GetMapping(value = "/housesView")
     public String housesCount( ModelMap model, @RequestParam("id") int id){
         for(House house : houseRepository.findByOwner(id) ){
             System.out.println(house.toString());
@@ -99,7 +98,7 @@ public class Home {
 
     /*---------------------------------------- Delete house --------------------------------------------*/
 
-    @GetMapping(value = pathHome + "remove")
+    @GetMapping(value = "/removeHouse")
     public String removeHouse(Model model, @RequestParam("id") int id){
         Optional<House> optionalHouse =  houseRepository.findById(id);
         if (optionalHouse.isPresent()) {

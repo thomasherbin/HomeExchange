@@ -1,8 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
-
 <!DOCTYPE HTML>
 <html>
 <body>
@@ -19,10 +17,10 @@
         <th>Availability</th>
     </tr>
 <c:forEach items="${houses}" var="home">
-    <c:url var="EditHouse" value="/view/pages/frontoffice/home/edit">
+    <c:url var="EditHouse" value="/editHouse">
         <c:param name="id" value="${home.id}" />
     </c:url>
-    <c:url var="DeleteHouse" value="/view/pages/frontoffice/home/remove">
+    <c:url var="DeleteHouse" value="/removeHouse">
         <c:param name="id" value="${home.id}" />
     </c:url>
 

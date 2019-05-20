@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="html" uri="http://www.springframework.org/tags/form" %>
 
-<c:url var="EditHouse" value="/view/pages/frontoffice/home/edit">
+<c:url var="EditHouse" value="/editHouse">
     <c:param name="id" value="${house.id}" />
     <c:param name="owner" value="${house.owner}" />
 </c:url>
