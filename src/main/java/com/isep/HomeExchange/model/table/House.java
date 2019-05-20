@@ -13,7 +13,7 @@ public class House {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)private Integer id;
     private Integer owner;
     @NotEmpty private String address;
-    @NotNull private String status;
+    @NotEmpty private String status;
     @NotEmpty private String description;
     @NotEmpty  private String service;
     private String constraintRule;

@@ -16,8 +16,8 @@ import java.util.Optional;
 
 @Controller
 public class Home {
-    private final String pathHome = "/view/pages/frontoffice/home/";
-    private final String pathUser = "/view/pages/frontoffice/user/" ;
+
+    private int sessionId = 0 ;
 
     @Autowired
     public Home(HouseRepository houseRepository) {
@@ -45,7 +45,7 @@ public class Home {
         House houseAdded =  houseRepository.save(house) ;
 
         model.addAttribute("house", houseAdded);
-        return "HomeAdd";
+        return "redirect:/housesView?id=" + sessionId;
     }
 
     /*-------------------------------------------- Edit a house ------------------------------------------- */
@@ -75,9 +75,8 @@ public class Home {
             houseFromDB = house ;
             System.out.println("house updated : " + houseFromDB.toString());
             this.houseRepository.save(houseFromDB) ;
-            return "HomeEdit";
+            return "redirect:/housesView?id=" + sessionId;
         } else {
-            System.out.print("here");
             return "HomeEdit" ;
         }
     }
@@ -113,7 +112,7 @@ public class Home {
     @GetMapping(value = "/RemoveHouseConfirmed")
     public String removeHouseConfirmed(Model model,@RequestParam("id") int id) {
         houseRepository.deleteById(id);
-        return "Home";
+        return "redirect:/housesView?id=" + sessionId;
     }
 
 }
