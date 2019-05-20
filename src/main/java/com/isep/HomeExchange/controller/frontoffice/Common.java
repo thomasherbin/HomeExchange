@@ -9,6 +9,6 @@ public class Common {
 
     @GetMapping(value = {"/", "/index"})
     public String init() {
-        return "Home";
+        return "home";
     }
 }

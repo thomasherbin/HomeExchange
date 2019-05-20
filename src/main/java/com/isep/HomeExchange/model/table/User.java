@@ -1,6 +1,11 @@
 package com.isep.HomeExchange.model.table;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.*;
+import java.util.Date;
+
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,6 +20,10 @@ public class User {
     private String username;
 
     private String password;
+
+    @Size(min=2, max=30) private String firstName;
+    @Size(min=2, max=30) private String lastName;
+
 
     @Transient
     private String passwordConfirm;
@@ -52,6 +61,23 @@ public class User {
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
+    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Set<Role> getRoles() {

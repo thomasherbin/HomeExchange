@@ -12,7 +12,7 @@
         <put-attribute name="footer" value="/view/modules/generic/footer.jsp" />
     </definition>
 
-    <definition name="Home" extends="mainLayout">
+    <definition name="home" extends="mainLayout">
         <put-attribute name="title" value="Home" />
         <put-attribute name="body" value="/view/pages/frontoffice/common/home.jsp" />
     </definition>
