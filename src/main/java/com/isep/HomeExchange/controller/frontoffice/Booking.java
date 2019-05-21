@@ -21,76 +21,91 @@ import java.util.Optional;
 @Controller
 public class Booking {
 
-    private int sessionId = 1 ;
+    private int sessionId = 1;
 
     @Autowired
-    public Booking(ReservationRepository reservationRepository, HouseRepository houseRepository ) {
-        this.reservationRepository = reservationRepository ;
+    public Booking(ReservationRepository reservationRepository, HouseRepository houseRepository) {
+        this.reservationRepository = reservationRepository;
         this.houseRepository = houseRepository;
     }
-    private final ReservationRepository reservationRepository ;
-    private final HouseRepository houseRepository ;
+
+    private final ReservationRepository reservationRepository;
+    private final HouseRepository houseRepository;
 
     /*---------------------------------- Book a house -----------------------------------------*/
 
     @GetMapping(value = "/BookHouse")
-    public String showBookingForm(Model model, @RequestParam("id") int id){
+    public String showBookingForm(Model model, @RequestParam("id") int id) {
         Optional<House> optionalHouse = houseRepository.findById(id);
-        if(optionalHouse.isPresent()){
-            House house =optionalHouse.get() ;
-            model.addAttribute("house", house) ;
+        if (optionalHouse.isPresent()) {
+            House house = optionalHouse.get();
+            model.addAttribute("house", house);
             System.out.println("house to book " + house.toString());
             model.addAttribute("reservation", new Reservation());
-            return "BookHouse" ;
-        } else{
-            return "BookHouse" ;
+            return "BookHouse";
+        } else {
+            return "BookHouse";
         }
     }
 
     @PostMapping(value = "/bookHouse")
-    public String bookHouse(@Valid @ModelAttribute("reservation") Reservation reservation, BindingResult bindingResult,Model model, @RequestParam("id") int id){
+    public String bookHouse(@Valid @ModelAttribute("reservation") Reservation reservation, BindingResult bindingResult, Model model, @RequestParam("id") int id) {
         if (bindingResult.hasErrors()) {
             return "BookHouse";
         }
-        Optional<House> optionalHouse = houseRepository.findById(id) ;
-        if (optionalHouse.isPresent()){
+        Optional<House> optionalHouse = houseRepository.findById(id);
+        if (optionalHouse.isPresent()) {
             House house = optionalHouse.get();
             System.out.println("fuck here " + house.toString());
 
-            if(reservation.getDateEnd().compareTo(reservation.getDateStart()) > 0 || reservation.getDateEnd().compareTo(reservation.getDateStart()) == 0 ){
+            if (reservation.getDateEnd().compareTo(reservation.getDateStart()) > 0 || reservation.getDateEnd().compareTo(reservation.getDateStart()) == 0) {
                 reservation.setOwnerId(house.getOwner());
                 reservation.setRenterId(sessionId);
                 reservation.setHouseId(house.getId());
                 reservation.setStatus("En cours");
-                Reservation reservationAdded = reservationRepository.save(reservation) ;
-                model.addAttribute("reservation",reservationAdded);
-                return "redirect:/HouseDetails?id="+reservation.getHouseId();
-            } else{
-                return "BookHouse" ;
+                Reservation reservationAdded = reservationRepository.save(reservation);
+                model.addAttribute("reservation", reservationAdded);
+                return "redirect:/HouseDetails?id=" + reservation.getHouseId();
+            } else {
+                return "BookHouse";
             }
-        } else{
-            return "error404" ;
+        } else {
+            return "error404";
         }
     }
 
     /*--------------------------------- Show client's booking list -----------------------------*/
 
     @GetMapping(value = "/yourBooking")
-    public String showClientBooking(ModelMap modelMap, @RequestParam("id") int id, ModelMap model){
-        for(Reservation reservation : reservationRepository.findByRenterId(id) ){
+    public String showClientBooking(ModelMap modelMap, @RequestParam("id") int id, ModelMap model) {
+        for (Reservation reservation : reservationRepository.findByRenterId(id)) {
             System.out.println(reservation.toString());
         }
-        List<Reservation> reservations = reservationRepository.findByRenterId(id) ;
-        modelMap.put("reservations", reservations) ;
+        List<Reservation> reservations = reservationRepository.findByRenterId(id);
+        modelMap.put("reservations", reservations);
 
-        return "ClientBooking" ;
+        return "ClientBooking";
     }
+
+    /*----------------------------- Show owner's booking list --------------------------------*/
+
+    @GetMapping(value = "/bookingList")
+    public String showOwnerBooking(ModelMap modelMap, @RequestParam("id") int id) {
+        for (Reservation reservation : reservationRepository.findByOwnerId(id)) {
+            System.out.println(reservation.toString());
+        }
+        List<Reservation> reservations = reservationRepository.findByOwnerId(id);
+        modelMap.put("reservations", reservations);
+
+        return "OwnerBooking";
+    }
+
 
     /*---------------------------- Cancel Booking ---------------------------------------------*/
 
     @GetMapping(value = "/cancelBooking")
-    public String cancelBooking(Model model, @RequestParam("id") int id){
-        Optional<Reservation> optionalReservation =  reservationRepository.findById(id);
+    public String cancelBooking(Model model, @RequestParam("id") int id) {
+        Optional<Reservation> optionalReservation = reservationRepository.findById(id);
         if (optionalReservation.isPresent()) {
             Reservation reservation = optionalReservation.get();
             model.addAttribute("reservation", reservation);
@@ -101,10 +116,41 @@ public class Booking {
     }
 
 
-    @GetMapping(value="/CancelBookingConfirmed")
-    public String cancelBookingConfirmed(@RequestParam("id") int id){
+    @GetMapping(value = "/CancelBookingConfirmed")
+    public String cancelBookingConfirmed(@RequestParam("id") int id) {
         reservationRepository.deleteById(id);
-        return "redirect:/yourBooking?id=" + sessionId ;
+        return "redirect:/yourBooking?id=" + sessionId;
     }
 
+    /*----------------------------- Accept Booking ------------------------------------------*/
+
+    @PostMapping(value = "/acceptBooking")
+    public String acceptBooking(@RequestParam("id") int id){
+        Optional<Reservation> optionalReservation = reservationRepository.findById(id) ;
+        if(optionalReservation.isPresent()){
+            Reservation reservationFromDB = optionalReservation.get();
+            reservationFromDB.setStatus("Accepted");
+            System.out.println("reservation updated : " + reservationFromDB.toString());
+            this.reservationRepository.save(reservationFromDB) ;
+            return "redirect:/bookingList?id=" + reservationFromDB.getOwnerId();
+        } else {
+            return "error404" ;
+        }
+    }
+
+    /*---------------------------- Reject Booking ------------------------------------------*/
+
+    @PostMapping(value = "/rejectBooking")
+    public String rejectBooking(@RequestParam("id") int id){
+        Optional<Reservation> optionalReservation = reservationRepository.findById(id) ;
+        if(optionalReservation.isPresent()){
+            Reservation reservationFromDB = optionalReservation.get();
+            reservationFromDB.setStatus("Rejected");
+            System.out.println("reservation updated : " + reservationFromDB.toString());
+            this.reservationRepository.save(reservationFromDB) ;
+            return "redirect:/bookingList?id=" + reservationFromDB.getOwnerId();
+        } else {
+            return "error404" ;
+        }
+    }
 }

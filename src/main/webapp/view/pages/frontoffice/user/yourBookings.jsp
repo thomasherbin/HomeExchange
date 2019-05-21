@@ -4,10 +4,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Adding House Form</title>
+    <title>Your bookings</title>
 </head>
 <body>
-<h1>Your booking list review </h1>
+<h1>Your bookings review </h1>
 <table>
     <tr>
         <th>House's name</th>

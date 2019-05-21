@@ -68,6 +68,11 @@
         <put-attribute name="body" value="/view/pages/frontoffice/user/yourBookings.jsp" />
     </definition>
 
+    <definition name="OwnerBooking" extends="mainLayout">
+        <put-attribute name="title" value="OwnerBooking" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/listBooking.jsp" />
+    </definition>
+
     <definition name="error404" extends="mainLayout">
         <put-attribute name="title" value="error404" />
         <put-attribute name="body" value="/view/pages/frontoffice/common/error404.jsp" />
