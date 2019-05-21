@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <h2>tickets list</h2>
@@ -17,6 +16,10 @@
     <c:forEach items="${ticket}" ver ="ticket">
 
         <c:url var="EditTicket" value="/editTicket">
+            <c:param ticket="id" value="${ticket.id}" />
+        </c:url>
+        
+        <c:url ver="ResponseTicket" value="/responseTicket">
             <c:param ticket="id" value="${ticket.id}" />
         </c:url>
     </c:forEach>
