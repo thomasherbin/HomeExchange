@@ -4,20 +4,27 @@ import com.isep.HomeExchange.model.UserValidator;
 import com.isep.HomeExchange.controller.service.SecurityService;
 import com.isep.HomeExchange.controller.service.UserService;
 import com.isep.HomeExchange.model.repository.MessageRepository;
+import com.isep.HomeExchange.model.repository.UserRepository;
+import com.isep.HomeExchange.model.table.House;
 import com.isep.HomeExchange.model.table.Message;
 import com.isep.HomeExchange.model.table.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class UserFrontOffice {
     private int sessionId = 1;
+    private int id = 2;
 
     @Autowired
     private UserService userService;
@@ -30,6 +37,9 @@ public class UserFrontOffice {
 
     @Autowired
     private MessageRepository messageRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -69,14 +79,35 @@ public class UserFrontOffice {
 
     /*-------------------------------------------- Messages ------------------------------------------- */
     @GetMapping("/messages")
-    public String getConversation(Model model/*, @RequestParam("id") int id*/) {
-        int id = 33;
-        ArrayList<Message> messages = messageRepository.findAllBySenderIdAndReceiverIdOrderBySentDate(id, sessionId);
-        if (messages.isEmpty()) {
-            return "message";
-        } else {
-            return "message";
+    public String getConversation(ModelMap modelMap, Model model/*, @RequestParam("id") int id*/) {
+        List<Message> senderMessages = messageRepository.findBySenderIdAndReceiverIdOrderBySentDate(id, sessionId);
+        List<Message> recieverMessages = messageRepository.findBySenderIdAndReceiverIdOrderBySentDate(sessionId, id);
+        List<Message> messages = senderMessages;
+        messages.addAll(recieverMessages);
+        Collections.sort(messages);
+
+        User user = userRepository.findById(id).get();
+        model.addAttribute("user", user);
+        User SessionUser = userRepository.findById(sessionId).get();
+        model.addAttribute("sessionUser", SessionUser);
+
+        modelMap.put("messages", messages) ;
+        model.addAttribute("message", new Message());
+        return "message";
+    }
+
+
+
+    @PostMapping("/messages")
+    public String submitMessage(@Valid @ModelAttribute("message") Message message, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "message" ;
         }
+        message.setSenderId(sessionId);
+        message.setReceiverId(id);
+        message.setSentDate(new Date());
+        messageRepository.save(message);
+        return "redirect:/messages";
     }
 
 
