@@ -17,7 +17,9 @@
         <th>Status</th>
     </tr>
 
-    <c:forEach items="${reservations}" var="reservation">
+    <c:set var="housesName" value="${housesName}"></c:set>
+
+    <c:forEach items="${reservations}" var="reservation" varStatus="status">
         <c:url var="AcceptBooking" value="/acceptBooking">
             <c:param name="id" value="${reservation.id}"></c:param>
         </c:url>
@@ -26,7 +28,7 @@
         </c:url>
 
         <tr>
-            <td>${reservation.id}</td>
+            <td>${housesName[status.index]}</td>
             <td>${reservation.nbGuests}</td>
             <td>From ${reservation.dateStart} to ${reservation.dateEnd} </td>
             <td>${reservation.status}</td>

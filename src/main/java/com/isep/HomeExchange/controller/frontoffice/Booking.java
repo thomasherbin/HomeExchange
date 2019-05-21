@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,22 +85,40 @@ public class Booking {
         List<Reservation> reservations = reservationRepository.findByRenterId(id);
         modelMap.put("reservations", reservations);
 
+        List<String> housesName = new ArrayList();
+
+        for(int k =0 ; k < reservations.size() ; k++){
+            int houseId = reservations.get(k).getHouseId();
+            housesName.add(houseRepository.findById(houseId).get().getName()) ;
+        }
+
+        model.put("housesName", housesName) ;
+
         return "ClientBooking";
     }
 
     /*----------------------------- Show owner's booking list --------------------------------*/
 
     @GetMapping(value = "/bookingList")
-    public String showOwnerBooking(ModelMap modelMap, @RequestParam("id") int id) {
+    public String showOwnerBooking(ModelMap modelMap, @RequestParam("id") int id, ModelMap modelHouses) {
         for (Reservation reservation : reservationRepository.findByOwnerId(id)) {
             System.out.println(reservation.toString());
         }
         List<Reservation> reservations = reservationRepository.findByOwnerId(id);
         modelMap.put("reservations", reservations);
+        List<String> housesName = new ArrayList();
+
+        for(int i =0 ; i < reservations.size() ; i++){
+            int houseId = reservations.get(i).getHouseId();
+            housesName.add(houseRepository.findById(houseId).get().getName()) ;
+            System.out.println("shit");
+        }
+
+        modelHouses.put("housesName", housesName) ;
+
 
         return "OwnerBooking";
     }
-
 
     /*---------------------------- Cancel Booking ---------------------------------------------*/
 
