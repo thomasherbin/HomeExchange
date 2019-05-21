@@ -58,6 +58,16 @@
         <put-attribute name="body" value="/view/pages/frontoffice/booking/book.jsp" />
     </definition>
 
+    <definition name="CancelBooking" extends="mainLayout">
+        <put-attribute name="title" value="CancelBooking" />
+        <put-attribute name="body" value="/view/pages/frontoffice/booking/cancel.jsp" />
+    </definition>
+
+    <definition name="ClientBooking" extends="mainLayout">
+        <put-attribute name="title" value="ClientBooking" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/yourBookings.jsp" />
+    </definition>
+
     <definition name="error404" extends="mainLayout">
         <put-attribute name="title" value="error404" />
         <put-attribute name="body" value="/view/pages/frontoffice/common/error404.jsp" />
