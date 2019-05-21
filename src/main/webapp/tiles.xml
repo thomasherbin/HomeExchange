@@ -43,9 +43,19 @@
         <put-attribute name="body" value="/view/pages/frontoffice/home/remove.jsp" />
     </definition>
 
+    <definition name="ShowHouse" extends="mainLayout">
+        <put-attribute name="title" value="ShowHouse" />
+        <put-attribute name="body" value="/view/pages/frontoffice/home/house.jsp" />
+    </definition>
+
     <definition name="HousesView" extends="mainLayout">
         <put-attribute name="title" value="HousesView" />
         <put-attribute name="body" value="/view/pages/frontoffice/user/housesView.jsp" />
+    </definition>
+
+    <definition name="BookHouse" extends="mainLayout">
+        <put-attribute name="title" value="BookHouse" />
+        <put-attribute name="body" value="/view/pages/frontoffice/booking/book.jsp" />
     </definition>
 
     <definition name="error404" extends="mainLayout">
