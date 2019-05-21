@@ -35,6 +35,7 @@
         <td>${ticket.date}</td>
         <td>${ticket.ticketNumber}</td>
         <td><a href="${EditTicket}">Edit</a></td>
+        <td><a href="${ResponseTicket}">Edit</a></td>
         <td><a href="${DeleteTicket}">Delete</a></td>
 
     </tr>
