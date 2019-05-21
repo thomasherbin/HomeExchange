@@ -3,6 +3,8 @@ package com.isep.HomeExchange.controller.frontoffice;
 import com.isep.HomeExchange.model.UserValidator;
 import com.isep.HomeExchange.controller.service.SecurityService;
 import com.isep.HomeExchange.controller.service.UserService;
+import com.isep.HomeExchange.model.repository.MessageRepository;
+import com.isep.HomeExchange.model.table.Message;
 import com.isep.HomeExchange.model.table.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @Controller
 public class UserFrontOffice {
+    private int sessionId = 1;
+
     @Autowired
     private UserService userService;
 
@@ -21,6 +27,9 @@ public class UserFrontOffice {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private MessageRepository messageRepository;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -55,8 +64,20 @@ public class UserFrontOffice {
         return "login";
     }
 
-    @GetMapping({"/home"})
-    public String home(Model model) {
-        return "home";
+
+
+
+    /*-------------------------------------------- Messages ------------------------------------------- */
+    @GetMapping("/messages")
+    public String getConversation(Model model/*, @RequestParam("id") int id*/) {
+        int id = 33;
+        ArrayList<Message> messages = messageRepository.findAllBySenderIdAndReceiverIdOrderBySentDate(id, sessionId);
+        if (messages.isEmpty()) {
+            return "message";
+        } else {
+            return "message";
+        }
     }
+
+
 }

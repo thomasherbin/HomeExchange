@@ -62,22 +62,27 @@
 
     <definition name="addUser" extends="mainLayout">
         <put-attribute name="title" value="addUser" />
-        <put-attribute name="body" value="/view/pages/backoffice//user/add.jsp" />
+        <put-attribute name="body" value="/view/pages/backoffice/user/add.jsp" />
     </definition>
 
     <definition name="userView" extends="mainLayout">
         <put-attribute name="title" value="View" />
-        <put-attribute name="body" value="/view/pages/backoffice//user/list.jsp" />
+        <put-attribute name="body" value="/view/pages/backoffice/user/list.jsp" />
     </definition>
 
     <definition name="removeUser" extends="mainLayout">
         <put-attribute name="title" value="View" />
-        <put-attribute name="body" value="/view/pages/backoffice//user/remove.jsp" />
+        <put-attribute name="body" value="/view/pages/backoffice/user/remove.jsp" />
     </definition>
 
     <definition name="editUser" extends="mainLayout">
         <put-attribute name="title" value="View" />
-        <put-attribute name="body" value="/view/pages/backoffice//user/edit.jsp" />
+        <put-attribute name="body" value="/view/pages/backoffice/user/edit.jsp" />
+    </definition>
+
+    <definition name="message" extends="mainLayout">
+        <put-attribute name="title" value="View" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/messages.jsp" />
     </definition>
 
 

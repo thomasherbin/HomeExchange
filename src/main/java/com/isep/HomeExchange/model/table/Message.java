@@ -1,9 +1,8 @@
 package com.isep.HomeExchange.model.table;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Message {
@@ -13,9 +12,19 @@ public class Message {
     private int receiverId;
     private String content;
     private String object;
+    @Temporal(TemporalType.DATE)
+    private Date sentDate;
 
     public Message() {
 
+    }
+
+    public Date getSentDate() {
+        return sentDate;
+    }
+
+    public void setSentDate(Date sentDate) {
+        this.sentDate = sentDate;
     }
 
     public Integer getId() {
