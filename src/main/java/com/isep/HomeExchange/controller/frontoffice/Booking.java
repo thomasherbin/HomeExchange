@@ -57,7 +57,7 @@ public class Booking {
         Optional<House> optionalHouse = houseRepository.findById(id);
         if (optionalHouse.isPresent()) {
             House house = optionalHouse.get();
-            System.out.println("fuck here " + house.toString());
+            System.out.println(" here " + house.toString());
 
             if (reservation.getDateEnd().compareTo(reservation.getDateStart()) > 0 || reservation.getDateEnd().compareTo(reservation.getDateStart()) == 0) {
                 reservation.setOwnerId(house.getOwner());
@@ -111,7 +111,6 @@ public class Booking {
         for(int i =0 ; i < reservations.size() ; i++){
             int houseId = reservations.get(i).getHouseId();
             housesName.add(houseRepository.findById(houseId).get().getName()) ;
-            System.out.println("shit");
         }
 
         modelHouses.put("housesName", housesName) ;
@@ -137,7 +136,16 @@ public class Booking {
 
     @GetMapping(value = "/CancelBookingConfirmed")
     public String cancelBookingConfirmed(@RequestParam("id") int id) {
+        int houseId = reservationRepository.findById(id).get().getHouseId() ;
+        Optional<House> houseOptional = houseRepository.findById(houseId) ;
+        if(houseOptional.isPresent()){
+            System.out.println("house exists");
+            House houseFromDB = houseOptional.get() ;
+            houseFromDB.setStatus("Non booked");
+            this.houseRepository.save(houseFromDB) ;
+        }
         reservationRepository.deleteById(id);
+
         return "redirect:/yourBooking?id=" + sessionId;
     }
 
@@ -151,6 +159,13 @@ public class Booking {
             reservationFromDB.setStatus("Accepted");
             System.out.println("reservation updated : " + reservationFromDB.toString());
             this.reservationRepository.save(reservationFromDB) ;
+            int houseID = reservationFromDB.getHouseId() ;
+            Optional<House> optionalHouse = houseRepository.findById(houseID) ;
+            if(optionalHouse.isPresent()){
+                House houseFromDB = optionalHouse.get();
+                houseFromDB.setStatus("Booked");
+                this.houseRepository.save(houseFromDB) ;
+            }
             return "redirect:/bookingList?id=" + reservationFromDB.getOwnerId();
         } else {
             return "error404" ;
@@ -167,6 +182,13 @@ public class Booking {
             reservationFromDB.setStatus("Rejected");
             System.out.println("reservation updated : " + reservationFromDB.toString());
             this.reservationRepository.save(reservationFromDB) ;
+            int houseID = reservationFromDB.getHouseId() ;
+            Optional<House> optionalHouse = houseRepository.findById(houseID) ;
+            if(optionalHouse.isPresent()){
+                House houseFromDB = optionalHouse.get() ;
+                houseFromDB.setStatus("Non Booked");
+                this.houseRepository.save(houseFromDB) ;
+            }
             return "redirect:/bookingList?id=" + reservationFromDB.getOwnerId();
         } else {
             return "error404" ;

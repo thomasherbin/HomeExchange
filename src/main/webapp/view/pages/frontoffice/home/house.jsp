@@ -39,7 +39,7 @@
     </tr>
     <tr>
         <td>Availability</td>
-        <td>Available from ${houe.dateStart} to ${houe.dateEnd} </td>
+        <td>Available from ${house.dateStart} to ${house.dateEnd} </td>
     </tr>
         <tr>
             <td><a href="${BookHouse}">Book</a></td>
