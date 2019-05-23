@@ -1,23 +1,35 @@
 package com.isep.HomeExchange.model.table;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-public class Message {
+public class Message implements Comparable<Message> {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private int senderId;
     private int receiverId;
+    @NotEmpty
     private String content;
     private String object;
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date sentDate;
 
     public Message() {
 
     }
+
+    @Override
+    public int compareTo(Message o) {
+        return getSentDate().compareTo(o.getSentDate());
+    }
+
 
     public Date getSentDate() {
         return sentDate;
@@ -65,5 +77,17 @@ public class Message {
 
     public void setObject(String object) {
         this.object = object;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", senderId=" + senderId +
+                ", receiverId=" + receiverId +
+                ", content='" + content + '\'' +
+                ", object='" + object + '\'' +
+                ", sentDate=" + sentDate +
+                '}';
     }
 }

@@ -106,7 +106,7 @@
     </definition>
 
     <definition name="message" extends="mainLayout">
-        <put-attribute name="title" value="View" />
+        <put-attribute name="title" value="message" />
         <put-attribute name="body" value="/view/pages/frontoffice/user/messages.jsp" />
     </definition>
 
