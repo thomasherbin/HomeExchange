@@ -1,4 +1,5 @@
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -26,17 +27,17 @@
         </tr>
         <tr>
             <td>Description:</td>
-            <td><springForm:input path="description" /></td>
+            <td><springForm:textarea path="description" /></td>
             <td><springForm:errors path="description"  /></td>
         </tr>
         <tr>
             <td>Services:</td>
-            <td><springForm:input path="service" /></td>
+            <td><springForm:textarea path="service" /></td>
             <td><springForm:errors path="service"  /></td>
         </tr>
         <tr>
             <td>Constraints:</td>
-            <td><springForm:input path="constraintRule" /></td>
+            <td><springForm:textarea path="constraintRule" /></td>
             <td><springForm:errors path="constraintRule"  /></td>
         </tr>
         <tr>

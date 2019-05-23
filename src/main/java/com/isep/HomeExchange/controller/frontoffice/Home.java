@@ -43,10 +43,21 @@ public class Home {
         if (bindingResult.hasErrors()) {
             return "HomeAdd" ;
         }
-        House houseAdded =  houseRepository.save(house) ;
 
-        model.addAttribute("house", houseAdded);
-        return "redirect:/housesView?id=" + sessionId;
+        if(house.getDateEnd().compareTo(house.getDateStart()) > 0){
+            House houseAdded =  houseRepository.save(house) ;
+            model.addAttribute("house", houseAdded);
+            return "redirect:/housesView?id=" + sessionId;
+        } else if(house.getDateEnd().compareTo(house.getDateStart()) == 0){
+            House houseAdded =  houseRepository.save(house) ;
+            model.addAttribute("house", houseAdded);
+            return "redirect:/housesView?id=" + sessionId;
+        }
+
+        else{
+            return "HomeAdd" ;
+        }
+
     }
 
     /*-------------------------------------------- Edit a house ------------------------------------------- */
@@ -96,6 +107,19 @@ public class Home {
         return "HousesView" ;
     }
 
+    @GetMapping(value = "/HouseDetails")
+    public String showHouse(ModelMap model, @RequestParam("id") int id){
+        Optional<House> optionalHouse = houseRepository.findById(id) ;
+        if(optionalHouse.isPresent()){
+            House house = optionalHouse.get();
+            model.put("house", house) ;
+            return "ShowHouse" ;
+        } else {
+            return "error404" ;
+        }
+    }
+
+
     /*---------------------------------------- Delete house --------------------------------------------*/
 
     @GetMapping(value = "/removeHouse")
@@ -115,5 +139,7 @@ public class Home {
         houseRepository.deleteById(id);
         return "redirect:/housesView?id=" + sessionId;
     }
+
+
 
 }
