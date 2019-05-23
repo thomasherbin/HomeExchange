@@ -17,12 +17,12 @@ public class Reservation {
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    @com.sun.istack.internal.NotNull
+    @NotNull
     private Date dateStart;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    @com.sun.istack.internal.NotNull
+    @NotNull
     private Date dateEnd;
 
     public Reservation() {

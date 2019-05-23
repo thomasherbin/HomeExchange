@@ -51,8 +51,9 @@ public class Booking {
 
     @PostMapping(value = "/bookHouse")
     public String bookHouse(@Valid @ModelAttribute("reservation") Reservation reservation, BindingResult bindingResult, Model model, @RequestParam("id") int id) {
+        int ID = id ;
         if (bindingResult.hasErrors()) {
-            return "BookHouse";
+            return "redirect:/BookHouse?id="+ID;
         }
         Optional<House> optionalHouse = houseRepository.findById(id);
         if (optionalHouse.isPresent()) {
@@ -63,12 +64,12 @@ public class Booking {
                 reservation.setOwnerId(house.getOwner());
                 reservation.setRenterId(sessionId);
                 reservation.setHouseId(house.getId());
-                reservation.setStatus("En cours");
+                reservation.setStatus("Ongoing");
                 Reservation reservationAdded = reservationRepository.save(reservation);
                 model.addAttribute("reservation", reservationAdded);
                 return "redirect:/HouseDetails?id=" + reservation.getHouseId();
             } else {
-                return "BookHouse";
+                return "error404";
             }
         } else {
             return "error404";
