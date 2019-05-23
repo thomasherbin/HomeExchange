@@ -73,7 +73,7 @@ public class Booking {
                 model.addAttribute("reservation", reservationAdded);
                 return "redirect:/HouseDetails?id=" + reservation.getHouseId();
             } else {
-                return "error404";
+                return "redirect:/BookHouse?id="+ID;
             }
         } else {
             return "error404";

@@ -73,6 +73,17 @@
         <put-attribute name="body" value="/view/pages/frontoffice/user/listBooking.jsp" />
     </definition>
 
+    <definition name="Search" extends="mainLayout">
+        <put-attribute name="title" value="Search" />
+        <put-attribute name="body" value="/view/pages/frontoffice/common/search.jsp" />
+    </definition>
+
+    <definition name="SearchResults" extends="mainLayout">
+        <put-attribute name="title" value="SearchResults" />
+        <put-attribute name="body" value="/view/pages/frontoffice/common/searchResult.jsp" />
+    </definition>
+
+
     <definition name="error404" extends="mainLayout">
         <put-attribute name="title" value="error404" />
         <put-attribute name="body" value="/view/pages/frontoffice/common/error404.jsp" />
