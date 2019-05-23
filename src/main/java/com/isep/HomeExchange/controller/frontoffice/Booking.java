@@ -107,11 +107,13 @@ public class Booking {
     /*----------------------------- Show owner's booking list --------------------------------*/
 
     @GetMapping(value = "/bookingList")
-    public String showOwnerBooking(ModelMap modelMap, @RequestParam("id") int id, ModelMap modelHouses) {
-        for (Reservation reservation : reservationRepository.findByOwnerId(id)) {
+    public String showOwnerBooking(ModelMap modelMap, ModelMap modelHouses) {
+        Session session = new Session(userRepository);
+        int sessionId = session.getUserId();
+        for (Reservation reservation : reservationRepository.findByOwnerId(sessionId)) {
             System.out.println(reservation.toString());
         }
-        List<Reservation> reservations = reservationRepository.findByOwnerId(id);
+        List<Reservation> reservations = reservationRepository.findByOwnerId(sessionId);
         modelMap.put("reservations", reservations);
         List<String> housesName = new ArrayList();
 

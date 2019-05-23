@@ -22,6 +22,9 @@
                 <a class="button" href="/yourBooking">Your reservations</a>
             </div>
             <div class="common_item">
+                <a class="button" href="/bookingList">Your booking list</a>
+            </div>
+            <div class="common_item">
                 <a class="button" href="/housesView">Your profile</a>
             </div>
             <div class="common_item">
