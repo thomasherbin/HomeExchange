@@ -22,12 +22,6 @@
     </tr>
 
     <tr>
-        <td>Last Name:</td>
-        <td><springForm:input path="lastName" /></td>
-        <td><springForm:errors path="lastName"  /></td>
-    </tr>
-
-    <tr>
         <td>Date</td>
         <td><springForm:input path="date" /></td>
         <td><springForm:errors path="date"  /></td
