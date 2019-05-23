@@ -1,7 +1,9 @@
 package com.isep.HomeExchange.controller.frontoffice;
 
+import com.isep.HomeExchange.controller.service.Session;
 import com.isep.HomeExchange.model.repository.HouseRepository;
 import com.isep.HomeExchange.model.repository.ReservationRepository;
+import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.House;
 import com.isep.HomeExchange.model.table.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +24,16 @@ import java.util.Optional;
 @Controller
 public class Booking {
 
-    private int sessionId = 1;
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
-    public Booking(ReservationRepository reservationRepository, HouseRepository houseRepository) {
-        this.reservationRepository = reservationRepository;
-        this.houseRepository = houseRepository;
-    }
+    ReservationRepository reservationRepository;
 
-    private final ReservationRepository reservationRepository;
-    private final HouseRepository houseRepository;
+    @Autowired
+    HouseRepository houseRepository;
+
+
 
     /*---------------------------------- Book a house -----------------------------------------*/
 
@@ -51,6 +53,8 @@ public class Booking {
 
     @PostMapping(value = "/bookHouse")
     public String bookHouse(@Valid @ModelAttribute("reservation") Reservation reservation, BindingResult bindingResult, Model model, @RequestParam("id") int id) {
+        Session session = new Session(userRepository);
+        int sessionId = session.getUserId();
         int ID = id ;
         if (bindingResult.hasErrors()) {
             return "redirect:/BookHouse?id="+ID;
@@ -79,11 +83,13 @@ public class Booking {
     /*--------------------------------- Show client's booking list -----------------------------*/
 
     @GetMapping(value = "/yourBooking")
-    public String showClientBooking(ModelMap modelMap, @RequestParam("id") int id, ModelMap model) {
-        for (Reservation reservation : reservationRepository.findByRenterId(id)) {
+    public String showClientBooking(ModelMap modelMap,  ModelMap model) {
+        Session session = new Session(userRepository);
+        int sessionId = session.getUserId();
+        for (Reservation reservation : reservationRepository.findByRenterId(sessionId)) {
             System.out.println(reservation.toString());
         }
-        List<Reservation> reservations = reservationRepository.findByRenterId(id);
+        List<Reservation> reservations = reservationRepository.findByRenterId(sessionId);
         modelMap.put("reservations", reservations);
 
         List<String> housesName = new ArrayList();
@@ -147,7 +153,7 @@ public class Booking {
         }
         reservationRepository.deleteById(id);
 
-        return "redirect:/yourBooking?id=" + sessionId;
+        return "redirect:/yourBooking";
     }
 
     /*----------------------------- Accept Booking ------------------------------------------*/

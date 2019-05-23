@@ -1,6 +1,8 @@
 package com.isep.HomeExchange.controller.frontoffice;
 
+import com.isep.HomeExchange.controller.service.Session;
 import com.isep.HomeExchange.model.repository.HouseRepository;
+import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.House;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +19,11 @@ import java.util.Optional;
 @Controller
 public class Home {
 
-
-    private int sessionId = 0 ;
+    @Autowired
+    HouseRepository houseRepository;
 
     @Autowired
-    public Home(HouseRepository houseRepository) {
-        this.houseRepository = houseRepository;
-    }
-    private final HouseRepository houseRepository ;
+    UserRepository userRepository;
 
     /*-------------------------------------------- Add a house ------------------------------------------- */
 
@@ -47,11 +46,11 @@ public class Home {
         if(house.getDateEnd().compareTo(house.getDateStart()) > 0){
             House houseAdded =  houseRepository.save(house) ;
             model.addAttribute("house", houseAdded);
-            return "redirect:/housesView?id=" + sessionId;
+            return "redirect:/housesView";
         } else if(house.getDateEnd().compareTo(house.getDateStart()) == 0){
             House houseAdded =  houseRepository.save(house) ;
             model.addAttribute("house", houseAdded);
-            return "redirect:/housesView?id=" + sessionId;
+            return "redirect:/housesView";
         }
 
         else{
@@ -87,7 +86,7 @@ public class Home {
             houseFromDB = house ;
             System.out.println("house updated : " + houseFromDB.toString());
             this.houseRepository.save(houseFromDB) ;
-            return "redirect:/housesView?id=" + sessionId;
+            return "redirect:/housesView";
         } else {
             return "HomeEdit" ;
         }
@@ -98,11 +97,13 @@ public class Home {
 
 
     @GetMapping(value = "/housesView")
-    public String housesCount( ModelMap model, @RequestParam("id") int id){
-        for(House house : houseRepository.findByOwner(id) ){
+    public String housesCount( ModelMap model){
+        Session session = new Session(userRepository);
+        int sessionId = session.getUserId();
+        for(House house : houseRepository.findByOwner(sessionId) ){
             System.out.println(house.toString());
         }
-        List<House> houses = houseRepository.findByOwner(id) ;
+        List<House> houses = houseRepository.findByOwner(sessionId) ;
         model.put("houses", houses) ;
         return "HousesView" ;
     }
@@ -137,7 +138,7 @@ public class Home {
     @GetMapping(value = "/RemoveHouseConfirmed")
     public String removeHouseConfirmed(Model model,@RequestParam("id") int id) {
         houseRepository.deleteById(id);
-        return "redirect:/housesView?id=" + sessionId;
+        return "redirect:/housesView";
     }
 
 
