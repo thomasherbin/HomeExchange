@@ -1,16 +1,15 @@
 package com.isep.HomeExchange.controller.frontoffice;
 
+import com.isep.HomeExchange.controller.service.Session;
 import com.isep.HomeExchange.model.UserValidator;
 import com.isep.HomeExchange.controller.service.SecurityService;
 import com.isep.HomeExchange.controller.service.UserService;
 import com.isep.HomeExchange.model.repository.MessageRepository;
 import com.isep.HomeExchange.model.repository.UserRepository;
-import com.isep.HomeExchange.model.table.House;
 import com.isep.HomeExchange.model.table.Message;
 import com.isep.HomeExchange.model.table.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,12 +17,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-public class UserFrontOffice {
-    private int sessionId = 1;
+ public class UserFrontOffice {
     private int id = 2;
 
     @Autowired
@@ -40,6 +37,7 @@ public class UserFrontOffice {
 
     @Autowired
     private UserRepository userRepository;
+
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -68,8 +66,10 @@ public class UserFrontOffice {
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
-        if (logout != null)
+
+        if (logout != null) {
             model.addAttribute("message", "You have been logged out successfully.");
+        }
 
         return "login";
     }
@@ -80,6 +80,8 @@ public class UserFrontOffice {
     /*-------------------------------------------- Messages ------------------------------------------- */
     @GetMapping("/messages")
     public String getConversation(ModelMap modelMap, Model model/*, @RequestParam("id") int id*/) {
+        Session session = new Session(userRepository);
+        int sessionId = session.getUserId();
         List<Message> senderMessages = messageRepository.findBySenderIdAndReceiverIdOrderBySentDate(id, sessionId);
         List<Message> recieverMessages = messageRepository.findBySenderIdAndReceiverIdOrderBySentDate(sessionId, id);
         List<Message> messages = senderMessages;
@@ -100,10 +102,11 @@ public class UserFrontOffice {
 
     @PostMapping("/messages")
     public String submitMessage(@Valid @ModelAttribute("message") Message message, BindingResult bindingResult, Model model) {
+        Session session = new Session(userRepository);
         if (bindingResult.hasErrors()) {
             return "message" ;
         }
-        message.setSenderId(sessionId);
+        message.setSenderId(session.getUserId());
         message.setReceiverId(id);
         message.setSentDate(new Date());
         messageRepository.save(message);
