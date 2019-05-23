@@ -36,7 +36,9 @@ public class Home {
 
     @PostMapping(value = "/addHouse")
     public String addHouse(@Valid @ModelAttribute("house") House house, BindingResult bindingResult, Model model) {
-        house.setOwner(0);
+        Session session = new Session(userRepository);
+        int sessionId = session.getUserId();
+        house.setOwner(sessionId);
 
         if (bindingResult.hasErrors()) {
             return "HomeAdd" ;
