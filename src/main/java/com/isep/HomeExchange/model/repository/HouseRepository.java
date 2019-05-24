@@ -16,6 +16,8 @@ public interface HouseRepository extends JpaRepository<House, Integer> {
     public House save(House house) ;
     List<House> findByOwner(int owner) ;
     List<House> findByAddress(String address) ;
+    List<House> findByCityLike(String city) ;
+    List<House> findByNameLike(String name) ;
     int countAllByOwner(int owner);
 
 }

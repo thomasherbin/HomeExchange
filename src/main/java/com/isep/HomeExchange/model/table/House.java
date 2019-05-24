@@ -1,5 +1,6 @@
 package com.isep.HomeExchange.model.table;
 
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
