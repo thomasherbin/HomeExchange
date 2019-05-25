@@ -96,7 +96,13 @@ public class Booking {
 
         for(int k =0 ; k < reservations.size() ; k++){
             int houseId = reservations.get(k).getHouseId();
-            housesName.add(houseRepository.findById(houseId).get().getName()) ;
+            Optional<House> optionalHouse = houseRepository.findById(houseId) ;
+            if (optionalHouse.isPresent()){
+                housesName.add(houseRepository.findById(houseId).get().getName()) ;
+            } else{
+                housesName.add("<strong>No longer available</strong>") ;
+            }
+
         }
 
         model.put("housesName", housesName) ;
@@ -119,7 +125,13 @@ public class Booking {
 
         for(int i =0 ; i < reservations.size() ; i++){
             int houseId = reservations.get(i).getHouseId();
-            housesName.add(houseRepository.findById(houseId).get().getName()) ;
+            Optional<House> optionalHouse = houseRepository.findById(houseId) ;
+            if(optionalHouse.isPresent()){
+                housesName.add(houseRepository.findById(houseId).get().getName()) ;
+            } else {
+                housesName.add("<strong>House deleted </br> No longer available</strong>") ;
+            }
+
         }
 
         modelHouses.put("housesName", housesName) ;

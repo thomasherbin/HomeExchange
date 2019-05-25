@@ -30,16 +30,20 @@
         <td>${house.description}</td>
     </tr>
     <tr>
-        <td>Service</td>
+        <td>Service:</td>
         <td>${house.service}</td>
     </tr>
     <tr>
-        <td>Constraint Rules</td>
+        <td>Constraint Rules:</td>
         <td>${house.constraintRule}</td>
     </tr>
     <tr>
-        <td>Availability</td>
+        <td>Availability:</td>
         <td>Available from ${house.dateStart} to ${house.dateEnd} </td>
+    </tr>
+    <tr>
+        <td>Photo:</td>
+        <td><img src="${house.photo}"></td>
     </tr>
         <tr>
             <td><a href="${BookHouse}">Book</a></td>

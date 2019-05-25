@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Add a house to book</h1>
-<springForm:form method="post" modelAttribute="house" action="/addHouse">
+<springForm:form method="post" modelAttribute="house" action="/addHouse" >
     <table>
         <tr>
             <td>Name:</td>
@@ -57,12 +57,12 @@
             </td>
         </tr>
 
-
-
         <tr>
             <td colspan="3"><input type="submit" value="Save House"></td>
         </tr>
     </table>
 </springForm:form>
+
+
 </body>
 </html>
