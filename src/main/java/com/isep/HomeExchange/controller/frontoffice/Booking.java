@@ -1,6 +1,6 @@
 package com.isep.HomeExchange.controller.frontoffice;
 
-import com.isep.HomeExchange.controller.service.Session;
+import com.isep.HomeExchange.model.service.Session;
 import com.isep.HomeExchange.model.repository.HouseRepository;
 import com.isep.HomeExchange.model.repository.ReservationRepository;
 import com.isep.HomeExchange.model.repository.UserRepository;

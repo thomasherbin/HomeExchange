@@ -15,6 +15,9 @@ public class User {
 
     private String password;
 
+    @Transient
+    private String oldPassword;
+
     @Size(min=2, max=30) private String firstName;
     @Size(min=2, max=30) private String lastName;
 
@@ -95,12 +98,25 @@ public class User {
         this.roles = roles;
     }
 
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", oldPassword='" + oldPassword + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -108,11 +124,4 @@ public class User {
                 ", roles=" + roles +
                 '}';
     }
-
-    public String getLastName() {
-        return lastName;
-
-
-
-}
 }

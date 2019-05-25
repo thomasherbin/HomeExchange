@@ -5,6 +5,11 @@
 <springForm:form method="POST" modelAttribute="user" action="/updatePassword">
     <table>
         <tr>
+            <td>Current Password:</td>
+            <td><springForm:input type="password" path="oldPassword"/></td>
+            <td><springForm:errors path="oldPassword"  /></td>
+        </tr>
+        <tr>
             <td>Password:</td>
             <td><springForm:input type="password" path="password"/></td>
             <td><springForm:errors path="password"  /></td>

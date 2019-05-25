@@ -1,4 +1,4 @@
-package com.isep.HomeExchange.controller.service;
+package com.isep.HomeExchange.model.service;
 
 public interface SecurityService {
     String findLoggedInUsername();

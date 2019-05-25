@@ -1,7 +1,7 @@
 package com.isep.HomeExchange.controller.backoffice;
 
-import com.isep.HomeExchange.controller.service.UserService;
-import com.isep.HomeExchange.model.Validator.UserRegistrationValidator;
+import com.isep.HomeExchange.model.service.UserService;
+import com.isep.HomeExchange.controller.Validator.UserRegistrationValidator;
 import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.User;
 import org.springframework.beans.factory.annotation.Autowired;

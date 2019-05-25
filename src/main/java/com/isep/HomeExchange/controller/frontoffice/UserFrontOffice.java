@@ -1,10 +1,10 @@
 package com.isep.HomeExchange.controller.frontoffice;
 
-import com.isep.HomeExchange.controller.service.Session;
-import com.isep.HomeExchange.model.Validator.UserChangePasswordValidator;
-import com.isep.HomeExchange.model.Validator.UserRegistrationValidator;
-import com.isep.HomeExchange.controller.service.SecurityService;
-import com.isep.HomeExchange.controller.service.UserService;
+import com.isep.HomeExchange.model.service.Session;
+import com.isep.HomeExchange.controller.Validator.UserChangePasswordValidator;
+import com.isep.HomeExchange.controller.Validator.UserRegistrationValidator;
+import com.isep.HomeExchange.model.service.SecurityService;
+import com.isep.HomeExchange.model.service.UserService;
 import com.isep.HomeExchange.model.repository.MessageRepository;
 import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.Message;
@@ -18,7 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -132,11 +131,13 @@ import java.util.List;
 
     @PostMapping(value = "/updatePassword")
     public String updatePassordConfirm(@Valid User user, BindingResult bindingResult, Model model){
+        Session session = new Session(userRepository);
         userChangePasswordValidator.validate(user, bindingResult);
+        System.out.println(user.toString());
         if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.toString());
             return "updatePassword";
         }
-        Session session = new Session(userRepository);
         Optional<User> optionalUser = userRepository.findById(session.getUserId());
         if (optionalUser.isPresent()) {
             User userFromDb = optionalUser.get();

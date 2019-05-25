@@ -1,4 +1,4 @@
-package com.isep.HomeExchange.controller.service;
+package com.isep.HomeExchange.model.service;
 
 import com.isep.HomeExchange.model.repository.RoleRepository;
 import com.isep.HomeExchange.model.repository.UserRepository;
@@ -10,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,6 +23,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveRegistration(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if (roleRepository.findAll().isEmpty()) {
+            roleRepository.save(new Role("USER"));
+            roleRepository.save(new Role("ADMIN"));
+        }
         user.setRoles(new HashSet<>(roleRepository.findByName("USER")));
         userRepository.save(user);
     }
@@ -47,4 +50,11 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userRepository.findByUserName(username);
     }
+
+    @Override
+    public String getCurrentEncyptPassword() {
+        Session session = new Session(userRepository);
+        return userRepository.findByUserName(session.getUserName()).getPassword();
+    }
+
 }
