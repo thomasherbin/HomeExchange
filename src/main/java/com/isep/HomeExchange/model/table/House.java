@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.sql.Blob;
 import java.util.Date;
 
 @Entity
@@ -33,6 +34,10 @@ public class House {
     @NotNull
     private Date dateEnd;
 
+
+
+   private String photo ;
+
     public House() {
     }
 
@@ -46,6 +51,7 @@ public class House {
         this.city = city;
         this.dateStart = dateStart ;
         this.dateEnd = dateEnd ;
+
 
     }
 
@@ -141,6 +147,14 @@ public class House {
         this.dateEnd = dateEnd;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
         return "House{" +
@@ -155,6 +169,7 @@ public class House {
                 ", city='" + city + '\'' +
                 ", dateStart=" + dateStart +
                 ", dateEnd=" + dateEnd +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }

@@ -48,6 +48,16 @@
         <put-attribute name="body" value="/view/pages/frontoffice/home/house.jsp" />
     </definition>
 
+    <definition name="UploadPhoto" extends="mainLayout">
+        <put-attribute name="title" value="UploadPhoto" />
+        <put-attribute name="body" value="/view/pages/frontoffice/home/upload.jsp" />
+    </definition>
+
+    <definition name="ErrorUpload" extends="mainLayout">
+        <put-attribute name="title" value="ErrorUpload" />
+        <put-attribute name="body" value="/view/pages/frontoffice/home/errorUpload.jsp" />
+    </definition>
+
     <definition name="HousesView" extends="mainLayout">
         <put-attribute name="title" value="HousesView" />
         <put-attribute name="body" value="/view/pages/frontoffice/user/housesView.jsp" />

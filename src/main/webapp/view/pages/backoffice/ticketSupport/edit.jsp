@@ -6,36 +6,36 @@
     <c:param name="id" value="${ticket.id}" />
 </c:url>
 
-<springForm:form method="POST" modelAttribute="user" action="${EditTicket}">
+<springForm:form method="POST" modelAttribute="ticket" action="${EditTicket}">
     <table>
         <tr>
             <td>First Name: </td>
-            <td><springForm:input path="firstName" value="${user.firstName}"/></td>
+            <td><springForm:input path="firstName" value="${ticket.firstName}"/></td>
             <td><springForm:errors path="firstName"  /></td>
         </tr>
         <tr>
             <td>Last Name: </td>
-            <td><springForm:input path="lastName" value="${user.lastName}"/></td>
+            <td><springForm:input path="lastName" value="${ticket.lastName}"/></td>
             <td><springForm:errors path="lastName"  /></td>
         </tr>
         <tr>
             <td>User Message:</td>
-            <td><springForm:input path="usermessage" value="${user.usermessage}"/></td>
+            <td><springForm:input path="usermessage" value="${ticket.usermessage}"/></td>
             <td><springForm:errors path="usermessage"  /></td>
         </tr>
         <tr>
             <td>Date:</td>
-            <td><springForm:input path="date" placeholder="MM/dd/yyyy" value="${user.date}"/></td>
+            <td><springForm:input path="date" placeholder="MM/dd/yyyy" value="${ticket.date}"/></td>
             <td><springForm:errors path="date"  /></td>
         </tr>
         <tr>
             <td>Ticket Number:</td>
-            <td><springForm:input path="ticketNumber" value="${user.ticketNumber}" /></td>
+            <td><springForm:input path="ticketNumber" value="${ticket.ticketNumber}" /></td>
             <td><springForm:errors path="ticketNumber"  /></td>
         </tr>
         <tr>
-            <td><input type="submit" value="Save User"></td>
-            <td><a href="/userList">Cancel</a></td>
+            <td><input type="submit" value="Save ticket"></td>
+            <td><a href="/ticketList">Cancel</a></td>
         </tr>
     </table>
 

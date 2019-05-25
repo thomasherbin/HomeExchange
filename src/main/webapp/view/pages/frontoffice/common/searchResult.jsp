@@ -8,6 +8,7 @@
     <h2>We found ${fn:length(houses)} result(s)</h2>
     <table>
         <th>Name</th>
+        <th>Photo</th>
         <th>City</th>
         <th>Address</th>
         <th>Details</th>
@@ -17,6 +18,7 @@
             </c:url>
             <tr>
                <td>${house.name}</td>
+                <td><img src="${house.photo}"></td>
                 <td>${house.city}</td>
                 <td>${house.address}</td>
                 <td><a href="${ShowHouse}">Show Details</a></td>
