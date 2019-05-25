@@ -93,6 +93,8 @@ public class Home {
     @PostMapping(value = "/upload")
     public String uploadingFile(@RequestParam("file")MultipartFile file, @RequestParam("id") int id, RedirectAttributes redirectAttributes){
         int ID = id ;
+        Session session = new Session(userRepository);
+        int sessionId = session.getUserId();
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
@@ -101,7 +103,7 @@ public class Home {
 
         try{
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Path path = Paths.get(UPLOADED_FOLDER +"U"+ sessionId +"_H" + id + "_" +file.getOriginalFilename() );
             Files.write(path, bytes) ;
             Optional<House> optionalHouse = houseRepository.findById(id) ;
             if(optionalHouse.isPresent()){
