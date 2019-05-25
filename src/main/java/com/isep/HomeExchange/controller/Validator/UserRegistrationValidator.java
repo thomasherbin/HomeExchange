@@ -1,6 +1,6 @@
-package com.isep.HomeExchange.model;
+package com.isep.HomeExchange.controller.Validator;
 import com.isep.HomeExchange.model.table.User;
-import com.isep.HomeExchange.controller.service.UserService;
+import com.isep.HomeExchange.model.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
 
 
 @Component
-public class UserValidator implements Validator {
+public class UserRegistrationValidator implements Validator {
     @Autowired
     private UserService userService;
 
@@ -40,4 +40,6 @@ public class UserValidator implements Validator {
             errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
         }
     }
+
+
 }

@@ -23,6 +23,9 @@
         <c:url var="CancelBooking" value="/cancelBooking">
             <c:param name="id" value="${reservation.id}"></c:param>
         </c:url>
+        <c:url var="message" value="/messages">
+            <c:param name="id" value="${reservation.ownerId}"></c:param>
+        </c:url>
 
 
 
@@ -32,6 +35,7 @@
             <td>From ${reservation.dateStart} to ${reservation.dateEnd} </td>
             <td>${reservation.status}</td>
             <td><a href="${CancelBooking}">Cancel</a></td>
+            <td><a href="${message}">Message</a></td>
         </tr>
 
     </c:forEach>

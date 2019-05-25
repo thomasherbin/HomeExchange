@@ -1,4 +1,4 @@
-package com.isep.HomeExchange.controller.service;
+package com.isep.HomeExchange.model.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

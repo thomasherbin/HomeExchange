@@ -19,13 +19,16 @@
                 <a class="button" href="/housesView">Your houses</a>
             </div>
             <div class="common_item">
+                <a class="button" href="/search">Search houses</a>
+            </div>
+            <div class="common_item">
                 <a class="button" href="/yourBooking">Your reservations</a>
             </div>
             <div class="common_item">
                 <a class="button" href="/bookingList">Your booking list</a>
             </div>
             <div class="common_item">
-                <a class="button" href="/housesView">Your profile</a>
+                <a class="button" href="/yourProfile">Your profile</a>
             </div>
             <div class="common_item">
                 <ul class="home_list">

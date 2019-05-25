@@ -1,9 +1,10 @@
 package com.isep.HomeExchange.controller.frontoffice;
 
-import com.isep.HomeExchange.controller.service.Session;
-import com.isep.HomeExchange.model.UserValidator;
-import com.isep.HomeExchange.controller.service.SecurityService;
-import com.isep.HomeExchange.controller.service.UserService;
+import com.isep.HomeExchange.model.service.Session;
+import com.isep.HomeExchange.controller.Validator.UserChangePasswordValidator;
+import com.isep.HomeExchange.controller.Validator.UserRegistrationValidator;
+import com.isep.HomeExchange.model.service.SecurityService;
+import com.isep.HomeExchange.model.service.UserService;
 import com.isep.HomeExchange.model.repository.MessageRepository;
 import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.Message;
@@ -18,10 +19,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.*;
+import java.util.List;
 
 @Controller
  public class UserFrontOffice {
-    private int id = 2;
 
     @Autowired
     private UserService userService;
@@ -30,7 +31,10 @@ import java.util.*;
     private SecurityService securityService;
 
     @Autowired
-    private UserValidator userValidator;
+    private UserRegistrationValidator userRegistrationValidator;
+
+    @Autowired
+    UserChangePasswordValidator userChangePasswordValidator;
 
     @Autowired
     private MessageRepository messageRepository;
@@ -48,16 +52,12 @@ import java.util.*;
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
-
+        userRegistrationValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
-        userService.save(userForm);
-
+        userService.saveRegistration(userForm);
         securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
-
         return "redirect:/home";
     }
 
@@ -74,12 +74,84 @@ import java.util.*;
         return "login";
     }
 
+    @GetMapping("/yourProfile")
+    public String yourProfile(Model model) {
+        Session session = new Session(userRepository);
+        Optional<User> optionalUser =  userRepository.findById(session.getUserId());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            model.addAttribute("user", user);
+            return "yourProfile";
+        } else {
+            return "redirect:/home";
+        }
+    }
 
+    @GetMapping(value = "/updateUser")
+    public String editUser(Model model) {
+        Session session = new Session(userRepository);
+        Optional<User> optionalUser = userRepository.findById(session.getUserId());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            model.addAttribute("user", user);
+            return "updateUser";
+        } else {
+            return "redirect:/home";
+        }
+    }
+
+    @PostMapping(value = "/updateUser")
+    public String editSubmit(@Valid User user, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()) {
+            return "updateUser";
+        }
+        Session session = new Session(userRepository);
+        Optional<User> optionalUser = userRepository.findById(session.getUserId());
+        if (optionalUser.isPresent()) {
+            User userFromDb = optionalUser.get();
+            userService.saveEdit(userFromDb,user);
+            return "redirect:/yourProfile";
+        } else {
+            return "redirect:/yourProfile";
+        }
+    }
+
+    @GetMapping(value = "/updatePassword")
+    public String updatePassord(Model model) {
+        Session session = new Session(userRepository);
+        Optional<User> optionalUser = userRepository.findById(session.getUserId());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            model.addAttribute("user", user);
+            return "updatePassword";
+        } else {
+            return "redirect:/home";
+        }
+    }
+
+    @PostMapping(value = "/updatePassword")
+    public String updatePassordConfirm(@Valid User user, BindingResult bindingResult, Model model){
+        Session session = new Session(userRepository);
+        userChangePasswordValidator.validate(user, bindingResult);
+        System.out.println(user.toString());
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.toString());
+            return "updatePassword";
+        }
+        Optional<User> optionalUser = userRepository.findById(session.getUserId());
+        if (optionalUser.isPresent()) {
+            User userFromDb = optionalUser.get();
+            userService.savePassword(userFromDb, user);
+            return "redirect:/yourProfile";
+        } else {
+            return "redirect:/yourProfile";
+        }
+    }
 
 
     /*-------------------------------------------- Messages ------------------------------------------- */
     @GetMapping("/messages")
-    public String getConversation(ModelMap modelMap, Model model/*, @RequestParam("id") int id*/) {
+    public String getConversation(ModelMap modelMap, Model model, @RequestParam("id") int id) {
         Session session = new Session(userRepository);
         int sessionId = session.getUserId();
         List<Message> senderMessages = messageRepository.findBySenderIdAndReceiverIdOrderBySentDate(id, sessionId);
@@ -101,7 +173,7 @@ import java.util.*;
 
 
     @PostMapping("/messages")
-    public String submitMessage(@Valid @ModelAttribute("message") Message message, BindingResult bindingResult, Model model) {
+    public String submitMessage(@Valid @ModelAttribute("message") Message message, BindingResult bindingResult, @RequestParam("id") int id) {
         Session session = new Session(userRepository);
         if (bindingResult.hasErrors()) {
             return "message" ;

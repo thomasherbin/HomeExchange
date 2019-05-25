@@ -1,4 +1,4 @@
-package com.isep.HomeExchange.controller.service;
+package com.isep.HomeExchange.model.service;
 
 import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.User;
@@ -20,8 +20,6 @@ public class Session {
         User user = userRepository.findByUserName(userName);
         userId =  user.getId();
     }
-
-
 
     public String getUserName() {
         return userName;

@@ -26,6 +26,9 @@
         <c:url var="RejectBooking" value="/rejectBooking">
             <c:param name="id" value="${reservation.id}"></c:param>
         </c:url>
+        <c:url var="message" value="/messages">
+            <c:param name="id" value="${reservation.renterId}"></c:param>
+        </c:url>
 
         <tr>
             <td>${housesName[status.index]}</td>
@@ -43,8 +46,9 @@
                 </springForm:form>
             </td>
             <td>
-                <a href="">Ask more information</a>
+                <a href="${message}">Ask more information</a>
             </td>
+
 
         </tr>
 
