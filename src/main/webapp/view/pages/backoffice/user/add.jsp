@@ -12,19 +12,24 @@
             <td><springForm:errors path="lastName"  /></td>
         </tr>
         <tr>
+            <td>Username:</td>
+            <td><springForm:input path="userName" /></td>
+            <td><springForm:errors path="userName"  /></td>
+        </tr>
+        <tr>
             <td>Email:</td>
             <td><springForm:input path="email" /></td>
             <td><springForm:errors path="email"  /></td>
         </tr>
         <tr>
-            <td>Age:</td>
-            <td><springForm:input path="age" /></td>
-            <td><springForm:errors path="age"  /></td>
+            <td>Password:</td>
+            <td><springForm:input type="password" path="password" /></td>
+            <td><springForm:errors path="password"  /></td>
         </tr>
         <tr>
-            <td>Birthday:</td>
-            <td><springForm:input path="birthday" placeholder="MM/dd/yyyy"/></td>
-            <td><springForm:errors path="birthday"  /></td>
+            <td>Confirm your password:</td>
+            <td><springForm:input type="password" path="passwordConfirm" /></td>
+            <td><springForm:errors path="passwordConfirm"  /></td>
         </tr>
         <tr>
             <td colspan="3"><input type="submit" value="Save User"></td>

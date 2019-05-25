@@ -4,7 +4,8 @@ import com.isep.HomeExchange.model.table.User;
 
 
 public interface UserService {
-    void save(User user);
-
+    void saveRegistration(User user);
+    void saveEdit(User userFromDb, User user);
+    void savePassword(User userFromDb, User user);
     User findByUsername(String username);
 }

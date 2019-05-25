@@ -21,8 +21,6 @@ public class Session {
         userId =  user.getId();
     }
 
-
-
     public String getUserName() {
         return userName;
     }

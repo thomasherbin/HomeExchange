@@ -2,6 +2,7 @@ package com.isep.HomeExchange.controller.service;
 
 import com.isep.HomeExchange.model.repository.RoleRepository;
 import com.isep.HomeExchange.model.repository.UserRepository;
+import com.isep.HomeExchange.model.table.Role;
 import com.isep.HomeExchange.model.table.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,10 +22,25 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public void save(User user) {
+    public void saveRegistration(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
+        user.setRoles(new HashSet<>(roleRepository.findByName("USER")));
         userRepository.save(user);
+    }
+
+    @Override
+    public void saveEdit(User userFromDb, User user) {
+        userFromDb.setFirstName(user.getFirstName());
+        userFromDb.setLastName(user.getLastName());
+        userFromDb.setEmail(user.getEmail());
+        userFromDb.setUserName(user.getUserName());
+        userRepository.save(userFromDb);
+    }
+
+    @Override
+    public void savePassword(User userFromDb, User user) {
+        userFromDb.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepository.save(userFromDb);
     }
 
     @Override

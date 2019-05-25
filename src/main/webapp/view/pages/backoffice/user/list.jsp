@@ -25,9 +25,8 @@
         <tr>
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
+            <td>${user.userName}</td>
             <td>${user.email}</td>
-            <td>${user.age}</td>
-            <td>${user.birthday}</td>
             <td><a href="${EditUser}">Edit</a></td>
             <td><a href="${DeleteUser}">Delete</a></td>
         </tr>

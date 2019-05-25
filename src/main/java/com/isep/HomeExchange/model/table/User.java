@@ -19,7 +19,7 @@ public class User {
     @Size(min=2, max=30) private String lastName;
 
    
-    @NotEmpty @Email
+    @Email
     private String email;
 
     @Transient
@@ -93,6 +93,20 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", passwordConfirm='" + passwordConfirm + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 
     public String getLastName() {

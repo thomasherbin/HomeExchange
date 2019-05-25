@@ -73,6 +73,21 @@
         <put-attribute name="body" value="/view/pages/frontoffice/user/listBooking.jsp" />
     </definition>
 
+    <definition name="yourProfile" extends="mainLayout">
+        <put-attribute name="title" value="OwnerBooking" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/profile.jsp" />
+    </definition>
+
+    <definition name="updateUser" extends="mainLayout">
+        <put-attribute name="title" value="OwnerBooking" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/updateProfile.jsp" />
+    </definition>
+
+ <definition name="updatePassword" extends="mainLayout">
+        <put-attribute name="title" value="OwnerBooking" />
+        <put-attribute name="body" value="/view/pages/frontoffice/user/changePassword.jsp" />
+    </definition>
+
     <definition name="Search" extends="mainLayout">
         <put-attribute name="title" value="Search" />
         <put-attribute name="body" value="/view/pages/frontoffice/common/search.jsp" />

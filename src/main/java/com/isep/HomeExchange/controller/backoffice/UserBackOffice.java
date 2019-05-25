@@ -1,5 +1,7 @@
 package com.isep.HomeExchange.controller.backoffice;
 
+import com.isep.HomeExchange.controller.service.UserService;
+import com.isep.HomeExchange.model.Validator.UserRegistrationValidator;
 import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,14 @@ public class UserBackOffice {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserRegistrationValidator userValidator;
+
+    @Autowired
+    UserService userService;
+
+
+
     //User List
     @GetMapping(value = "/userList")
     public String home(Model model) {
@@ -34,10 +44,11 @@ public class UserBackOffice {
 
     @PostMapping(value = "/addUser")
     public String confirmSubmit(@Valid User user, BindingResult bindingResult, Model model){
+        userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             return "addUser";
         }
-        this.userRepository.save(user);
+        userService.saveRegistration(user);
         return "redirect:/userList";
     }
 
@@ -76,14 +87,14 @@ public class UserBackOffice {
 
     @PostMapping(value = "/editUser")
     public String editSubmit(@Valid User user, BindingResult bindingResult, Model model, @RequestParam("id") int id){
+        userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             return "editUser";
         }
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User userFromDb = optionalUser.get();
-            userFromDb = user;
-            this.userRepository.save(userFromDb);
+            userService.saveEdit(userFromDb, user);
             return "redirect:/userList";
         } else {
             return "redirect:/userList";
