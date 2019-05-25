@@ -31,7 +31,8 @@ public class Search {
     @PostMapping(value="/searchByCity")
 
     public String searchByCity(ModelMap modelMap, String city){
-        List<House> houses = houseRepository.findByCityLike(city) ;
+        //List<House> houses = houseRepository.findByCityLike(city) ;
+        List<House> houses = houseRepository.findByCityContaining(city) ;
         modelMap.put("houses", houses) ;
         return "SearchResults" ;
     }
@@ -41,7 +42,8 @@ public class Search {
     @PostMapping(value="/searchByName")
 
     public String searchByName(ModelMap modelMap, String name){
-        List<House> houses = houseRepository.findByNameLike(name) ;
+       // List<House> houses = houseRepository.findByNameLike(name) ;
+        List<House> houses = houseRepository.findByNameContaining(name) ;
         modelMap.put("houses", houses) ;
         return "SearchResults" ;
     }
