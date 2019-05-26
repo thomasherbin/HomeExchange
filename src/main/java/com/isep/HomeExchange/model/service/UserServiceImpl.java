@@ -40,11 +40,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveEdit(User userFromDb, User user) {
-        if (user.getRole().equals("Admin")) {
-            userFromDb.setRoles(new HashSet<>(roleRepository.findAll()));
-        } else {
-            userFromDb.setRoles(new HashSet<>(roleRepository.findByName("USER")));
+    public void saveEdit(User userFromDb, User user, boolean inFrontOffice) {
+        if (!inFrontOffice) {
+            if (user.getRole().equals("Admin")) {
+                userFromDb.setRoles(new HashSet<>(roleRepository.findAll()));
+            } else {
+                userFromDb.setRoles(new HashSet<>(roleRepository.findByName("USER")));
+            }
         }
         userFromDb.setFirstName(user.getFirstName());
         userFromDb.setLastName(user.getLastName());

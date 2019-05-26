@@ -109,7 +109,7 @@ import java.util.List;
         Optional<User> optionalUser = userRepository.findById(session.getUserId());
         if (optionalUser.isPresent()) {
             User userFromDb = optionalUser.get();
-            userService.saveEdit(userFromDb,user);
+            userService.saveEdit(userFromDb,user, true);
             return "redirect:/yourProfile";
         } else {
             return "redirect:/yourProfile";
@@ -176,11 +176,13 @@ import java.util.List;
         if (bindingResult.hasErrors()) {
             return "message" ;
         }
-        message.setSenderId(session.getUserId());
-        message.setReceiverId(id);
-        message.setSentDate(new Date());
-        messageRepository.save(message);
-        return "redirect:/messages";
+        Message messagePost = new Message();
+        messagePost.setContent(message.getContent());
+        messagePost.setSenderId(session.getUserId());
+        messagePost.setReceiverId(id);
+        messagePost.setSentDate(new Date());
+        messageRepository.save(messagePost);
+        return "redirect:/messages?id="+id;
     }
 
 

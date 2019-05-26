@@ -110,7 +110,7 @@ public class UserBackOffice {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User userFromDb = optionalUser.get();
-            userService.saveEdit(userFromDb, user);
+            userService.saveEdit(userFromDb, user, false);
             if (!user.getPassword().isEmpty() && !user.getPasswordConfirm().isEmpty()) {
                 userService.savePassword(userFromDb,user);
             }

@@ -24,7 +24,7 @@
 </c:choose>
 
 <c:url var="messagePost" value="/messages">
-    <c:param name="receiverId" value="${user.id}"></c:param>
+    <c:param name="id" value="${user.id}"></c:param>
 </c:url>
 
 
