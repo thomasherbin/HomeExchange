@@ -5,8 +5,7 @@ import com.isep.HomeExchange.model.repository.HouseRepository;
 import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.House;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.MediaType;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,13 +16,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Blob;
-import java.util.ArrayList;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +42,14 @@ public class Home {
 
     private static String UPLOADED_FOLDER = "src/main/webapp/ressources/image/";
     private static String pathPrefix = "src/main/webapp" ;
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate localDate = LocalDate.now();
+    String dateStr = formatter.format(localDate) ;
+    Date currentDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr) ;
+
+    public Home() throws ParseException {
+    }
 
     /*-------------------------------------------- Add a house ------------------------------------------- */
 
@@ -60,18 +71,22 @@ public class Home {
             return "HomeAdd" ;
         }
 
-        if(house.getDateEnd().compareTo(house.getDateStart()) > 0){
+        if(house.getDateStart().compareTo(currentDate) > 0 || house.getDateStart().compareTo(currentDate) == 0){
+            if(house.getDateEnd().compareTo(house.getDateStart()) > 0){
 
-            House houseAdded =  houseRepository.save(house) ;
-            model.addAttribute("house", houseAdded);
-            return "redirect:/housesView";
-        } else if(house.getDateEnd().compareTo(house.getDateStart()) == 0){
-            House houseAdded =  houseRepository.save(house) ;
-            model.addAttribute("house", houseAdded);
-            return "redirect:/housesView";
-        }
+                House houseAdded =  houseRepository.save(house) ;
+                model.addAttribute("house", houseAdded);
+                return "redirect:/housesView";
+            } else if(house.getDateEnd().compareTo(house.getDateStart()) == 0){
+                House houseAdded =  houseRepository.save(house) ;
+                model.addAttribute("house", houseAdded);
+                return "redirect:/housesView";
+            }
 
-        else{
+            else{
+                return "HomeAdd" ;
+            }
+        } else{
             return "HomeAdd" ;
         }
 
@@ -153,14 +168,19 @@ public class Home {
             System.out.println("house : " + house.toString());
             House houseFromDB = optionalHouse.get();
             System.out.println("house from db : " + houseFromDB.toString());
-            if(house.getDateEnd().compareTo(house.getDateStart()) > 0 || house.getDateEnd().compareTo(house.getDateStart()) == 0){
-                house.setPhoto(houseFromDB.getPhoto());
-                houseFromDB = house ;
-                System.out.println("house updated : " + houseFromDB.toString());
-                this.houseRepository.save(houseFromDB) ;
-                return "redirect:/housesView";
+
+            if(house.getDateStart().compareTo(currentDate) > 0 || house.getDateStart().compareTo(currentDate) == 0){
+                if(house.getDateEnd().compareTo(house.getDateStart()) > 0 || house.getDateEnd().compareTo(house.getDateStart()) == 0){
+                    house.setPhoto(houseFromDB.getPhoto());
+                    houseFromDB = house ;
+                    System.out.println("house updated : " + houseFromDB.toString());
+                    this.houseRepository.save(houseFromDB) ;
+                    return "redirect:/housesView";
+                } else{
+                    return "redirect:/editHouse?id="+ID ;
+                }
             } else{
-                return "redirect:/editHouse?id="+ID ;
+                return "redirect:/editHouse?id="+ID;
             }
 
         } else {

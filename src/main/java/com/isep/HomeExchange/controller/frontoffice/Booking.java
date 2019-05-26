@@ -17,7 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +37,14 @@ public class Booking {
 
     @Autowired
     HouseRepository houseRepository;
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate localDate = LocalDate.now();
+    String dateStr = formatter.format(localDate) ;
+    Date currentDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr) ;
+
+    public Booking() throws ParseException {
+    }
 
 
 
@@ -64,17 +77,22 @@ public class Booking {
             House house = optionalHouse.get();
             System.out.println(" here " + house.toString());
 
-            if (reservation.getDateEnd().compareTo(reservation.getDateStart()) > 0 || reservation.getDateEnd().compareTo(reservation.getDateStart()) == 0) {
-                reservation.setOwnerId(house.getOwner());
-                reservation.setRenterId(sessionId);
-                reservation.setHouseId(house.getId());
-                reservation.setStatus("Ongoing");
-                Reservation reservationAdded = reservationRepository.save(reservation);
-                model.addAttribute("reservation", reservationAdded);
-                return "redirect:/HouseDetails?id=" + reservation.getHouseId();
+            if(reservation.getDateStart().compareTo(currentDate) > 0 || reservation.getDateStart().compareTo(currentDate) == 0){
+                if (reservation.getDateEnd().compareTo(reservation.getDateStart()) > 0 || reservation.getDateEnd().compareTo(reservation.getDateStart()) == 0) {
+                    reservation.setOwnerId(house.getOwner());
+                    reservation.setRenterId(sessionId);
+                    reservation.setHouseId(house.getId());
+                    reservation.setStatus("Ongoing");
+                    Reservation reservationAdded = reservationRepository.save(reservation);
+                    model.addAttribute("reservation", reservationAdded);
+                    return "redirect:/HouseDetails?id=" + reservation.getHouseId();
+                } else {
+                    return "redirect:/BookHouse?id="+ID;
+                }
             } else {
-                return "redirect:/BookHouse?id="+ID;
+                return "redirect:/BookHouse?id="+ID ;
             }
+
         } else {
             return "error404";
         }
