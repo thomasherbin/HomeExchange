@@ -7,9 +7,9 @@
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Username</th>
         <th>Email</th>
-        <th>Age</th>
-        <th>birthDate</th>
+        <th>Role</th>
 
     </tr>
     <c:forEach  items="${users}" var ="user">
@@ -27,6 +27,7 @@
             <td>${user.lastName}</td>
             <td>${user.userName}</td>
             <td>${user.email}</td>
+            <td>${user.role}</td>
             <td><a href="${EditUser}">Edit</a></td>
             <td><a href="${DeleteUser}">Delete</a></td>
         </tr>

@@ -20,3 +20,4 @@
 </table>
 
 <a href="/updateUser">Edit</a>
+<a href="/updatePassword">Change Password</a>

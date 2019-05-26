@@ -22,6 +22,14 @@
             <td><springForm:errors path="email"  /></td>
         </tr>
         <tr>
+            <td>Role:</td>
+            <td><springForm:select path="role">
+                <springForm:option value="User" label="User" selected="true" />
+                <springForm:option value="Admin" label="Admin" />
+            </springForm:select></td>
+            <td><springForm:errors path="role" /></td>
+        </tr>
+        <tr>
             <td>Password:</td>
             <td><springForm:input type="password" path="password" /></td>
             <td><springForm:errors path="password"  /></td>

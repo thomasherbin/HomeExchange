@@ -30,6 +30,14 @@
             <div class="common_item">
                 <a class="button" href="/yourProfile">Your profile</a>
             </div>
+            <c:if test="${userIsAdmin == true}">
+                <div class="common_item">
+                    <a class="button" href="/userList">User List</a>
+                </div>
+                <div class="common_item">
+                    <a class="button" href="/">Ticket Support</a>
+                </div>
+            </c:if>
             <div class="common_item">
                 <ul class="home_list">
                     <li><<p class="list_text">Exchange yours homes for a short vacation</p></li>

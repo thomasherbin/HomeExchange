@@ -1,4 +1,4 @@
-package com.isep.HomeExchange.controller.frontoffice;
+package com.isep.HomeExchange;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
