@@ -29,13 +29,31 @@
             <td><springForm:errors path="email"  /></td>
         </tr>
         <tr>
+            <td>Role:</td>
+            <td>
+                <springForm:select path="role">
+                    <c:choose>
+                        <c:when test="${userIsAdmin == true}">
+                            <springForm:option value="User" label="User"  />
+                            <springForm:option value="Admin" label="Admin" selected="true" />
+                        </c:when>
+                        <c:otherwise>
+                            <springForm:option value="User" label="User" selected="true" />
+                            <springForm:option value="Admin" label="Admin" />
+                        </c:otherwise>
+                    </c:choose>
+                </springForm:select>
+            </td>
+            <td><springForm:errors path="role" /></td>
+        </tr>
+        <tr>
             <td>Password:</td>
-            <td><springForm:input type="password" path="password" value="${user.password}"/></td>
+            <td><springForm:input type="password" path="password" /></td>
             <td><springForm:errors path="password"  /></td>
         </tr>
         <tr>
             <td>Confirm your password:</td>
-            <td><springForm:input type="password" path="passwordConfirm" value="${user.passwordConfirm}"/></td>
+            <td><springForm:input type="password" path="passwordConfirm"/></td>
             <td><springForm:errors path="passwordConfirm"  /></td>
         </tr>
         <tr>

@@ -28,12 +28,23 @@ public class User {
     @Transient
     private String passwordConfirm;
 
+    @Transient
+    private String role;
 
     @ManyToMany
     private Set<Role> roles;
 
     public User() {
 
+    }
+
+    public boolean userIsAdmin() {
+        for (Role role : roles) {
+            if (role.getName().equals("ADMIN")) {
+                return true;
+            }
+        }
+        return false;
     }
     
     public Integer getId() {
@@ -43,7 +54,6 @@ public class User {
     public void setId(Integer id) {
         this.id = id;
     }
-
 
     public String getUserName() {
         return userName;
@@ -108,6 +118,14 @@ public class User {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

@@ -30,4 +30,3 @@
         </tr>
     </table>
 </springForm:form>
-<a href="/updatePassword">Update Password</a>

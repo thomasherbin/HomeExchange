@@ -21,18 +21,31 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public void saveRegistration(User user) {
+    public void saveRegistration(User user, boolean inFrontOffice) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         if (roleRepository.findAll().isEmpty()) {
             roleRepository.save(new Role("USER"));
             roleRepository.save(new Role("ADMIN"));
         }
-        user.setRoles(new HashSet<>(roleRepository.findByName("USER")));
+        if (inFrontOffice) {
+            user.setRoles(new HashSet<>(roleRepository.findByName("USER")));
+        } else {
+            if (user.getRole().equals("Admin")) {
+                user.setRoles(new HashSet<>(roleRepository.findAll()));
+            } else {
+                user.setRoles(new HashSet<>(roleRepository.findByName("USER")));
+            }
+        }
         userRepository.save(user);
     }
 
     @Override
     public void saveEdit(User userFromDb, User user) {
+        if (user.getRole().equals("Admin")) {
+            userFromDb.setRoles(new HashSet<>(roleRepository.findAll()));
+        } else {
+            userFromDb.setRoles(new HashSet<>(roleRepository.findByName("USER")));
+        }
         userFromDb.setFirstName(user.getFirstName());
         userFromDb.setLastName(user.getLastName());
         userFromDb.setEmail(user.getEmail());

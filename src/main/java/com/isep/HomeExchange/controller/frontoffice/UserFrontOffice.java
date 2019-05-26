@@ -56,7 +56,7 @@ import java.util.List;
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-        userService.saveRegistration(userForm);
+        userService.saveRegistration(userForm, true);
         securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
         return "redirect:/home";
     }
@@ -133,9 +133,7 @@ import java.util.List;
     public String updatePassordConfirm(@Valid User user, BindingResult bindingResult, Model model){
         Session session = new Session(userRepository);
         userChangePasswordValidator.validate(user, bindingResult);
-        System.out.println(user.toString());
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.toString());
             return "updatePassword";
         }
         Optional<User> optionalUser = userRepository.findById(session.getUserId());
