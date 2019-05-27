@@ -41,7 +41,14 @@
                 <td>${home.description}</td>
                 <td>${home.service}</td>
                 <td>${home.constraintRule}</td>
-                <td><img src="${home.photo}"></td>
+                <c:choose>
+                    <c:when test="${empty home.photo}">
+                        <td>You have to download a photo to describe your house</td>
+                    </c:when>
+                    <c:otherwise>
+                        <td><img src="${home.photo}"></td>
+                    </c:otherwise>
+                </c:choose>
                 <td>Available from ${home.dateStart} to ${home.dateEnd} </td>
                 <td><a href="${EditHouse}">Edit</a></td>
                 <td><a href="${DeleteHouse}">Remove</a></td>
