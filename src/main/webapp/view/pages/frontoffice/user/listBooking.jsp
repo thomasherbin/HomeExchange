@@ -9,52 +9,59 @@
 </head>
 <body>
 <h1>Your booking list review </h1>
-<table>
-    <tr>
-        <th>House's name</th>
-        <th>Number of individuals</th>
-        <th>Dates</th>
-        <th>Status</th>
-    </tr>
+<c:choose>
+    <c:when test="${empty reservations}">
+        <p>You have no booking !</p>
+    </c:when>
+    <c:otherwise>
+        <table>
+            <tr>
+                <th>House's name</th>
+                <th>Number of individuals</th>
+                <th>Dates</th>
+                <th>Status</th>
+            </tr>
 
-    <c:set var="housesName" value="${housesName}"></c:set>
+            <c:set var="housesName" value="${housesName}"></c:set>
 
-    <c:forEach items="${reservations}" var="reservation" varStatus="status">
-        <c:url var="AcceptBooking" value="/acceptBooking">
-            <c:param name="id" value="${reservation.id}"></c:param>
-        </c:url>
-        <c:url var="RejectBooking" value="/rejectBooking">
-            <c:param name="id" value="${reservation.id}"></c:param>
-        </c:url>
-        <c:url var="message" value="/messages">
-            <c:param name="id" value="${reservation.renterId}"></c:param>
-        </c:url>
+            <c:forEach items="${reservations}" var="reservation" varStatus="status">
+                <c:url var="AcceptBooking" value="/acceptBooking">
+                    <c:param name="id" value="${reservation.id}"></c:param>
+                </c:url>
+                <c:url var="RejectBooking" value="/rejectBooking">
+                    <c:param name="id" value="${reservation.id}"></c:param>
+                </c:url>
+                <c:url var="message" value="/messages">
+                    <c:param name="id" value="${reservation.renterId}"></c:param>
+                </c:url>
 
-        <tr>
-            <td>${housesName[status.index]}</td>
-            <td>${reservation.nbGuests}</td>
-            <td>From ${reservation.dateStart} to ${reservation.dateEnd} </td>
-            <td>${reservation.status}</td>
-            <td>
-                <springForm:form method="post" action="${AcceptBooking}">
-                    <input type="submit" value="Accept booking">
-                </springForm:form>
-            </td>
-            <td>
-                <springForm:form method="post" action="${RejectBooking}">
-                    <input type="submit" value="Reject booking">
-                </springForm:form>
-            </td>
-            <td>
-                <a href="${message}">Ask more information</a>
-            </td>
-
-
-        </tr>
-
-    </c:forEach>
+                <tr>
+                    <td>${housesName[status.index]}</td>
+                    <td>${reservation.nbGuests}</td>
+                    <td>From ${reservation.dateStart} to ${reservation.dateEnd} </td>
+                    <td>${reservation.status}</td>
+                    <td>
+                        <springForm:form method="post" action="${AcceptBooking}">
+                            <input type="submit" value="Accept booking">
+                        </springForm:form>
+                    </td>
+                    <td>
+                        <springForm:form method="post" action="${RejectBooking}">
+                            <input type="submit" value="Reject booking">
+                        </springForm:form>
+                    </td>
+                    <td>
+                        <a href="${message}">Ask more information</a>
+                    </td>
 
 
-</table>
+                </tr>
+
+            </c:forEach>
+
+        </table>
+    </c:otherwise>
+</c:choose>
+
 </body>
 </html>

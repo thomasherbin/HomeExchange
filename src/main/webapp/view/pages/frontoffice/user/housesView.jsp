@@ -7,7 +7,7 @@
 <h1>Your houses</h1>
 <c:choose>
     <c:when test="${empty houses}">
-        <p>You have any houses !</p>
+        <p>You have no house !</p>
     </c:when>
     <c:otherwise>
             <table>

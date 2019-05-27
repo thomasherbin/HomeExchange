@@ -6,23 +6,30 @@
 <div>
     <h1>Your search Results </h1>
     <h2>We found ${fn:length(houses)} result(s)</h2>
-    <table>
-        <th>Name</th>
-        <th>Photo</th>
-        <th>City</th>
-        <th>Address</th>
-        <th>Details</th>
-        <c:forEach items="${houses}" var="house">
-            <c:url var="ShowHouse" value="/HouseDetails">
-                <c:param name="id" value="${house.id}"></c:param>
-            </c:url>
-            <tr>
-               <td>${house.name}</td>
-                <td><img src="${house.photo}"></td>
-                <td>${house.city}</td>
-                <td>${house.address}</td>
-                <td><a href="${ShowHouse}">Show Details</a></td>
-            </tr>
-        </c:forEach>
-    </table>
+    <c:choose>
+        <c:when test="${empty houses}">
+        </c:when>
+        <c:otherwise>
+            <table>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Details</th>
+                <c:forEach items="${houses}" var="house">
+                    <c:url var="ShowHouse" value="/HouseDetails">
+                        <c:param name="id" value="${house.id}"></c:param>
+                    </c:url>
+                    <tr>
+                        <td>${house.name}</td>
+                        <td><img src="${house.photo}"></td>
+                        <td>${house.city}</td>
+                        <td>${house.address}</td>
+                        <td><a href="${ShowHouse}">Show Details</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:otherwise>
+    </c:choose>
+
 </div>
