@@ -9,7 +9,7 @@
         </div>
         <div class="logo_footer">
             <a class="logo_footer_inner" href="/">
-                <img src="" alt="logo" class="logo_footer_image">
+                <img src="/ressources/image/logo.png" alt="logo" class="logo_footer_image">
             </a>
         </div>
         <div class="footer_links">

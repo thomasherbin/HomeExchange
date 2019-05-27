@@ -8,7 +8,7 @@
     <div class="header_inner">
         <div class="branding">
             <a class="logo" href="/">
-                <img src="" alt="logo">
+                <img src="/ressources/image/logo.png" alt="logo">
             </a>
         </div>
         <div class="menu">
