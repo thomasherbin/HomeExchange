@@ -42,8 +42,10 @@
         <td>Available from ${house.dateStart} to ${house.dateEnd} </td>
     </tr>
     <tr>
-        <td>Photo:</td>
+        <td>Photos:</td>
         <td><img src="${house.photo}"></td>
+        <td><img src="${house.photo2}"></td>
+        <td><img src="${house.photo3}"></td>
     </tr>
         <tr>
             <td><a href="${BookHouse}">Book</a></td>
