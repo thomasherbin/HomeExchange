@@ -34,6 +34,16 @@
             <td><springForm:errors path="ticketNumber"  /></td>
         </tr>
         <tr>
+            <td>Tech Message</td>
+            <td><springForm:input path="techMessage" value="${ticket.techMessage}" /></td>
+            <td><springForm:errors path="techMessage"  /></td>
+        </tr>
+        <tr>
+            <td>Tech Name</td>
+            <td><springForm:input path="techName" value="${ticket.techName}" /></td>
+            <td><springForm:errors path="techName"  /></td>
+        </tr>
+        <tr>
             <td><input type="submit" value="Save ticket"></td>
             <td><a href="/ticketList">Cancel</a></td>
         </tr>
