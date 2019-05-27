@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<header class="header" role="banner">
+<header class="header">
     <div class="header_inner">
         <div class="branding">
             <a class="logo" href="/">
