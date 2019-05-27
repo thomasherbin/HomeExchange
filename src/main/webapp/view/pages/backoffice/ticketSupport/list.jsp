@@ -8,7 +8,7 @@
         <th>Last Name</th>
         <th>Tech Name</th>
         <th>User Message</th>
-        <th>Tech Message </th>
+        <th>Tech Message</th>
         <th>Date</th>
         <th>Ticket Number</th>
     </tr>
@@ -18,7 +18,7 @@
         <c:url var="EditTicket" value="/editTicket">
             <c:param ticket="id" value="${ticket.id}" />
         </c:url>
-        
+
         <c:url ver="ResponseTicket" value="/responseTicket">
             <c:param ticket="id" value="${ticket.id}" />
         </c:url>
@@ -35,10 +35,8 @@
         <td>${ticket.date}</td>
         <td>${ticket.ticketNumber}</td>
         <td><a href="${EditTicket}">Edit</a></td>
-        <td><a href="${ResponseTicket}">Edit</a></td>
         <td><a href="${DeleteTicket}">Delete</a></td>
 
     </tr>
 
-    
 </table>
