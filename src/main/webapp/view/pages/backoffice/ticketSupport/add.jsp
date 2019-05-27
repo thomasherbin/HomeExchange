@@ -2,7 +2,7 @@
 
 <springForm:form method="POST" modelAttribute="ticket" action="/addTicket">
 <table>
-    
+
     <tr>
     <td>First Name</td>
         <td><springForm:input path="firstName" /></td>
@@ -21,6 +21,7 @@
         <td><springForm:errors path="usermessage"  /></td
     </tr>
 
+
     <tr>
         <td>Date</td>
         <td><springForm:input path="date" /></td>
@@ -31,6 +32,18 @@
         <td>Ticket Number</td>
         <td><springForm:input path="ticketNumber" /></td>
         <td><springForm:errors path="ticketNumber"  /></td
+    </tr>
+
+    <tr>
+        <td>Tech Message</td>
+        <td><springForm:input path="techMessage" value="${ticket.techMessage}" /></td>
+        <td><springForm:errors path="techMessage"  /></td>
+    </tr>
+    <tr>
+
+        <td>Tech Name</td>
+        <td><springForm:input path="techName" value="${ticket.techName}" /></td>
+        <td><springForm:errors path="techName"  /></td>
     </tr>
 
     <tr>
