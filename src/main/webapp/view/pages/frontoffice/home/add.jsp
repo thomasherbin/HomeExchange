@@ -1,15 +1,9 @@
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Adding House Form</title>
-</head>
-<body>
+
 <h1>Add a house to book</h1>
 <springForm:form method="post" modelAttribute="house" action="/addHouse" >
-    <table>
+    <table class="table">
         <tr>
             <td>Name:</td>
             <td><springForm:input path="name" /></td>
@@ -63,6 +57,3 @@
     </table>
 </springForm:form>
 
-
-</body>
-</html>
