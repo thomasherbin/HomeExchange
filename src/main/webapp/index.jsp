@@ -11,12 +11,12 @@
 </head>
 <body>
 <div>
-    <div class="container" style="margin:50px">
         <tiles:insertAttribute name="header" />
         <tiles:insertAttribute name="pannel" />
+    <div class="container" style="margin:50px">
         <tiles:insertAttribute name="body" />
+    </div>
         <tiles:insertAttribute name="footer" />
     </div>
-</div>
 </body>
 </html>

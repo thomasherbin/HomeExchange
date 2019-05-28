@@ -1,34 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-</head>
-<body>
-<header class="header">
-    <div class="header_inner">
-        <div class="branding">
-            <a class="logo" href="/">
-                <img src="/ressources/image/logo.png" alt="logo">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/ressources/image/logo.png" width="100" height="50" alt="">
             </a>
-        </div>
-        <div class="menu">
-            <div class="menu_inner">
-                <a class="menu_link" href="/">Home</a>
-                <a class="menu_link" href="/contact">Contact Us</a>
-                <a href="/login">login</a>
-                <a href="logout.jsp">logout</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/yourProfile">Profile</a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="responsive_menu_inner" id="common_menu">
-        <a class="menu_link" href="/">Home</a>
-        <a class="menu_link" href="/contact">Contact Us</a>
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            </form>
+        <c:choose>
+            <c:when test="${pageContext.request.userPrincipal.name != null}">
+                <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                    <button class="btn btn-outline-danger" type="submit">Logout</button>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <form id="logoutForm" method="POST" action=${contextPath}/registration">
+                    <button class="btn btn-outline-primary" type="submit">SignUp</button>
+                </form>
+            </c:otherwise>
+        </c:choose>
+    </nav>
 
-          <a> ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></a>
-        </c:if>
-    </div>
+
 </header>
+
+
