@@ -10,12 +10,12 @@
         <c:when test="${empty houses}">
         </c:when>
         <c:otherwise>
-            <table>
-                <th>Name</th>
-                <th>Photo</th>
-                <th>City</th>
-                <th>Address</th>
-                <th>Details</th>
+            <table class="table">
+                <th scope="col">Name</th>
+                <th scope="col">Photo</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Details</th>
                 <c:forEach items="${houses}" var="house">
                     <c:url var="ShowHouse" value="/HouseDetails">
                         <c:param name="id" value="${house.id}"></c:param>

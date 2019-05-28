@@ -10,17 +10,21 @@
         <p>You have no house !</p>
     </c:when>
     <c:otherwise>
-            <table>
+            <table class="table">
             <tr>
-                <th>Name</th>
-                <th>City</th>
-                <th>Adress</th>
-                <th>Status</th>
-                <th>Description</th>
-                <th>Service</th>
-                <th>Constraint Rules</th>
-                <th>Availability</th>
-                <th>Photos</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Adress</th>
+                <th scope="col">Status</th>
+                <th scope="col">Description</th>
+                <th scope="col">Service</th>
+                <th scope="col">Constraint Rules</th>
+                <th scope="col">Availability</th>
+                <th scope="col">Photos</th>
+                <th scope="col">Edit House</th>
+                <th scope="col">Remove House</th>
+                <th scope="col">Upload Photo</th>
+                <th scope="col">Delete Photo</th>
             </tr>
         <c:forEach items="${houses}" var="home">
             <c:url var="EditHouse" value="/editHouse">

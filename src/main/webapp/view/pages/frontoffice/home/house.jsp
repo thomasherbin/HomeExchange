@@ -4,11 +4,9 @@
     <c:param name="id" value="${house.id}" />
 </c:url>
 
-<!DOCTYPE HTML>
-<html>
-<body>
+
 <h1>${house.name}</h1>
-<table>
+<table class="table">
     <tr>
         <td>Name:</td>
         <td>${house.name}</td>
@@ -51,5 +49,3 @@
             <td><a href="${BookHouse}">Book</a></td>
         </tr>
 </table>
-</body>
-</html>
