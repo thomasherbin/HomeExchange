@@ -4,16 +4,10 @@
 <c:url var="BookHouse" value="/bookHouse">
     <c:param name="id" value="${house.id}"/>
 </c:url>
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Adding House Form</title>
-</head>
-<body>
+
 <h1>Book a house</h1>
 <springForm:form method="post" modelAttribute="reservation" action="${BookHouse}">
-    <table>
+    <table class="table">
         <tr>
             <td>Number of individuals:</td>
             <td><springForm:input type="number" min="1" max="1000" path="nbGuests" /></td>
@@ -31,4 +25,3 @@
         </tr>
     </table>
 </springForm:form>
-</body>

@@ -34,9 +34,9 @@ public class House {
     @NotNull
     private Date dateEnd;
 
-
-
    private String photo ;
+   private String photo2;
+   private String photo3 ;
 
     public House() {
     }
@@ -155,6 +155,22 @@ public class House {
         this.photo = photo;
     }
 
+    public String getPhoto2() {
+        return photo2;
+    }
+
+    public void setPhoto2(String photo2) {
+        this.photo2 = photo2;
+    }
+
+    public String getPhoto3() {
+        return photo3;
+    }
+
+    public void setPhoto3(String photo3) {
+        this.photo3 = photo3;
+    }
+
     @Override
     public String toString() {
         return "House{" +
@@ -170,6 +186,8 @@ public class House {
                 ", dateStart=" + dateStart +
                 ", dateEnd=" + dateEnd +
                 ", photo='" + photo + '\'' +
+                ", photo2='" + photo2 + '\'' +
+                ", photo3='" + photo3 + '\'' +
                 '}';
     }
 }

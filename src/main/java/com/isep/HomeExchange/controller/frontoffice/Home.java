@@ -48,6 +48,8 @@ public class Home {
     String dateStr = formatter.format(localDate) ;
     Date currentDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr) ;
 
+    private int k = 0 ;
+
     public Home() throws ParseException {
     }
 
@@ -108,6 +110,7 @@ public class Home {
     @PostMapping(value = "/upload")
     public String uploadingFile(@RequestParam("file")MultipartFile file, @RequestParam("id") int id, RedirectAttributes redirectAttributes){
         int ID = id ;
+        k++ ;
         Session session = new Session(userRepository);
         int sessionId = session.getUserId();
 
@@ -118,14 +121,35 @@ public class Home {
 
         try{
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER +"U"+ sessionId +"_H" + id + "_" +file.getOriginalFilename() );
-            Files.write(path, bytes) ;
+            Path path = Paths.get(UPLOADED_FOLDER +"U"+ sessionId +"_H" + id + "_" + k + "_" +file.getOriginalFilename() );
+
             Optional<House> optionalHouse = houseRepository.findById(id) ;
             if(optionalHouse.isPresent()){
                 House house = optionalHouse.get() ;
                 String[] splitPath= path.toString().split("(?<=webapp)");
-                house.setPhoto(splitPath[1]);
-                this.houseRepository.save(house) ;
+                String photo = house.getPhoto() ;
+                String photo2 = house.getPhoto2() ;
+                String photo3 = house.getPhoto3() ;
+                if(photo == null){
+                    Files.write(path, bytes) ;
+                    System.out.println("photo 1 empty");
+                    house.setPhoto(splitPath[1]);
+                    this.houseRepository.save(house) ;
+                } else if(photo != null && photo2 == null){
+                    Files.write(path, bytes) ;
+                    System.out.println("photo 1 not empty and photo 2 empty");
+                    house.setPhoto2(splitPath[1]);
+                    this.houseRepository.save(house) ;
+                } else if(photo != null && photo2 != null && photo3 == null){
+                    Files.write(path, bytes) ;
+                    System.out.println("photo 1 not empty and photo 2 not empty and photo 3 empty");
+                    house.setPhoto3(splitPath[1]);
+                    this.houseRepository.save(house) ;
+                } else{
+                    redirectAttributes.addFlashAttribute("message", "You can add 3 photos maximum. Please delete a photo if you want to upload a new one");
+                    return "redirect:/errorUpload";
+                }
+
             }
             else{
                 return "UploadPhoto?id="+ID ;
@@ -141,6 +165,65 @@ public class Home {
 
     public String uploadStatus(){
         return "ErrorUpload" ;
+    }
+
+    /*--------------------------------- Deleting a photo ------------------------------------------*/
+
+    @GetMapping(value = "/deletePhoto")
+    public String showListPhoto(Model model, @RequestParam("id") int id){
+        Optional<House> optionalHouse =  houseRepository.findById(id);
+        if (optionalHouse.isPresent()) {
+            House house = optionalHouse.get();
+            model.addAttribute("house", house);
+            return "DeletePhoto";
+        } else {
+            return "error404";
+        }
+    }
+
+    @GetMapping(value="/RemovePhotoConfirmed")
+    public String removePhoto(Model model, @RequestParam("id") int id, @RequestParam("photoPath") String photoPath){
+        Optional<House> optionalHouse =  houseRepository.findById(id);
+        if (optionalHouse.isPresent()) {
+            House house = optionalHouse.get();
+            File photoToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto()) ;
+            photoToDelete.delete();
+            house.setPhoto(null);
+            this.houseRepository.save(house) ;
+            return "redirect:/housesView";
+        } else {
+            return "error404";
+        }
+    }
+
+    @GetMapping(value="/RemovePhoto2Confirmed")
+    public String removePhoto2(Model model, @RequestParam("id") int id, @RequestParam("photo2Path") String photoPath){
+        Optional<House> optionalHouse =  houseRepository.findById(id);
+        if (optionalHouse.isPresent()) {
+            House house = optionalHouse.get();
+            File photoToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto2()) ;
+            photoToDelete.delete();
+            house.setPhoto2(null);
+            this.houseRepository.save(house) ;
+            return "redirect:/housesView";
+        } else {
+            return "error404";
+        }
+    }
+
+    @GetMapping(value="/RemovePhoto3Confirmed")
+    public String removePhoto3(Model model, @RequestParam("id") int id, @RequestParam("photo3Path") String photoPath){
+        Optional<House> optionalHouse =  houseRepository.findById(id);
+        if (optionalHouse.isPresent()) {
+            House house = optionalHouse.get();
+            File photoToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto3()) ;
+            photoToDelete.delete();
+            house.setPhoto3(null);
+            this.houseRepository.save(house) ;
+            return "redirect:/housesView";
+        } else {
+            return "error404";
+        }
     }
 
     /*-------------------------------------------- Edit a house ------------------------------------------- */
@@ -234,7 +317,11 @@ public class Home {
     @GetMapping(value = "/RemoveHouseConfirmed")
     public String removeHouseConfirmed(Model model,@RequestParam("id") int id) throws IOException {
         File photoToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto()) ;
+        File photo2ToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto2()) ;
+        File photo3ToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto3()) ;
         photoToDelete.delete();
+        photo2ToDelete.delete();
+        photo3ToDelete.delete();
         houseRepository.deleteById(id);
         return "redirect:/housesView";
     }

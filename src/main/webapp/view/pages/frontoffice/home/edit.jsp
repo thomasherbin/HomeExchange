@@ -6,16 +6,10 @@
     <c:param name="id" value="${house.id}" />
     <c:param name="owner" value="${house.owner}" />
 </c:url>
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Editing House Form</title>
-</head>
-<body>
+
 <h1>Edit a house</h1>
 <springForm:form method="post" modelAttribute="house" action="${EditHouse}">
-    <table>
+    <table class="table">
         <tr>
             <td>Name:</td>
             <td><springForm:input path="name" value="${house.name}" /></td>
@@ -80,5 +74,3 @@
         </tr>
     </table>
 </springForm:form>
-</body>
-</html>

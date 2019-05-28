@@ -11,6 +11,8 @@
             <th scope="col">Username</th>
             <th scope="col">Email</th>
             <th scope="col">Role</th>
+            <th scope="col">Edit user</th>
+            <th scope="col">Banish user</th>
         </tr>
     </thead>
     <tbody>

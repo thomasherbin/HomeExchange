@@ -4,11 +4,9 @@
     <c:param name="id" value="${house.id}" />
 </c:url>
 
-<!DOCTYPE HTML>
-<html>
-<body>
+
 <h1>${house.name}</h1>
-<table>
+<table class="table">
     <tr>
         <td>Name:</td>
         <td>${house.name}</td>
@@ -42,12 +40,12 @@
         <td>Available from ${house.dateStart} to ${house.dateEnd} </td>
     </tr>
     <tr>
-        <td>Photo:</td>
+        <td>Photos:</td>
         <td><img src="${house.photo}"></td>
+        <td><img src="${house.photo2}"></td>
+        <td><img src="${house.photo3}"></td>
     </tr>
         <tr>
             <td><a href="${BookHouse}">Book</a></td>
         </tr>
 </table>
-</body>
-</html>
