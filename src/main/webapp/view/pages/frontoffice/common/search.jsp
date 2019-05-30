@@ -1,20 +1,22 @@
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 <div>
-    <h1>Search houses</h1>
-    <table>
-        <tr>
-            <springForm:form method="post" modelAttribute="house" action="/searchByCity" >
-                <td>Search by city: <springForm:input path="city" name="city"></springForm:input></td>
-                <td><springForm:errors path="city"/></td>
-                <td><input type="submit" value="Search"></td>
+    <h1 class="text-center pb-4">Search houses</h1>
+    <div class="container">
+        <div class="pb-4">
+            <springForm:form method="post" modelAttribute="house" action="/searchByCity">
+                <p class="text-center">Search by city: <springForm:input path="city" name="city"></springForm:input>
+                    <input type="submit" value="Search"></p>
+                <p><springForm:errors path="city"/></p>
             </springForm:form>
-        </tr>
-        <tr>
-            <springForm:form method="post" modelAttribute="house" action="/searchByName" >
-                <td>Search by name: <springForm:input path="name" name="name"></springForm:input></td>
-                <td><springForm:errors path="name"/></td>
-                <td><input type="submit" value="Search"></td>
+        </div>
+        <div class="pb-4">
+            <springForm:form method="post" modelAttribute="house" action="/searchByName">
+                <p class="text-center">Search by name: <springForm:input path="name" name="name"></springForm:input>
+                    <input type="submit" value="Search"></p>
+                <p><springForm:errors path="name"/></p>
+                <p></p>
             </springForm:form>
-        </tr>
-    </table>
+        </div>
+    </div>
+
 </div>
