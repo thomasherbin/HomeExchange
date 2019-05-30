@@ -4,28 +4,28 @@
 
 
 <div>
-    <h1>Your search Results </h1>
-    <h2>We found ${fn:length(houses)} result(s)</h2>
+    <h1 class="text-center pb-2">Your search Results </h1>
+    <h3 class="pb-3">We found ${fn:length(houses)} result(s)</h3>
     <c:choose>
         <c:when test="${empty houses}">
         </c:when>
         <c:otherwise>
-            <table class="table">
-                <th scope="col">Name</th>
-                <th scope="col">Photo</th>
-                <th scope="col">City</th>
-                <th scope="col">Address</th>
-                <th scope="col">Details</th>
+            <table class="table table-hover thead-dark">
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Photo</th>
+                <th scope="col" class="text-center">City</th>
+                <th scope="col" class="text-center">Address</th>
+                <th scope="col" class="text-center">Details</th>
                 <c:forEach items="${houses}" var="house">
                     <c:url var="ShowHouse" value="/HouseDetails">
                         <c:param name="id" value="${house.id}"></c:param>
                     </c:url>
                     <tr>
-                        <td>${house.name}</td>
-                        <td><img src="${house.photo}"></td>
-                        <td>${house.city}</td>
-                        <td>${house.address}</td>
-                        <td><a href="${ShowHouse}">Show Details</a></td>
+                        <td class="text-center">${house.name}</td>
+                        <td class="text-center"><img src="${house.photo}" class="img-fluid rounded w-50"></td>
+                        <td class="text-center">${house.city}</td>
+                        <td class="text-center">${house.address}</td>
+                        <td class="text-center"><a href="${ShowHouse}">Show Details</a></td>
                     </tr>
                 </c:forEach>
             </table>
