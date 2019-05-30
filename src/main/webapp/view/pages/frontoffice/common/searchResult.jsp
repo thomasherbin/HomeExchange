@@ -11,11 +11,14 @@
         </c:when>
         <c:otherwise>
             <table class="table table-hover thead-dark">
+                <thead class="thead-dark ">
                 <th scope="col" class="text-center">Name</th>
                 <th scope="col" class="text-center">Photo</th>
                 <th scope="col" class="text-center">City</th>
                 <th scope="col" class="text-center">Address</th>
                 <th scope="col" class="text-center">Details</th>
+                </thead>
+
                 <c:forEach items="${houses}" var="house">
                     <c:url var="ShowHouse" value="/HouseDetails">
                         <c:param name="id" value="${house.id}"></c:param>
