@@ -7,9 +7,10 @@
     <c:param name="owner" value="${house.owner}" />
 </c:url>
 
-<h1>Edit a house</h1>
+<body>
+<h1 class="text-center pb-2">Edit a house</h1>
 <springForm:form method="post" modelAttribute="house" action="${EditHouse}">
-    <table class="table">
+    <table >
         <tr>
             <td>Name:</td>
             <td><springForm:input path="name" value="${house.name}" /></td>
@@ -49,17 +50,17 @@
                 <c:choose>
                     <c:when test="${statusVar == 'Booked'}">
                         <springForm:option value="Booked" label="Booked" selected="true" />
-                        <springForm:option value="Non Booked" label="Non booked"/>
+                        <springForm:option value="Non Booked" label="Non Booked"/>
                     </c:when>
                     <c:when test="${statusVar == 'Non Booked'}">
                         <springForm:option value="Booked" label="Booked" />
-                        <springForm:option value="Non Booked" label="Non booked" selected="true"/>
+                        <springForm:option value="Non Booked" label="Non Booked" selected="true"/>
                     </c:when>
                 </c:choose>
 
 
             </springForm:select></td>
-            <td><springForm:errors path="status"  /></td>
+            <td><springForm:errors path="status"/></td>
         </tr>
         <tr>
             <td>Availability:</td>
@@ -74,3 +75,4 @@
         </tr>
     </table>
 </springForm:form>
+</body>

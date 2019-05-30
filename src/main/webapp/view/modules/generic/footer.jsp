@@ -1,6 +1,6 @@
 
 <!-- Footer -->
-<footer class="page-footer fixed-bottom">
+<footer class="page-footer position-relative fixed-bottom">
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2019 Copyright:

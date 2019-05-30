@@ -28,7 +28,7 @@
                         <td class="text-center"><img src="${house.photo}" class="img-fluid rounded w-50"></td>
                         <td class="text-center">${house.city}</td>
                         <td class="text-center">${house.address}</td>
-                        <td class="text-center"><a href="${ShowHouse}">Show Details</a></td>
+                        <td class="text-center"><a href="${ShowHouse}" class="btn btn-outline-info">Show Details</a></td>
                     </tr>
                 </c:forEach>
             </table>
