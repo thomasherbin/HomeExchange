@@ -83,4 +83,4 @@
     </tr>
 
 </table>
-<a href="${BookHouse}" class="btn btn-outline-info">Book</a>
+<a href="${BookHouse}" class="btn btn-outline-info m-3">Book</a>
