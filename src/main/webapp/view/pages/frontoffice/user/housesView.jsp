@@ -125,7 +125,7 @@
                                 </c:choose>
 
 
-                                <div class="p-2 d-flex bd-highlight w-50">
+                                <div class="p-2 d-flex bd-highlight w-100">
                                     <div>
                                         <ul style="list-style:none;" class="pb-3">
                                             <li class="pb-2">

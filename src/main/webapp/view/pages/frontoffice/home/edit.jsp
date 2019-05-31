@@ -9,41 +9,48 @@
 
 <body>
 <h1 class="text-center pb-2">Edit a house</h1>
-<springForm:form method="post" modelAttribute="house" action="${EditHouse}">
-    <table class="table table-hover table-borderless" >
+<springForm:form method="post" modelAttribute="house" action="${EditHouse}" cssClass="text-center ml-5 p-3">
+    <table class="table table-hover ml-5 pl-5" >
         <tr>
-            <td class="font-weight-bold">Name:</td>
+            <td class="font-weight-bold"> <i class="fa fa-home" aria-hidden="true"></i>
+                &nbsp; Name</td>
             <td><springForm:input path="name" value="${house.name}" /></td>
             <td><springForm:errors path="name"  /></td>
         </tr>
         <tr>
-            <td class="font-weight-bold">City:</td>
+            <td class="font-weight-bold"> <i class="fa fa-map-o" aria-hidden="true"></i>
+                &nbsp; City</td>
             <td><springForm:input path="city" value="${house.city}" /></td>
             <td><springForm:errors path="city"  /></td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Address:</td>
+            <td class="font-weight-bold"> <i class="fa fa-map-marker" aria-hidden="true"></i>
+                &nbsp; Address</td>
             <td><springForm:input path="address" value="${house.address}" /></td>
             <td><springForm:errors path="address"  /></td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Description:</td>
-            <td><springForm:input path="description" value="${house.description}" /></td>
+            <td class="font-weight-bold"> <i class="fa fa-list" aria-hidden="true"></i>
+                &nbsp; Description</td>
+            <td><springForm:textarea path="description" value="${house.description}" /></td>
             <td><springForm:errors path="description"  /></td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Services:</td>
-            <td><springForm:input path="service" value="${house.service}" /></td>
+            <td class="font-weight-bold"> <i class="fa fa-television" aria-hidden="true"></i>
+                &nbsp; Services</td>
+            <td><springForm:textarea path="service" value="${house.service}" /></td>
             <td><springForm:errors path="service"  /></td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Constraints:</td>
-            <td><springForm:input path="constraintRule" value="${house.constraintRule}" /></td>
+            <td class="font-weight-bold"> <i class="fa fa-ban" aria-hidden="true"></i>
+                &nbsp; Constraints</td>
+            <td><springForm:textarea path="constraintRule" value="${house.constraintRule}" /></td>
             <td><springForm:errors path="constraintRule"  /></td>
         </tr>
         <tr>
 
-            <td class="font-weight-bold">Status:</td>
+            <td class="font-weight-bold"> <i class="fa fa-book" aria-hidden="true"></i>
+                &nbsp; Status</td>
             <c:set var="statusVar" value="${house.status}"></c:set>
 
             <td><springForm:select path="status">
@@ -63,7 +70,8 @@
             <td><springForm:errors path="status"/></td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Availability:</td>
+            <td class="font-weight-bold"> <i class="fa fa-calendar" aria-hidden="true"></i>
+                &nbsp; Availability</td>
             <td class="font-weight-bold"> Start : <springForm:input path="dateStart" type="date" value="${house.dateStart}"/>
             <td><springForm:errors path="dateStart"  /></td>
             <td class="font-weight-bold"> End : <springForm:input path="dateEnd" type="date" value="${house.dateEnd}" />
