@@ -10,40 +10,40 @@
 <body>
 <h1 class="text-center pb-2">Edit a house</h1>
 <springForm:form method="post" modelAttribute="house" action="${EditHouse}">
-    <table >
+    <table class="table table-hover table-borderless" >
         <tr>
-            <td>Name:</td>
+            <td class="font-weight-bold">Name:</td>
             <td><springForm:input path="name" value="${house.name}" /></td>
             <td><springForm:errors path="name"  /></td>
         </tr>
         <tr>
-            <td>City:</td>
+            <td class="font-weight-bold">City:</td>
             <td><springForm:input path="city" value="${house.city}" /></td>
             <td><springForm:errors path="city"  /></td>
         </tr>
         <tr>
-            <td>Address:</td>
+            <td class="font-weight-bold">Address:</td>
             <td><springForm:input path="address" value="${house.address}" /></td>
             <td><springForm:errors path="address"  /></td>
         </tr>
         <tr>
-            <td>Description:</td>
+            <td class="font-weight-bold">Description:</td>
             <td><springForm:input path="description" value="${house.description}" /></td>
             <td><springForm:errors path="description"  /></td>
         </tr>
         <tr>
-            <td>Services:</td>
+            <td class="font-weight-bold">Services:</td>
             <td><springForm:input path="service" value="${house.service}" /></td>
             <td><springForm:errors path="service"  /></td>
         </tr>
         <tr>
-            <td>Constraints:</td>
+            <td class="font-weight-bold">Constraints:</td>
             <td><springForm:input path="constraintRule" value="${house.constraintRule}" /></td>
             <td><springForm:errors path="constraintRule"  /></td>
         </tr>
         <tr>
 
-            <td>Status:</td>
+            <td class="font-weight-bold">Status:</td>
             <c:set var="statusVar" value="${house.status}"></c:set>
 
             <td><springForm:select path="status">
@@ -63,16 +63,14 @@
             <td><springForm:errors path="status"/></td>
         </tr>
         <tr>
-            <td>Availability:</td>
-            <td> Start : <springForm:input path="dateStart" type="date" value="${house.dateStart}"/>
+            <td class="font-weight-bold">Availability:</td>
+            <td class="font-weight-bold"> Start : <springForm:input path="dateStart" type="date" value="${house.dateStart}"/>
             <td><springForm:errors path="dateStart"  /></td>
-            <td> End : <springForm:input path="dateEnd" type="date" value="${house.dateEnd}" />
+            <td class="font-weight-bold"> End : <springForm:input path="dateEnd" type="date" value="${house.dateEnd}" />
             <td><springForm:errors path="dateEnd"  /></td>
             </td>
         </tr>
-        <tr>
-            <td colspan="3"><input type="submit" value="Save"></td>
-        </tr>
     </table>
+    <input type="submit" value="Save" class="btn btn-outline-info ml-1">
 </springForm:form>
 </body>

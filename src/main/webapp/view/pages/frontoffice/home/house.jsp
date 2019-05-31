@@ -17,14 +17,14 @@
                 </c:when>
                 <c:otherwise>
                     <div class="carousel-item active">
-                        <img class="center-block img-fluid rounded w-50" src="${house.photo}" alt="">
+                        <img class="center-block img-fluid rounded w-50" src="${house.photo}" alt="Not available">
                     </div>
                     <div class="carousel-item">
-                        <img class="center-block img-fluid rounded w-50" src="${house.photo2}" alt="">
+                        <img class="center-block img-fluid rounded w-50" src="${house.photo2}" alt="Not available">
                     </div>
 
                     <div class="carousel-item">
-                        <img class="center-block img-fluid rounded w-50" src="${house.photo3}" alt="">
+                        <img class="center-block img-fluid rounded w-50" src="${house.photo3}" alt="Not available">
                     </div>
                 </c:otherwise>
             </c:choose>
@@ -40,37 +40,45 @@
     </div>
 </div>
 
-<table class="table table-hover">
+<table class="table table-hover m-3">
     <tr>
-        <td class="font-weight-bold">Name:</td>
+        <td class="font-weight-bold"> <i class="fa fa-home" aria-hidden="true"></i>
+            &nbsp; Name</td>
         <td>${house.name}</td>
     </tr>
     <tr>
-        <td class="font-weight-bold">City:</td>
+        <td class="font-weight-bold"> <i class="fa fa-map-o" aria-hidden="true"></i>
+            &nbsp; City</td>
         <td>${house.city}</td>
     </tr>
     <tr>
-        <td class="font-weight-bold">Adress:</td>
-        <td>${house.address}</td>
+        <td class="font-weight-bold"> <i class="fa fa-map-marker" aria-hidden="true"></i>
+            &nbsp; Address</td>
+        <td> ${house.address}</td>
     </tr>
     <tr>
-        <td class="font-weight-bold">Status:</td>
+        <td class="font-weight-bold"> <i class="fa fa-book" aria-hidden="true"></i>
+            &nbsp; Status</td>
         <td>${house.status}</td>
     </tr>
     <tr>
-        <td class="font-weight-bold">Description:</td>
+        <td class="font-weight-bold"> <i class="fa fa-list" aria-hidden="true"></i>
+            &nbsp; Description</td>
         <td>${house.description}</td>
     </tr>
     <tr>
-        <td class="font-weight-bold">Service:</td>
+        <td class="font-weight-bold"> <i class="fa fa-television" aria-hidden="true"></i>
+            &nbsp; Services</td>
         <td>${house.service}</td>
     </tr>
     <tr>
-        <td class="font-weight-bold">Constraint Rules:</td>
+        <td class="font-weight-bold"> <i class="fa fa-ban" aria-hidden="true"></i>
+            &nbsp; Constraint Rules</td>
         <td>${house.constraintRule}</td>
     </tr>
     <tr>
-        <td class="font-weight-bold">Availability:</td>
+        <td class="font-weight-bold"> <i class="fa fa-calendar" aria-hidden="true"></i>
+            &nbsp; Availability</td>
         <td>Available from ${house.dateStart} to ${house.dateEnd} </td>
     </tr>
 

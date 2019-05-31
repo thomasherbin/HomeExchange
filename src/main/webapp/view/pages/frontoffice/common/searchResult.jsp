@@ -12,11 +12,16 @@
         <c:otherwise>
             <table class="table table-hover thead-dark">
                 <thead class="thead-dark ">
-                <th scope="col" class="text-center">Name</th>
-                <th scope="col" class="text-center">Photo</th>
-                <th scope="col" class="text-center">City</th>
-                <th scope="col" class="text-center">Address</th>
-                <th scope="col" class="text-center">Details</th>
+                <th scope="col" class="text-center"> <i class="fa fa-home" aria-hidden="true"></i>
+                    &nbsp; Name</th>
+                <th scope="col" class="text-center"> <i class="fa fa-picture-o" aria-hidden="true"></i>
+                    &nbsp; Photo</th>
+                <th scope="col" class="text-center"> <i class="fa fa-map-o" aria-hidden="true"></i>
+                    &nbsp; City</th>
+                <th scope="col" class="text-center"> <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    &nbsp; Address</th>
+                <th scope="col" class="text-center"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    &nbsp; Details</th>
                 </thead>
 
                 <c:forEach items="${houses}" var="house">
