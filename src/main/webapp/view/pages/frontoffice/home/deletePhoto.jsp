@@ -16,7 +16,7 @@
     <c:param name="id" value="${house.id}"/>
 </c:url>
 
-<h1 class="text-center pb-2">Here are your photos for ${house.name}</h1>
+<h1 class="text-center pb-3">Here are your photos for ${house.name}</h1>
 <c:choose>
     <c:when test="${empty house.photo && empty house.photo2 && empty house.photo3}">
         <h2>You have no photo ! Please add at least one photo to describe your housing.</h2>

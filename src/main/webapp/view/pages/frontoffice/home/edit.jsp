@@ -14,38 +14,38 @@
         <tr>
             <td class="font-weight-bold"> <i class="fa fa-home" aria-hidden="true"></i>
                 &nbsp; Name</td>
-            <td><springForm:input path="name" value="${house.name}" /></td>
-            <td><springForm:errors path="name"  /></td>
+            <td><springForm:input path="name" value="${house.name}" cssClass="form-control"/></td>
+            <td><springForm:errors path="name" cssClass="form-control" /></td>
         </tr>
         <tr>
             <td class="font-weight-bold"> <i class="fa fa-map-o" aria-hidden="true"></i>
                 &nbsp; City</td>
-            <td><springForm:input path="city" value="${house.city}" /></td>
-            <td><springForm:errors path="city"  /></td>
+            <td><springForm:input path="city" value="${house.city}" cssClass="form-control" /></td>
+            <td><springForm:errors path="city" cssClass="form-control" /></td>
         </tr>
         <tr>
             <td class="font-weight-bold"> <i class="fa fa-map-marker" aria-hidden="true"></i>
                 &nbsp; Address</td>
-            <td><springForm:input path="address" value="${house.address}" /></td>
-            <td><springForm:errors path="address"  /></td>
+            <td><springForm:input path="address" value="${house.address}" cssClass="form-control"/></td>
+            <td><springForm:errors path="address" cssClass="form-control" /></td>
         </tr>
         <tr>
             <td class="font-weight-bold"> <i class="fa fa-list" aria-hidden="true"></i>
                 &nbsp; Description</td>
-            <td><springForm:textarea path="description" value="${house.description}" /></td>
-            <td><springForm:errors path="description"  /></td>
+            <td><springForm:textarea path="description" value="${house.description}" cssClass="form-control" /></td>
+            <td><springForm:errors path="description" cssClass="form-control" /></td>
         </tr>
         <tr>
             <td class="font-weight-bold"> <i class="fa fa-television" aria-hidden="true"></i>
                 &nbsp; Services</td>
-            <td><springForm:textarea path="service" value="${house.service}" /></td>
-            <td><springForm:errors path="service"  /></td>
+            <td><springForm:textarea path="service" value="${house.service}" cssClass="form-control"/></td>
+            <td><springForm:errors path="service" cssClass="form-control" /></td>
         </tr>
         <tr>
             <td class="font-weight-bold"> <i class="fa fa-ban" aria-hidden="true"></i>
                 &nbsp; Constraints</td>
-            <td><springForm:textarea path="constraintRule" value="${house.constraintRule}" /></td>
-            <td><springForm:errors path="constraintRule"  /></td>
+            <td><springForm:textarea path="constraintRule" value="${house.constraintRule}" cssClass="form-control" /></td>
+            <td><springForm:errors path="constraintRule" cssClass="form-control" /></td>
         </tr>
         <tr>
 
@@ -53,7 +53,7 @@
                 &nbsp; Status</td>
             <c:set var="statusVar" value="${house.status}"></c:set>
 
-            <td><springForm:select path="status">
+            <td><springForm:select path="status" cssClass="custom-select">
                 <c:choose>
                     <c:when test="${statusVar == 'Booked'}">
                         <springForm:option value="Booked" label="Booked" selected="true" />

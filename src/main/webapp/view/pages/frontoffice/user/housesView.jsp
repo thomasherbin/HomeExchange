@@ -35,7 +35,7 @@
                     </div>
                     <div id="collapse${home.id}" class="collapse multi-collapse" aria-labelledby="heading${home.id}" data-parent="#accordionExample">
                         <div class="card-body">
-                            <div class="d-flex bd-highlight w-100">
+                            <div class="d-flex bd-highlight">
                                 <div class="p-2 bd-highlight ">
                                     <ul style="list-style:none;" class="pb-3">
                                         <h4 class="font-weight-bold pb-2">
@@ -51,6 +51,7 @@
                                             <span class="font-weight-bold">Address:</span> &nbsp; ${home.address}
                                         </li>
                                     </ul>
+                                    <hr style="background-color: #416475">
                                     <ul style="list-style:none;" class="pb-3">
                                         <h4 class="font-weight-bold pb-2">
                                             Reservation details
@@ -61,15 +62,22 @@
                                             <span class="font-weight-bold">Status:</span> &nbsp; ${home.status}
                                         </li>
                                         <li class="pb-2">
-                                            <i class="fa fa-list" aria-hidden="true"></i>
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
                                             &nbsp;
-                                            <span class="font-weight-bold">Description:</span> &nbsp; ${home.description}
+                                            <span class="font-weight-bold">Availability:</span> &nbsp; Available from ${home.dateStart} to ${home.dateEnd}
                                         </li>
+
                                     </ul>
+                                    <hr style="background-color: #416475">
                                     <ul style="list-style:none;" class="pb-3">
                                         <h4 class="font-weight-bold pb-2">
                                             Housing details
                                         </h4>
+                                        <li class="pb-2">
+                                            <i class="fa fa-list" aria-hidden="true"></i>
+                                            &nbsp;
+                                            <span class="font-weight-bold">Description:</span> &nbsp; ${home.description}
+                                        </li>
                                         <li class="pb-2">
                                             <i class="fa fa-television" aria-hidden="true"></i>
                                             &nbsp;
@@ -81,13 +89,7 @@
                                             <span class="font-weight-bold">Constraint Rules:</span> &nbsp; ${home.constraintRule}
                                         </li>
                                     </ul>
-                                    <ul style="list-style:none;" class="pb-3">
-                                        <li class="pb-2">
-                                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            &nbsp;
-                                            <span class="font-weight-bold">Availability:</span> &nbsp; Available from ${home.dateStart} to ${home.dateEnd}
-                                        </li>
-                                    </ul>
+
                                     <ul>
                                         <div class="d-flex flex-row bd-highlight mb-3">
                                             <div class="p-2 bd-highlight">
@@ -125,7 +127,7 @@
                                 </c:choose>
 
 
-                                <div class="p-2 d-flex bd-highlight w-100">
+                                <div class="p-2 d-flex bd-highlight">
                                     <div>
                                         <ul style="list-style:none;" class="pb-3">
                                             <li class="pb-2">
@@ -137,9 +139,9 @@
                                     </div>
 
                                     <div class=" flex-column  bd-highlight mb-3">
-                                        <div class="bd-highlight"><img src="${home.photo}" class="img-fluid w-10"></div>
-                                        <div class="bd-highlight"><img src="${home.photo2}" class="img-fluid w-10"></div>
-                                        <div class="bd-highlight"><img src="${home.photo3}" class="img-fluid w-10"></div>
+                                        <div class="bd-highlight"><img src="${home.photo}" class="img-fluid rounded w-10"></div>
+                                        <div class="bd-highlight"><img src="${home.photo2}" class="img-fluid rounded w-10"></div>
+                                        <div class="bd-highlight"><img src="${home.photo3}" class="img-fluid rounded w-10"></div>
                                     </div>
                                 </div>
 
