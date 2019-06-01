@@ -12,6 +12,6 @@
 <p>Are you sure you want to remove the user ${user.firstName}?</p>
 
 <div>
-    <a  href="${RemoveUserConfirmed}">Yes</a>
-    <a  href="/userList">No</a>
+    <a class="btn btn-outline-success" href="${RemoveUserConfirmed}">Yes</a>
+    <a  class="btn btn-outline-danger" href="/userList">No</a>
 </div>
