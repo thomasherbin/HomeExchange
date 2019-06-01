@@ -1,4 +1,7 @@
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
+
+<script type="text/javascript" src="/../../ressources/js/script.js"></script>
+
 <div>
     <h1 class="text-center pb-4">Search houses</h1>
     <div class="container">
@@ -7,7 +10,7 @@
                 <p class="text-center font-weight-bold"> Search by city &nbsp;
                     <i class="fa fa-search" aria-hidden="true"></i>
                     &nbsp;
-                     <springForm:input path="city" name="city"></springForm:input>
+                     <springForm:input path="city" name="city" class="ff_elem"  id="f_elem_city"></springForm:input>
                     <input type="submit" value="Search" class="btn btn-outline-info"></p>
                 <p><springForm:errors path="city"/></p>
             </springForm:form>
