@@ -14,6 +14,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/yourProfile">Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/housesView">Your houses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bookingList">Booking List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/yourBooking">Reservations</a>
+                    </li>
                     <c:if test="${userIsAdmin == true}">
                         <li class="nav-item">
                             <a class="nav-link" href="/userList">User List</a>

@@ -5,7 +5,7 @@
 
 <div>
     <h1 class="text-center pb-2">Your search Results </h1>
-    <h3 class="pb-3">We found ${fn:length(houses)} result(s)</h3>
+    <h3 class="pb-3 text-center mt-3">We found ${fn:length(houses)} result(s)</h3>
     <c:choose>
         <c:when test="${empty houses}">
         </c:when>
