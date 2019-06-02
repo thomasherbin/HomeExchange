@@ -32,10 +32,11 @@ img{ max-width:100%;}
     margin: 8px 0 0;
 }
 .received_withd_msg { width: 57%;}
-.mesgs {
-    float: left;
+
+.container_small {
+    margin: auto;
     padding: 30px 15px 0 25px;
-    width: 100%;
+    width: 500px;
 }
 
 .sent_msg p {
@@ -74,7 +75,9 @@ img{ max-width:100%;}
     top: 11px;
     width: 33px;
 }
-.messaging { padding: 0 0 50px 0;}
+.messaging {
+    padding: 0 0 50px 0;
+}
 .msg_history {
     overflow-y: auto;
 }
