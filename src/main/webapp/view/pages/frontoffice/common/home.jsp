@@ -15,11 +15,11 @@
             <h2>Are you an owner ?</h2>
         </div>
         <div class="col-lg-4">
-            <h3><a class="button" href="/housesView">Your Houses</a></h3>
+            <h3><a class="button text-info" href="/housesView">Your Houses</a></h3>
             <p class="lead mb-0">Manage your houses and set your rules !</p>
         </div>
         <div class="col-lg-4">
-            <h3><a class="button" href="/bookingList">Your booking list</a></h3>
+            <h3><a class="button text-info" href="/bookingList">Your booking list</a></h3>
             <p class="lead mb-0">Accept or refuse reservation requests !</p>
         </div>
     </div>
@@ -28,11 +28,11 @@
 <div class="container bg-light text-center">
     <div class="row align-items-center">
         <div class="col-lg-4">
-            <h3><a class="button" href="/search">Search houses</a></h3>
+            <h3><a class="button text-info" href="/search">Search houses</a></h3>
             <p class="lead mb-0">Find a house you can rent !</p>
         </div>
         <div class="col-lg-4">
-            <h3><a class="button" href="/yourBooking">Your reservations</a></h3>
+            <h3><a class="button text-info" href="/yourBooking">Your reservations</a></h3>
             <p class="lead mb-0">Check your reservations !</p>
         </div>
         <div class="col-lg-4">
