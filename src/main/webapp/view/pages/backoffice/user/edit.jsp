@@ -56,10 +56,8 @@
             <td><springForm:input type="password" path="passwordConfirm"/></td>
             <td><springForm:errors path="passwordConfirm"  /></td>
         </tr>
-        <tr>
-            <td><input type="submit" value="Save User"></td>
-            <td><a href="/userList">Cancel</a></td>
-        </tr>
     </table>
+<input class="btn btn-outline-success" type="submit" value="Save User">
+<a class="btn btn-outline-danger" href="/userList">Cancel</a>
 
 </springForm:form>

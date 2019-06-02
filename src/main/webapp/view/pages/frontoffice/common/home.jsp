@@ -1,41 +1,61 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<section class="main" role="main">
-    <div class="main_inner">
-        <div class="main_title">
-            <h2>Welcome to</h2>
-            <h1 class="l2h_title">Home Exchange</h1>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">Welcome to Home Exchange !</h1>
+        <p>Exchange yours homes for a short vacation. Choose your services. Check your reservations.</p>
+    </div>
+</div>
+
+
+<div class="container bg-light text-center">
+    <div class="row align-items-center">
+        <div class="col-lg-4">
+            <img src="/ressources/image/key.png" width="50" height="50" alt="">
+            <h2>Are you a owner ?</h2>
         </div>
-        <div class="common_page_body">
-            <div class="common_item">
-                <a class="button" href="/housesView">Your houses</a>
+        <div class="col-lg-4">
+            <h3><a class="button" href="/housesView">Your Houses</a></h3>
+            <p class="lead mb-0">Manage your houses and set your rules!</p>
+        </div>
+        <div class="col-lg-4">
+            <h3><a class="button" href="/bookingList">Your booking list</a></h3>
+            <p class="lead mb-0">Accept or refuse reservation request !</p>
+        </div>
+    </div>
+</div>
+<p></p>
+<div class="container bg-light text-center">
+    <div class="row align-items-center">
+        <div class="col-lg-4">
+            <h3><a class="button" href="/search">Search houses</a></h3>
+            <p class="lead mb-0">Find a house you can rent !</p>
+        </div>
+        <div class="col-lg-4">
+            <h3><a class="button" href="/yourBooking">Your reservations</a></h3>
+            <p class="lead mb-0">Check your reservation !</p>
+        </div>
+        <div class="col-lg-4">
+            <img src="/ressources/image/house.png" width="50" height="50" alt="">
+            <h2>Are you a renter ?</h2>
+        </div>
+    </div>
+</div>
+<p></p>
+<c:if test="${userIsAdmin == true}">
+    <div class="container bg-light text-center ">
+        <div class="row align-items-center">
+            <div class="col">
+                <img src="/ressources/image/admin-with-cogwheels.png" width="50" height="50" alt="">
+                <h2>For admin</h2>
             </div>
-            <div class="common_item">
-                <a class="button" href="/search">Search houses</a>
+            <div class="col ">
+                <h3><a class="button" href="/userList">User List</a></h3>
             </div>
-            <div class="common_item">
-                <a class="button" href="/yourBooking">Your reservations</a>
-            </div>
-            <div class="common_item">
-                <a class="button" href="/bookingList">Your booking list</a>
-            </div>
-            <div class="common_item">
-                <a class="button" href="/yourProfile">Your profile</a>
-            </div>
-            <c:if test="${userIsAdmin == true}">
-                <div class="common_item">
-                    <a class="button" href="/userList">User List</a>
-                </div>
-                <div class="common_item">
-                    <a class="button" href="/">Ticket Support</a>
-                </div>
-            </c:if>
-            <div class="common_item">
-                <ul class="home_list">
-                    <li><p class="list_text">Exchange yours homes for a short vacation</p></li>
-                    <li><p class="list_text">Choose your services</p></li>
-                    <li><p class="list_text">Check bla bla</p></li>
-                </ul>
+            <div class="col">
+                <h3><a class="button" href="/">Ticket Support</a></h3>
             </div>
         </div>
     </div>
-</section>
+</c:if>
+

@@ -14,9 +14,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/yourProfile">Profile</a>
                     </li>
+                    <c:if test="${userIsAdmin == true}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/userList">User List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Ticket Support</a>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
-        </div>
         <c:choose>
             <c:when test="${pageContext.request.userPrincipal.name != null}">
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -30,6 +37,7 @@
                 </form>
             </c:otherwise>
         </c:choose>
+        </div>
     </nav>
 
 
