@@ -85,7 +85,7 @@ public class Booking {
                     reservation.setStatus("Ongoing");
                     Reservation reservationAdded = reservationRepository.save(reservation);
                     model.addAttribute("reservation", reservationAdded);
-                    return "redirect:/HouseDetails?id=" + reservation.getHouseId();
+                    return "redirect:/yourBooking";
                 } else {
                     return "redirect:/BookHouse?id="+ID;
                 }

@@ -4,14 +4,16 @@
     <c:param name="id" value="${house.id}" />
 </c:url>
 
-<form action="${UploadPhoto}" enctype="multipart/form-data" method="post">
-    <div class="form-group">
-        <table class="table">
-            <tr>
-                <td>Photo:</td>
-                <td><input type="file" name="file" class="form-control-file"/></td>
-                <td><input type="submit" value="submit  "></td>
-            </tr>
-        </table>
+<h1 class="text-center pb-3">Upload a photo to describe your housing</h1>
+
+
+<form action="${UploadPhoto}" enctype="multipart/form-data" method="post" class="text-center">
+    <div class="form-group d-flex flex-row mb-3 justify-content-center">
+        <div class="p-2 bd-highlight font-weight-bold ml-2">
+            <i class="fa fa-picture-o" aria-hidden="true"></i>
+            &nbsp;
+            Photo:</div>
+        <div class="p-2 bd-highlight ml-2 "><input type="file" name="file" class="form-control-file custom-file"/></div>
     </div>
+    <input type="submit" value="Submit" class="btn btn-outline-info">
 </form>

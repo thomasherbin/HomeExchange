@@ -252,9 +252,10 @@ public class Home {
             House houseFromDB = optionalHouse.get();
             System.out.println("house from db : " + houseFromDB.toString());
 
-            if(house.getDateStart().compareTo(currentDate) > 0 || house.getDateStart().compareTo(currentDate) == 0){
                 if(house.getDateEnd().compareTo(house.getDateStart()) > 0 || house.getDateEnd().compareTo(house.getDateStart()) == 0){
                     house.setPhoto(houseFromDB.getPhoto());
+                    house.setPhoto2(houseFromDB.getPhoto2());
+                    house.setPhoto3(houseFromDB.getPhoto3());
                     houseFromDB = house ;
                     System.out.println("house updated : " + houseFromDB.toString());
                     this.houseRepository.save(houseFromDB) ;
@@ -262,9 +263,6 @@ public class Home {
                 } else{
                     return "redirect:/editHouse?id="+ID ;
                 }
-            } else{
-                return "redirect:/editHouse?id="+ID;
-            }
 
         } else {
             return "HomeEdit" ;
