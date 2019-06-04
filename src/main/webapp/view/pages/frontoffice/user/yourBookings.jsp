@@ -1,28 +1,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<h1>Your bookings review </h1>
+<h1 class="text-info h2 mt-4 mb-2">Your bookings review </h1>
 <c:choose>
     <c:when test="${empty housesName}">
-        <p>You have no reservation !</p>
+        <p  class="text-secondary  mb-2">You have no reservation !</p>
     </c:when>
     <c:otherwise>
-        <table class="table">
-            <tr>
-                <th scope="col">House's name</th>
-                <th scope="col">Number of individuals</th>
-                <th scope="col">Dates</th>
-                <th scope="col">Status</th>
-                <th scope="col">Cancel reservation</th>
-                <th scope="col">Contact the owner</th>
+        <table  class="mt-4 table table-hover thead-dark"  style="width:100%">
+            <tr class="thead-dark " style="width:100%">
+                <th style="width:15%"  class="text-center" scope="col"><i class="fa fa-home" aria-hidden="true"></i> Name</th>
+                <th  style="width:10%"  class="text-center" scope="col"><i class="fa fa-user" aria-hidden="true"></i> Individuals</th>
+                <th style="width:30%" class="text-center"  scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Dates</th>
+                <th style="width:10%" class="text-center" class="col-xs-1" scope="col"><i class="fa fa-book" aria-hidden="true"></i> Status</th>
+                <th class="text-center" scope="col">Cancel reservation</th>
+                <th class="text-center" scope="col">Contact the owner</th>
             </tr>
 
             <c:set var="housesName" value="${housesName}"></c:set>
 
 
             <c:forEach items="${reservations}" var="reservation" varStatus="statusVar">
-                <c:url var="CancelBooking" value="/cancelBooking">
-                    <c:param name="id" value="${reservation.id}"></c:param>
+                <c:url  var="CancelBooking" value="/cancelBooking">
+                    <c:param name="id"  value="${reservation.id}"></c:param>
                 </c:url>
                 <c:url var="message" value="/messages">
                     <c:param name="id" value="${reservation.ownerId}"></c:param>
@@ -30,13 +30,13 @@
 
 
 
-                <tr>
-                    <td> ${housesName[statusVar.index]}</td>
-                    <td>${reservation.nbGuests}</td>
-                    <td>From ${reservation.dateStart} to ${reservation.dateEnd} </td>
-                    <td>${reservation.status}</td>
-                    <td><a href="${CancelBooking}">Cancel</a></td>
-                    <td><a href="${message}">Message</a></td>
+                <tr class="text-dark">
+                    <td class="text-center"> ${housesName[statusVar.index]}</td>
+                    <td class="text-center">${reservation.nbGuests}</td>
+                    <td class="text-center">From ${reservation.dateStart} to ${reservation.dateEnd} </td>
+                    <td class="text-center">${reservation.status}</td>
+                    <td class="text-center"><a href="${CancelBooking}">Cancel</a></td>
+                    <td class="text-center"><a href="${message}">Message</a></td>
                 </tr>
 
             </c:forEach>

@@ -7,9 +7,9 @@
 
 
 
-<h1>Confirm to cancel reservation</h1>
-<p>Are you sure you want to cancel this reservation ?</p>
+<h1 class="text-info h2 mt-4 mb-2">Confirm to cancel reservation</h1>
+<p class="text-secondary  mb-2">Are you sure you want to cancel this reservation ?</p>
 <div>
-    <a  href="${CancelBokingConfirmed}">Yes</a>
-    <a  href="/index">No</a>
+    <a class="btn btn-outline-info btn-xs" href="${CancelBokingConfirmed}">Yes</a>
+    <a  class="btn btn-outline-info btn-xs" href="/index">No</a>
 </div>

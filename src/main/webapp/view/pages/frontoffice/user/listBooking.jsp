@@ -2,21 +2,21 @@
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 
 
-<h1>Your booking list review </h1>
+<h1 class="text-info h2 mt-4 mb-2">Your booking list review </h1>
 <c:choose>
     <c:when test="${empty reservations}">
-        <p>You have no booking !</p>
+        <p class="text-secondary  mb-2">You have no booking !</p>
     </c:when>
     <c:otherwise>
-        <table class="table">
-            <tr>
-                <th scope="col">House's name</th>
-                <th scope="col">Number of individuals</th>
-                <th scope="col">Dates</th>
-                <th scope="col">Status</th>
-                <th scope="col">Accept booking</th>
-                <th scope="col">Reject booking</th>
-                <th scope="col">Ask for more information</th>
+        <table class="mt-4 table table-hover thead-dark" style="width:100%">
+            <tr class="thead-dark " style="width:100%">
+                <th style="width:15%"  class="text-center" scope="col"><i class="fa fa-home" aria-hidden="true"></i> Name</th>
+                <th  style="width:10%"  class="text-center" scope="col"><i class="fa fa-user" aria-hidden="true"></i> Individuals</th>
+                <th style="width:30%" class="text-center"  scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Dates</th>
+                <th style="width:10%" class="text-center" class="col-xs-1" scope="col"><i class="fa fa-book" aria-hidden="true"></i> Status</th>
+                <th style="width:10%" class="text-center" scope="col">Accept booking</th>
+                <th style="width:10%" class="text-center" scope="col">Reject booking</th>
+                <th style="width:25%" class="text-center" class="col-1" scope="col"><i class="fa fa-info-circle" aria-hidden="true"></i> Information</th>
             </tr>
 
             <c:set var="housesName" value="${housesName}"></c:set>
@@ -32,23 +32,23 @@
                     <c:param name="id" value="${reservation.renterId}"></c:param>
                 </c:url>
 
-                <tr>
-                    <td>${housesName[status.index]}</td>
-                    <td>${reservation.nbGuests}</td>
-                    <td>From ${reservation.dateStart} to ${reservation.dateEnd} </td>
-                    <td>${reservation.status}</td>
-                    <td>
+                <tr class="text-dark">
+                    <td class="text-center">${housesName[status.index]}</td>
+                    <td class="text-center" >${reservation.nbGuests}</td>
+                    <td class="text-center">From ${reservation.dateStart} to ${reservation.dateEnd} </td>
+                    <td class="text-center">${reservation.status}</td>
+                    <td class="text-center">
                         <springForm:form method="post" action="${AcceptBooking}">
-                            <input type="submit" value="Accept booking">
+                            <input type="submit" class="btn btn-outline-info"  value="Accept booking">
                         </springForm:form>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <springForm:form method="post" action="${RejectBooking}">
-                            <input type="submit" value="Reject booking">
+                            <input type="submit" class="btn btn-outline-info"  value="Reject booking">
                         </springForm:form>
                     </td>
-                    <td>
-                        <a href="${message}">Ask more information</a>
+                    <td class="text-center">
+                        <a class="text-dark" href="${message}">Click here !</a>
                     </td>
 
 
