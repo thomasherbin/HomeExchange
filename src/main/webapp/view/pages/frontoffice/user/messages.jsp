@@ -23,15 +23,16 @@
                                         <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                         <div class="received_msg">
                                             <div class="received_withd_msg">
-                                                <p>${message.content}</p>
-                                                <span class="time_date">${user.firstName} ${user.lastName} at ${message.sentDate}</span></div>
+                                                <p>${message.messageContent}</p>
+                                                <span class="time_date">${user.firstName} ${user.lastName} at ${message.sentDate}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </c:if>
                                 <c:if test="${message.senderId == sessionUser.id}">
                                     <div class="outgoing_msg">
                                         <div class="sent_msg">
-                                            <p>${message.content}</p>
+                                            <p>${message.messageContent}</p>
                                             <span class="time_date"> ${sessionUser.firstName} ${sessionUser.lastName} at ${message.sentDate}</span> </div>
                                     </div>
                                 </c:if>
@@ -42,8 +43,8 @@
                 <springform:form method="POST" modelAttribute="message" action="${messagePost}">
                     <div class="type_msg">
                         <div class="input_msg_write">
-                            <springform:input path="content" type="text" class="write_msg" placeholder="Type a message" />
-                            <springform:errors path="content"/>
+                            <springform:input path="messageContent" type="text" class="write_msg" placeholder="Type a message" />
+                            <springform:errors path="messageContent"/>
                             <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                         </div>
                     </div>

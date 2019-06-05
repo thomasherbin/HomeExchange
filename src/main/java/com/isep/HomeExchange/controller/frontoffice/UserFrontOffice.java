@@ -1,5 +1,6 @@
 package com.isep.HomeExchange.controller.frontoffice;
 
+import com.isep.HomeExchange.model.service.ResponseAjaxMessage;
 import com.isep.HomeExchange.model.service.Session;
 import com.isep.HomeExchange.controller.Validator.UserChangePasswordValidator;
 import com.isep.HomeExchange.controller.Validator.UserRegistrationValidator;
@@ -160,13 +161,30 @@ import java.util.List;
 
         User user = userRepository.findById(id).get();
         model.addAttribute("user", user);
-        User SessionUser = userRepository.findById(sessionId).get();
-        model.addAttribute("sessionUser", SessionUser);
+        User sessionUser = userRepository.findById(sessionId).get();
+        model.addAttribute("sessionUser", sessionUser);
 
         modelMap.put("messages", messages) ;
         model.addAttribute("message", new Message());
         return "message";
     }
+
+
+
+    @GetMapping(value = "/api/messages")
+    public @ResponseBody
+    ResponseAjaxMessage getLastMessages(@RequestParam("id") int id) {
+        Session session = new Session(userRepository);
+        int sessionId = session.getUserId();
+        List<Message> messages = messageRepository.findBySenderIdAndReceiverIdOrderBySentDate(id, sessionId);
+        User user = userRepository.findById(id).get();
+
+
+
+        ResponseAjaxMessage response = new ResponseAjaxMessage("Done", messages, user.getFirstName(), user.getLastName());
+        return response;
+    }
+
 
 
 
@@ -177,7 +195,7 @@ import java.util.List;
             return "message" ;
         }
         Message messagePost = new Message();
-        messagePost.setContent(message.getContent());
+        messagePost.setMessageContent(message.getMessageContent());
         messagePost.setSenderId(session.getUserId());
         messagePost.setReceiverId(id);
         messagePost.setSentDate(new Date());
