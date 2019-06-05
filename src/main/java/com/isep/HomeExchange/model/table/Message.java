@@ -15,7 +15,7 @@ public class Message implements Comparable<Message> {
     private int senderId;
     private int receiverId;
     @NotEmpty
-    private String content;
+    private String messageContent;
     private String object;
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
@@ -63,12 +63,12 @@ public class Message implements Comparable<Message> {
         this.receiverId = receiverId;
     }
 
-    public String getContent() {
-        return content;
+    public String getMessageContent() {
+        return messageContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
     }
 
     public String getObject() {
@@ -85,7 +85,7 @@ public class Message implements Comparable<Message> {
                 "id=" + id +
                 ", senderId=" + senderId +
                 ", receiverId=" + receiverId +
-                ", content='" + content + '\'' +
+                ", content='" + messageContent + '\'' +
                 ", object='" + object + '\'' +
                 ", sentDate=" + sentDate +
                 '}';
