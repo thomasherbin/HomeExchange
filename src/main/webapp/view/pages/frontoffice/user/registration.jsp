@@ -4,7 +4,6 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-Create an account</h1>
 <div class="container">
 
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
@@ -12,14 +11,20 @@ Create an account</h1>
 
     <table>
         <tr>
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+
             <td>First Name:</td>
-            <td><form:input path="firstName" /></td>
+            <td><form:input path="firstName" class="form-control"/></td>
             <td><form:errors path="firstName"  /></td>
+            </div>
         </tr>
         <tr>
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+
             <td>Last Name:</td>
-            <td><form:input path="lastName" /></td>
+            <td><form:input path="lastName" class="form-control"/></td>
             <td><form:errors path="lastName"  /></td>
+            </div>
         </tr>
         <tr>
             <spring:bind path="userName">
@@ -50,14 +55,20 @@ Create an account</h1>
         <tr>
             <spring:bind path="passwordConfirm">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <td>Confirm your password:</td>
+                    <td>Confirm password:</td>
                     <td><form:input type="password" path="passwordConfirm" class="form-control" autofocus="true"></form:input></td>
                     <td><form:errors path="passwordConfirm"></form:errors></td>
                 </div>
             </spring:bind>
         </tr>
+        <tr>
+            <td></td>
+            <td>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            </td>
+        </tr>
 
     </table>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
     </form:form>
 </div>
