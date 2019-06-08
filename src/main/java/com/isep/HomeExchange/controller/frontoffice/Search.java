@@ -1,6 +1,8 @@
 package com.isep.HomeExchange.controller.frontoffice;
 
 import com.isep.HomeExchange.model.repository.HouseRepository;
+import com.isep.HomeExchange.model.repository.UserRepository;
+import com.isep.HomeExchange.model.service.Session;
 import com.isep.HomeExchange.model.table.House;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +20,15 @@ public class Search {
     @Autowired
     HouseRepository houseRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     /*------------------------------------- Get search page -----------------------------------------*/
 
     @GetMapping(value = "/search")
     public String showSearchPage(Model model){
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         model.addAttribute("house", new House());
         return "Search" ;
     }
@@ -30,7 +37,9 @@ public class Search {
 
     @PostMapping(value="/searchByCity")
 
-    public String searchByCity(ModelMap modelMap, String city){
+    public String searchByCity(ModelMap modelMap, String city, Model model){
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         //List<House> houses = houseRepository.findByCityLike(city) ;
         //List<House> houses = houseRepository.findByCityContaining(city) ;
         List<House> houses = houseRepository.findByCityContainingIgnoreCase(city) ;
@@ -42,7 +51,9 @@ public class Search {
 
     @PostMapping(value="/searchByName")
 
-    public String searchByName(ModelMap modelMap, String name){
+    public String searchByName(ModelMap modelMap, String name, Model model){
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
        // List<House> houses = houseRepository.findByNameLike(name) ;
         // List<House> houses = houseRepository.findByNameContaining(name) ;
         List<House> houses = houseRepository.findByNameContainingIgnoreCase(name) ;

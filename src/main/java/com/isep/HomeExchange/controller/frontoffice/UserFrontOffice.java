@@ -46,6 +46,7 @@ import java.util.List;
 
     @GetMapping("/registration")
     public String registration(Model model) {
+
         model.addAttribute("userForm", new User());
 
         return "registration";
@@ -78,6 +79,7 @@ import java.util.List;
     @GetMapping("/yourProfile")
     public String yourProfile(Model model) {
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         Optional<User> optionalUser =  userRepository.findById(session.getUserId());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -91,6 +93,7 @@ import java.util.List;
     @GetMapping(value = "/updateUser")
     public String editUser(Model model) {
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         Optional<User> optionalUser = userRepository.findById(session.getUserId());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -103,10 +106,11 @@ import java.util.List;
 
     @PostMapping(value = "/updateUser")
     public String editSubmit(@Valid User user, BindingResult bindingResult, Model model){
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if (bindingResult.hasErrors()) {
             return "updateUser";
         }
-        Session session = new Session(userRepository);
         Optional<User> optionalUser = userRepository.findById(session.getUserId());
         if (optionalUser.isPresent()) {
             User userFromDb = optionalUser.get();
@@ -120,6 +124,7 @@ import java.util.List;
     @GetMapping(value = "/updatePassword")
     public String updatePassord(Model model) {
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         Optional<User> optionalUser = userRepository.findById(session.getUserId());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -133,6 +138,7 @@ import java.util.List;
     @PostMapping(value = "/updatePassword")
     public String updatePassordConfirm(@Valid User user, BindingResult bindingResult, Model model){
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         userChangePasswordValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             return "updatePassword";
@@ -152,6 +158,7 @@ import java.util.List;
     @GetMapping("/messages")
     public String getConversation(ModelMap modelMap, Model model, @RequestParam("id") int id) {
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         int sessionId = session.getUserId();
         List<Message> senderMessages = messageRepository.findBySenderIdAndReceiverIdOrderBySentDate(id, sessionId);
         List<Message> recieverMessages = messageRepository.findBySenderIdAndReceiverIdOrderBySentDate(sessionId, id);
@@ -189,8 +196,9 @@ import java.util.List;
 
 
     @PostMapping("/messages")
-    public String submitMessage(@Valid @ModelAttribute("message") Message message, BindingResult bindingResult, @RequestParam("id") int id) {
+    public String submitMessage(@Valid @ModelAttribute("message") Message message, BindingResult bindingResult, @RequestParam("id") int id, Model model) {
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if (bindingResult.hasErrors()) {
             return "message" ;
         }

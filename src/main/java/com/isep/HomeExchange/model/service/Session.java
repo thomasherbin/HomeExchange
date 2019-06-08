@@ -2,12 +2,14 @@ package com.isep.HomeExchange.model.service;
 
 import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class Session {
     private String userName;
     private int userId;
+    private boolean isAdmin;
 
 
     public Session(UserRepository userRepository) {
@@ -19,7 +21,10 @@ public class Session {
         }
         User user = userRepository.findByUserName(userName);
         userId =  user.getId();
+        isAdmin = user.userIsAdmin();
     }
+
+
 
     public String getUserName() {
         return userName;
@@ -27,5 +32,13 @@ public class Session {
 
     public int getUserId() {
         return userId;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
