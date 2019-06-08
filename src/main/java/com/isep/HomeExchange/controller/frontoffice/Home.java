@@ -57,6 +57,8 @@ public class Home {
 
     @GetMapping(value = "/addHouse")
     public String ShowFormAddHouse(Model model){
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         model.addAttribute("house", new House());
         return "HomeAdd" ;
 
@@ -66,6 +68,7 @@ public class Home {
     @PostMapping(value = "/addHouse")
     public String addHouse(@Valid @ModelAttribute("house") House house, BindingResult bindingResult, Model model) {
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         int sessionId = session.getUserId();
         house.setOwner(sessionId);
 
@@ -99,6 +102,8 @@ public class Home {
     @GetMapping(value = "/upload")
     public String showUploadForm(Model model, @RequestParam("id") int id){
         Optional<House> optionalHouse = houseRepository.findById(id);
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if(optionalHouse.isPresent()){
             House house =optionalHouse.get() ;
             model.addAttribute("house", house) ;
@@ -108,10 +113,11 @@ public class Home {
         }
     }
     @PostMapping(value = "/upload")
-    public String uploadingFile(@RequestParam("file")MultipartFile file, @RequestParam("id") int id, RedirectAttributes redirectAttributes){
+    public String uploadingFile(@RequestParam("file")MultipartFile file, @RequestParam("id") int id, RedirectAttributes redirectAttributes, Model model){
         int ID = id ;
         k++ ;
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         int sessionId = session.getUserId();
 
         if (file.isEmpty()) {
@@ -163,7 +169,9 @@ public class Home {
 
     @GetMapping(value="/errorUpload")
 
-    public String uploadStatus(){
+    public String uploadStatus(Model model){
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         return "ErrorUpload" ;
     }
 
@@ -172,6 +180,8 @@ public class Home {
     @GetMapping(value = "/deletePhoto")
     public String showListPhoto(Model model, @RequestParam("id") int id){
         Optional<House> optionalHouse =  houseRepository.findById(id);
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if (optionalHouse.isPresent()) {
             House house = optionalHouse.get();
             model.addAttribute("house", house);
@@ -184,6 +194,8 @@ public class Home {
     @GetMapping(value="/RemovePhotoConfirmed")
     public String removePhoto(Model model, @RequestParam("id") int id, @RequestParam("photoPath") String photoPath){
         Optional<House> optionalHouse =  houseRepository.findById(id);
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if (optionalHouse.isPresent()) {
             House house = optionalHouse.get();
             File photoToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto()) ;
@@ -199,6 +211,8 @@ public class Home {
     @GetMapping(value="/RemovePhoto2Confirmed")
     public String removePhoto2(Model model, @RequestParam("id") int id, @RequestParam("photo2Path") String photoPath){
         Optional<House> optionalHouse =  houseRepository.findById(id);
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if (optionalHouse.isPresent()) {
             House house = optionalHouse.get();
             File photoToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto2()) ;
@@ -214,6 +228,8 @@ public class Home {
     @GetMapping(value="/RemovePhoto3Confirmed")
     public String removePhoto3(Model model, @RequestParam("id") int id, @RequestParam("photo3Path") String photoPath){
         Optional<House> optionalHouse =  houseRepository.findById(id);
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if (optionalHouse.isPresent()) {
             House house = optionalHouse.get();
             File photoToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto3()) ;
@@ -231,6 +247,8 @@ public class Home {
     @GetMapping(value = "/editHouse")
     public String ShowFormEditHouse(Model model, @RequestParam("id") int id){
         Optional<House> optionalHouse = houseRepository.findById(id);
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if(optionalHouse.isPresent()){
             House house =optionalHouse.get() ;
             model.addAttribute("house", house) ;
@@ -243,6 +261,8 @@ public class Home {
     @PostMapping(value = "/editHouse")
     public String editHouse(@Valid House house, BindingResult bindingResult, Model model, @RequestParam("id") int id, @RequestParam("owner") int owner) {
         int ID = id ;
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if (bindingResult.hasErrors()) {
             return "redirect:/editHouse?id="+ID;
         }
@@ -274,20 +294,23 @@ public class Home {
 
 
     @GetMapping(value = "/housesView")
-    public String housesCount( ModelMap model){
+    public String housesCount( ModelMap modelMap, Model model){
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         int sessionId = session.getUserId();
         for(House house : houseRepository.findByOwner(sessionId) ){
             System.out.println(house.toString());
         }
         List<House> houses = houseRepository.findByOwner(sessionId) ;
-        model.put("houses", houses) ;
+        modelMap.put("houses", houses) ;
         return "HousesView" ;
     }
 
     @GetMapping(value = "/HouseDetails")
     public String showHouse(ModelMap model, @RequestParam("id") int id){
         Optional<House> optionalHouse = houseRepository.findById(id) ;
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if(optionalHouse.isPresent()){
             House house = optionalHouse.get();
             model.put("house", house) ;
@@ -303,6 +326,8 @@ public class Home {
     @GetMapping(value = "/removeHouse")
     public String removeHouse(Model model, @RequestParam("id") int id){
         Optional<House> optionalHouse =  houseRepository.findById(id);
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         if (optionalHouse.isPresent()) {
             House house = optionalHouse.get();
             model.addAttribute("house", house);
@@ -314,6 +339,8 @@ public class Home {
 
     @GetMapping(value = "/RemoveHouseConfirmed")
     public String removeHouseConfirmed(Model model,@RequestParam("id") int id) throws IOException {
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         File photoToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto()) ;
         File photo2ToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto2()) ;
         File photo3ToDelete = new File(pathPrefix + houseRepository.findById(id).get().getPhoto3()) ;

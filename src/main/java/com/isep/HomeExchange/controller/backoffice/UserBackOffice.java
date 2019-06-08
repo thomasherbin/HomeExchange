@@ -1,6 +1,7 @@
 package com.isep.HomeExchange.controller.backoffice;
 
 import com.isep.HomeExchange.controller.Validator.UserEditValidator;
+import com.isep.HomeExchange.model.service.Session;
 import com.isep.HomeExchange.model.service.UserService;
 import com.isep.HomeExchange.controller.Validator.UserRegistrationValidator;
 import com.isep.HomeExchange.model.repository.UserRepository;
@@ -36,6 +37,7 @@ public class UserBackOffice {
     //User List
     @GetMapping(value = "/userList")
     public String home(Model model) {
+        Session session = new Session(userRepository);
         Iterable<User> users = userRepository.findAll();
         for (User user : users) {
             if (user.userIsAdmin()) {
@@ -44,6 +46,7 @@ public class UserBackOffice {
                 user.setRole("User");
             }
         }
+        model.addAttribute("userIsAdmin", session.isAdmin());
         model.addAttribute("users", users);
         return "userView";
     }
@@ -51,12 +54,16 @@ public class UserBackOffice {
     //addUser
     @GetMapping(value = "/addUser")
     public String addUser(Model model) {
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         model.addAttribute("user", new User());
         return "addUser";
     }
 
     @PostMapping(value = "/addUser")
     public String confirmSubmit(@Valid User user, BindingResult bindingResult, Model model){
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         userRegistrationValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             return "addUser";
@@ -69,6 +76,8 @@ public class UserBackOffice {
     //removeUser
     @GetMapping(value = "/removeUser")
     public String removeUser(Model model, @RequestParam("id") int id) {
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         Optional<User> optionalUser =  userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -81,6 +90,8 @@ public class UserBackOffice {
 
     @GetMapping(value = "/removeUserConfirmed")
     public String removeUserConfirmed(Model model,@RequestParam("id") int id) {
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         userRepository.deleteById(id);
         return "redirect:/userList";
     }
@@ -88,6 +99,8 @@ public class UserBackOffice {
     //EditUser
     @GetMapping(value = "/editUser")
     public String editUser(Model model, @RequestParam("id") int id) {
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             boolean userIsAdmin = false;
@@ -103,6 +116,8 @@ public class UserBackOffice {
 
     @PostMapping(value = "/editUser")
     public String editSubmit(@Valid User user, BindingResult bindingResult, Model model, @RequestParam("id") int id){
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         userEditValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             return "editUser";

@@ -52,6 +52,8 @@ public class Booking {
 
     @GetMapping(value = "/BookHouse")
     public String showBookingForm(Model model, @RequestParam("id") int id) {
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         Optional<House> optionalHouse = houseRepository.findById(id);
         if (optionalHouse.isPresent()) {
             House house = optionalHouse.get();
@@ -67,6 +69,7 @@ public class Booking {
     @PostMapping(value = "/bookHouse")
     public String bookHouse(@Valid @ModelAttribute("reservation") Reservation reservation, BindingResult bindingResult, Model model, @RequestParam("id") int id) {
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         int sessionId = session.getUserId();
         int ID = id ;
         if (bindingResult.hasErrors()) {
@@ -103,6 +106,7 @@ public class Booking {
     @GetMapping(value = "/yourBooking")
     public String showClientBooking(ModelMap modelMap,  ModelMap model) {
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         int sessionId = session.getUserId();
         for (Reservation reservation : reservationRepository.findByRenterId(sessionId)) {
             System.out.println(reservation.toString());
@@ -131,8 +135,9 @@ public class Booking {
     /*----------------------------- Show owner's booking list --------------------------------*/
 
     @GetMapping(value = "/bookingList")
-    public String showOwnerBooking(ModelMap modelMap, ModelMap modelHouses) {
+    public String showOwnerBooking(ModelMap modelMap, ModelMap modelHouses, Model model) {
         Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         int sessionId = session.getUserId();
         for (Reservation reservation : reservationRepository.findByOwnerId(sessionId)) {
             System.out.println(reservation.toString());
@@ -162,6 +167,8 @@ public class Booking {
 
     @GetMapping(value = "/cancelBooking")
     public String cancelBooking(Model model, @RequestParam("id") int id) {
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         Optional<Reservation> optionalReservation = reservationRepository.findById(id);
         if (optionalReservation.isPresent()) {
             Reservation reservation = optionalReservation.get();
@@ -174,7 +181,9 @@ public class Booking {
 
 
     @GetMapping(value = "/CancelBookingConfirmed")
-    public String cancelBookingConfirmed(@RequestParam("id") int id) {
+    public String cancelBookingConfirmed(@RequestParam("id") int id, Model model) {
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         int houseId = reservationRepository.findById(id).get().getHouseId() ;
         Optional<House> houseOptional = houseRepository.findById(houseId) ;
         if(houseOptional.isPresent()){
@@ -191,7 +200,9 @@ public class Booking {
     /*----------------------------- Accept Booking ------------------------------------------*/
 
     @PostMapping(value = "/acceptBooking")
-    public String acceptBooking(@RequestParam("id") int id){
+    public String acceptBooking(@RequestParam("id") int id, Model model){
+        Session session = new Session(userRepository);
+        model.addAttribute("userIsAdmin", session.isAdmin());
         Optional<Reservation> optionalReservation = reservationRepository.findById(id) ;
         if(optionalReservation.isPresent()){
             Reservation reservationFromDB = optionalReservation.get();
@@ -214,7 +225,7 @@ public class Booking {
     /*---------------------------- Reject Booking ------------------------------------------*/
 
     @PostMapping(value = "/rejectBooking")
-    public String rejectBooking(@RequestParam("id") int id){
+    public String rejectBooking(@RequestParam("id") int id, Model model){
         Optional<Reservation> optionalReservation = reservationRepository.findById(id) ;
         if(optionalReservation.isPresent()){
             Reservation reservationFromDB = optionalReservation.get();
