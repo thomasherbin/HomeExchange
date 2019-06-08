@@ -1,6 +1,7 @@
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 
 <script type="text/javascript" src="/../../ressources/js/script.js"></script>
+<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/flick/jquery-ui.css" />
 
 <div>
     <h1 class="text-center pb-4">Search houses</h1>

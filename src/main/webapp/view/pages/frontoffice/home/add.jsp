@@ -1,6 +1,7 @@
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 
 <script type="text/javascript" src="/../../ressources/js/script.js"></script>
+<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/flick/jquery-ui.css" />
 
 <h1 class="text-center pd-5">Add a house to book</h1>
 <springForm:form method="post" modelAttribute="house" action="/addHouse" cssClass="text-center ml-5 p-3" >
@@ -15,7 +16,7 @@
         <tr>
             <td class="font-weight-bold"> <i class="fa fa-map-o" aria-hidden="true"></i>
                 &nbsp; City</td>
-            <td><springForm:input path="city" cssClass="form-control" class="ff_elem" name="ff_nm_from[]"  id="f_elem_city"/></td>
+            <td><springForm:input path="city" cssClass="form-control" class="ff_elem bg-dark" name="ff_nm_from[]"  id="f_elem_city"/></td>
             <td><springForm:errors path="city" cssClass="form-control" /></td>
         </tr>
         <tr>

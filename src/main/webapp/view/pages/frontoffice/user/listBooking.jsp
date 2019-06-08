@@ -2,7 +2,7 @@
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 
 
-<h1 class="text-info h2 text-center mt-4 mb-2">Your booking list review </h1>
+<h1 class="h2 text-center mt-4 mb-2">Your booking list review </h1>
 <c:choose>
     <c:when test="${empty reservations}">
         <p class="text-secondary text-center mb-2">You have no booking !</p>
