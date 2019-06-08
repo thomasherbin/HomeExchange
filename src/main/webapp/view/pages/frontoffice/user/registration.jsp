@@ -6,14 +6,14 @@
 
 <div class="container">
 
-    <form:form method="POST" modelAttribute="userForm" class="form-signin">
-    <h2 class="form-signin-heading">Create your account</h2>
+    <form:form method="POST" modelAttribute="userForm" class="form-signin text-center ml-5 p-3">
+    <h2 class="form-signin-heading text-center">Create your account</h2>
 
-    <table>
+    <table class="table table-hover ml-5">
         <tr>
             <div class="form-group ${status.error ? 'has-error' : ''}">
 
-            <td>First Name:</td>
+            <td class="font-weight-bold">First Name:</td>
             <td><form:input path="firstName" class="form-control"/></td>
             <td><form:errors path="firstName"  /></td>
             </div>
@@ -21,7 +21,7 @@
         <tr>
             <div class="form-group ${status.error ? 'has-error' : ''}">
 
-            <td>Last Name:</td>
+            <td class="font-weight-bold">Last Name:</td>
             <td><form:input path="lastName" class="form-control"/></td>
             <td><form:errors path="lastName"  /></td>
             </div>
@@ -29,7 +29,7 @@
         <tr>
             <spring:bind path="userName">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <td>Username:</td>
+                    <td class="font-weight-bold">Username:</td>
                     <td><form:input type="text" path="userName" class="form-control" autofocus="true"></form:input></td>
                     <td><form:errors path="userName"></form:errors></td>
                 </div>
@@ -37,7 +37,7 @@
         </tr><tr>
             <spring:bind path="email">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <td>Email:</td>
+                    <td class="font-weight-bold">Email:</td>
                     <td><form:input type="text" path="email" class="form-control" autofocus="true"></form:input></td>
                     <td><form:errors path="email"></form:errors></td>
                 </div>
@@ -46,7 +46,7 @@
         <tr>
             <spring:bind path="password">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <td>Password:</td>
+                    <td class="font-weight-bold">Password:</td>
                     <td><form:input type="password" path="password" class="form-control" autofocus="true"></form:input></td>
                     <td><form:errors path="password"></form:errors></td>
                 </div>
@@ -55,7 +55,7 @@
         <tr>
             <spring:bind path="passwordConfirm">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <td>Confirm password:</td>
+                    <td class="font-weight-bold">Confirm password:</td>
                     <td><form:input type="password" path="passwordConfirm" class="form-control" autofocus="true"></form:input></td>
                     <td><form:errors path="passwordConfirm"></form:errors></td>
                 </div>
@@ -64,7 +64,7 @@
         <tr>
             <td></td>
             <td>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            <button class="btn btn-outline-info" type="submit">Register</button>
             </td>
         </tr>
 
