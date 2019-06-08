@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<h1 class="text-info h2 mt-4 mb-2 text-center">Your bookings review </h1>
+<h1 class="h2 mt-4 mb-2 text-center">Your bookings review </h1>
 <c:choose>
     <c:when test="${empty housesName}">
         <p  class="text-secondary  mb-2">You have no reservation !</p>
