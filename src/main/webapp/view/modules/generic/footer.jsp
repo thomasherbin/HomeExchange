@@ -1,10 +1,10 @@
 
 <!-- Footer -->
-<footer class="page-footer position-relative fixed-bottom">
+<footer class="page-footer position-relative">
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <a href="https://mdbootstrap.com/education/bootstrap/"> HomeExchange.com</a>
+    <div class="footer-copyright text-center py-3"> &copy; 2019 Copyright:
+        <a href="/"> HomeExchange.com</a>
     </div>
     <!-- Copyright -->
 

@@ -4,7 +4,7 @@
 <h1 class="h2 mt-4 mb-2 text-center">Your bookings review </h1>
 <c:choose>
     <c:when test="${empty housesName}">
-        <p  class="text-secondary  mb-2">You have no reservation !</p>
+        <p  class="text-secondary  mb-2 text-center">You have no reservation !</p>
     </c:when>
     <c:otherwise>
         <table  class="mt-4 table table-hover thead-dark"  style="width:100%">

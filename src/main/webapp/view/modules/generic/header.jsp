@@ -35,7 +35,7 @@
                                 <a class="nav-link" href="/userList">User List</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/ticketList">Ticket Support</a>
+                                <a class="nav-link" href="/ticketList">Support Tickets</a>
                             </li>
                         </c:if>
                     </c:if>
@@ -44,13 +44,13 @@
         <c:choose>
             <c:when test="${pageContext.request.userPrincipal.name != null}">
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                    <button class="btn btn-outline-danger" type="submit">Logout</button>
+                    <button class="btn btn-outline-danger" type="submit">Log out</button>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
             </c:when>
             <c:otherwise>
-                <a  class="btn btn-outline-primary" href="${contextPath}/login">Login</a>
-                <a  class="btn btn-outline-primary" href="${contextPath}/registration">SignUp</a>
+                <a  class="btn btn-outline-info m-2" href="${contextPath}/login">Log In</a>
+                <a  class="btn btn-outline-info m-2" href="${contextPath}/registration">Sign Up</a>
             </c:otherwise>
         </c:choose>
         </div>

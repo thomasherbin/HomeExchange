@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="POST" action="${contextPath}/login" class="form-signin">
+    <form method="POST" action="${contextPath}/login" class="form-signin ml-5 pl-3" style="width: 90%">
         <h2 class="form-heading text-center pb-3 mt-3">Log in</h2>
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>

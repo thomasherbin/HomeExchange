@@ -29,6 +29,8 @@
                     <div class="card-header text-white bg-info text-center" id="heading${home.id}">
                         <h2 class="mb-0">
                             <button class="btn btn-link text-white collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapse${home.id}" aria-expanded="false" aria-controls="collapse${home.id}">
+                                <h3><i class="fa fa-home" aria-hidden="true"></i>
+                                </h3>
                                 <h2>${home.name}</h2>
                             </button>
                         </h2>
@@ -155,4 +157,7 @@
     </c:otherwise>
 </c:choose>
 
-<a href="/addHouse" class="btn btn-outline-info mt-3">Add house</a>
+<div class="text-center">
+    <a href="/addHouse" class="btn btn-outline-info mt-3">Add house</a>
+</div>
+

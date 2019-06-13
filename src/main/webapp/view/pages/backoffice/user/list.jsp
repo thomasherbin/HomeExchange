@@ -3,7 +3,7 @@
 
 <div class="container">
 
-    <h2>User's List</h2>
+    <h2 class="text-center mt-2 mb-3">Users List</h2>
     <table class="table text-center">
         <thead>
         <tr>
@@ -33,11 +33,11 @@
                 <td>${user.userName}</td>
                 <td>${user.email}</td>
                 <td>${user.role}</td>
-                <td><a class="btn btn-outline-primary" href="${EditUser}">Edit</a></td>
-                <td><a class="btn btn-outline-danger" href="${DeleteUser}">Delete</a></td>
+                <td><a class="btn btn-outline-info" href="${EditUser}">Edit</a></td>
+                <td><a class="btn btn-outline-info" href="${DeleteUser}">Delete</a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <a class="btn btn-outline-primary" href="/addUser">Add user</a>
+    <a class="btn btn-outline-info" href="/addUser">Add user</a>
 </div>

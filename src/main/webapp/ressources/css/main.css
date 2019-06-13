@@ -1,3 +1,21 @@
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+footer{
+    position: relative;
+    bottom: 0;
+    right: 0;
+    left:0 ;
+
+}
+
 .container{max-width:1170px; margin:auto;}
 img{ max-width:100%;}
 
