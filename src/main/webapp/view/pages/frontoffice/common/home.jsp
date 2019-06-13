@@ -45,12 +45,16 @@
         <p></p>
         <div class="container bg-light text-center">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <h2>Need Help ?</h2>
                 </div>
-                <div class="col-lg-6">
+
+                <div class="col-lg-4">
                     <h3><a class="button text-info" href="/contact">Contact</a></h3>
                     <p class="lead mb-0">Don't hesitate to contact us!</p>
+                </div>
+                <div class="col-lg-4">
+                    <h4>We'll answer to each of your questions</h4>
                 </div>
             </div>
         </div>
@@ -66,16 +70,22 @@
                         <h3><a class="button text-info" href="/userList">User List</a></h3>
                     </div>
                     <div class="col">
-                        <h3><a class="button text-info" href="/ticketList">Ticket Support</a></h3>
+                        <h3><a class="button text-info" href="/ticketList">Support Tickets</a></h3>
                     </div>
                 </div>
             </div>
         </c:if>
     </c:when>
     <c:otherwise>
-        <a  class="btn btn-outline-primary" href="${contextPath}/login">Login</a>
-        <a  class="btn btn-outline-primary" href="${contextPath}/registration">SignUp</a>
-        <a  class="btn btn-outline-primary" href="/contact">Contact</a>
+        <div class="text-center">
+            <h3 class="text-info font-weight-bold ">First, please log in or create an account if you don't have on.</h3>
+        </div>
+        <div class="text-center">
+            <a  class="btn btn-outline-info m-3" href="${contextPath}/login">Login</a>
+            <a  class="btn btn-outline-info m-3" href="${contextPath}/registration">Sign Up</a>
+            <a  class="btn btn-outline-info m-3" href="/contact">Contact</a>
+        </div>
+
     </c:otherwise>
 </c:choose>
 
