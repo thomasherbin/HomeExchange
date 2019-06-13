@@ -2,7 +2,6 @@ package com.isep.HomeExchange.model.service;
 
 import com.isep.HomeExchange.model.repository.UserRepository;
 import com.isep.HomeExchange.model.table.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,12 +15,14 @@ public class Session {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             userName = ((UserDetails)principal).getUsername();
+            User user = userRepository.findByUserName(userName);
+            userId =  user.getId();
+            isAdmin = user.userIsAdmin();
         } else {
             userName = principal.toString();
+            userId = 0;
+            isAdmin = false;
         }
-        User user = userRepository.findByUserName(userName);
-        userId =  user.getId();
-        isAdmin = user.userIsAdmin();
     }
 
 

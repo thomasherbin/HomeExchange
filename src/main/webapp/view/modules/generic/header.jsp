@@ -3,7 +3,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="/ressources/image/logo.png" width="100" height="50" alt="">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -11,28 +11,33 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/yourProfile">Profile</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/contact">Contact <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/housesView">My Houses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/search">Search</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/yourBooking">Reservations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/bookingList">Booking List</a>
-                    </li>
-                    <c:if test="${userIsAdmin == true}">
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
                         <li class="nav-item">
-                            <a class="nav-link" href="/userList">User List</a>
+                            <a class="nav-link" href="/yourProfile">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Ticket Support</a>
+                            <a class="nav-link" href="/housesView">My Houses</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/search">Search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/yourBooking">Reservations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/bookingList">Booking List</a>
+                        </li>
+                        <c:if test="${userIsAdmin == true}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/userList">User List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ticketList">Ticket Support</a>
+                            </li>
+                        </c:if>
                     </c:if>
                 </ul>
             </div>
@@ -44,9 +49,8 @@
                 </form>
             </c:when>
             <c:otherwise>
-                <form id="logoutForm" method="POST" action=${contextPath}/registration">
-                    <button class="btn btn-outline-primary" type="submit">SignUp</button>
-                </form>
+                <a  class="btn btn-outline-primary" href="${contextPath}/login">Login</a>
+                <a  class="btn btn-outline-primary" href="${contextPath}/registration">SignUp</a>
             </c:otherwise>
         </c:choose>
         </div>

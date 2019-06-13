@@ -1,42 +1,38 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<h2>tickets list</h2>
+<div class="container">
 
-<table>
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Tech Name</th>
-        <th>User Message</th>
-        <th>Tech Message</th>
-        <th>Date</th>
-        <th>Ticket Number</th>
-    </tr>
+    <h2>Ticket's List</h2>
+    <table class="table text-center">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Email</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach  items="${tickets}" var ="ticket">
 
-    <c:forEach items="${ticket}" ver ="ticket">
+            <c:url var="closeTicket" value="/editTicket">
+                <c:param name="id" value="${ticket.id}" />
+            </c:url>
 
-        <c:url var="EditTicket" value="/editTicket">
-            <c:param ticket="id" value="${ticket.id}" />
-        </c:url>
 
-        <c:url ver="ResponseTicket" value="/responseTicket">
-            <c:param ticket="id" value="${ticket.id}" />
-        </c:url>
-    </c:forEach>
-    <c:url var="DeleteTicket" value="/removeTicket">
-         <c:param ticket="id" value="${ticket.id}" />
-    </c:url>
 
-    <tr>
-        <td>${ticket.firstName}</td>
-        <td>${ticket.lastName}</td>
-        <td>${ticket.techName}</td>
-        <td>${ticket.techMessage}</td>
-        <td>${ticket.date}</td>
-        <td>${ticket.ticketNumber}</td>
-        <td><a href="${EditTicket}">Edit</a></td>
-        <td><a href="${DeleteTicket}">Delete</a></td>
+            <tr>
+                <td>${ticket.sentDate}</td>
+                <td>${ticket.senderEmail}</td>
+                <td>${ticket.description}</td>
+                <td>${ticket.status}</td>
+                <c:if test="${ticket.status == 'OPEN'}">
+                    <td><a class="btn btn-outline-danger" href="${closeTicket}">Close</a></td>
+                </c:if>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 
-    </tr>
-
-</table>
