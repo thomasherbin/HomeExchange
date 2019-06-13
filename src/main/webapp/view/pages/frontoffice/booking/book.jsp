@@ -8,7 +8,7 @@
 
 
 <springForm:form class="text-left border border-info p-5" method="post" modelAttribute="reservation" action="${BookHouse}">
-      <p class="text-info h4 mb-2">Book a house</p>
+      <h1 class="text-center h4 mb-2">Book a house</h1>
        
    
     <table class="table">

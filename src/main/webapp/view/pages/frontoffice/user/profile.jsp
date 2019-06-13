@@ -5,19 +5,19 @@
     <div class="container ml-5">
         <table class="table table-borderless table-hover ml-5 pb-2">
             <tr>
-                <td class="font-weight-bold">First Name: &nbsp;&nbsp; </td>
+                <td class="font-weight-bold">First Name &nbsp;&nbsp; </td>
                 <td>${user.firstName}</td>
             </tr>
             <tr>
-                <td class="font-weight-bold">Last Name:   </td>
+                <td class="font-weight-bold">Last Name   </td>
                 <td>${user.lastName}</td>
             </tr>
             <tr>
-                <td class="font-weight-bold">Username:  </td>
+                <td class="font-weight-bold">Username  </td>
                 <td>${user.userName}</td>
             </tr>
             <tr>
-                <td class="font-weight-bold">Email:  </td>
+                <td class="font-weight-bold">Email  </td>
                 <td>${user.email}</td>
             </tr>
         </table>

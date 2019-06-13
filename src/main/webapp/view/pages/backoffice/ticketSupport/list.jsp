@@ -5,7 +5,7 @@
     <h2 class="text-center mt-2 mb-3">Support Tickets List</h2>
     <table class="table text-center table-bordered">
         <thead>
-        <tr>
+        <tr class="thead-dark">
             <th scope="col"> <i class="fa fa-calendar" aria-hidden="true"></i>
                 Date</th>
             <th scope="col"><i class="fa fa-address-book" aria-hidden="true"></i>

@@ -6,7 +6,7 @@
     <h2 class="text-center mt-2 mb-3">Users List</h2>
     <table class="table text-center">
         <thead>
-        <tr>
+        <tr class="thead-dark">
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Username</th>
