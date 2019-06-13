@@ -1,49 +1,83 @@
 package com.isep.HomeExchange.model.table;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 public class Ticket {
 
-	private String ticketID;
-	
-	private String createdBy;
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Email @NotEmpty
+	private String senderEmail;
+
+	@NotEmpty
 	private String description;
-	
-	private boolean status;
-	
-	public String getTicketID() {
-		return ticketID;
+
+	private String status;
+
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date sentDate;
+
+	public Ticket() {
 	}
-	
-	public void setTicketID(String ticketID) {
-		this.ticketID = ticketID;
+
+	public Long getId() {
+		return id;
 	}
-	
-	public String getCreatedBy() {
-		return createdBy;
+
+	public Date getSentDate() {
+		return sentDate;
 	}
-	
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
+
+	public void setSentDate(Date sentDate) {
+		this.sentDate = sentDate;
 	}
-	
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSenderEmail() {
+		return senderEmail;
+	}
+
+	public void setSenderEmail(String senderEmail) {
+		this.senderEmail = senderEmail;
+	}
+
 	public String getDescription() {
 		return description;
 	}
-	
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	public boolean getStatus() {
+
+	public String getStatus() {
 		return status;
 	}
-	
-	public void setStatus(boolean status) {
+
+	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket{" +
+				"id=" + id +
+				", senderEmail='" + senderEmail + '\'' +
+				", description='" + description + '\'' +
+				", status='" + status + '\'' +
+				", sentDate=" + sentDate +
+				'}';
 	}
 }
